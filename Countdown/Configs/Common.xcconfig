@@ -1,0 +1,21 @@
+//
+//  Common.xcconfig
+//  Countdown
+//
+//  Created by Asif on 11/02/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+// Copyright © 2020 SkyDevz. All rights reserved.
+
+DEVELOPMENT_TEAM = 67T577V5Q4
+
+APP_NAME = CountDown
+BUNDLE_ID_PREFIX = com.skydevz.Countdown
+URL_SCHEME_PREFIX = Countdown
+
+APP_VERSION = 1.2
+
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = Apple Development

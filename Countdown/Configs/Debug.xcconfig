@@ -1,0 +1,12 @@
+//
+//  Debug.xcconfig
+//  Countdown
+//
+//  Created by Asif on 11/02/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "Common.xcconfig"
+
+SCHEME_NAME = Debug

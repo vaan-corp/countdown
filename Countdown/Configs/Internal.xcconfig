@@ -1,0 +1,7 @@
+// Copyright © 2020 VAAN CORP. All rights reserved.
+
+#include "Common.xcconfig"
+
+SCHEME_NAME = Internal
+
+OTHER_CODE_SIGN_FLAGS = --timestamp
