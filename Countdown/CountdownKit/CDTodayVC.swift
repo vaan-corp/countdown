@@ -20,7 +20,7 @@ public protocol TodayControllerProtocol: UIViewController, NCWidgetProviding {
 public extension TodayControllerProtocol {
   
   func onViewLoad() {
-    CDStore.shared.prepare(forAppGroup: "group.imthath.countdown")
+//    CDStore.shared.prepare(forAppGroup: "group.imthath.countdown")
     CDDefault.migrate()
     
     view.addSubview(hostView)

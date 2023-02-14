@@ -18,7 +18,7 @@ public class FavoriteModel: ObservableObject {
   public init(event: EKEvent) {
     self.event = event
     
-    if CDStore.shared.isFavorite(event) {
+    if PersistenceController.shared.isFavorite(event) {
       image = Image(systemName: "heart.fill")
     } else {
       image = Image(systemName: "heart")
@@ -27,132 +27,61 @@ public class FavoriteModel: ObservableObject {
   
   public func toggle() {
     if isFavEvent {
-      CDStore.shared.deleteEvent(withID: self.event.eventIdentifier)
+      PersistenceController.shared.deleteEvent(withID: self.event.eventIdentifier)
       self.image = Image(systemName: "heart")
     } else {
-      CDStore.shared.favorite(self.event)
+      PersistenceController.shared.favorite(self.event)
       self.image = Image(systemName: "heart.fill")
     }
   }
   
-  public var isFavEvent: Bool { CDStore.shared.isFavorite(event) }
+  public var isFavEvent: Bool { PersistenceController.shared.isFavorite(event) }
 }
 
-public class CDStore: BaseStore {
+extension PersistenceController {
   
-  static let shared: CDStore = .init(modelName: FavEvent.entityName)
-  
-  var entityName: String { FavEvent.entityName }
-  var appGroup: String = "group.com.skydevz.Countdown"
-  
-  public func prepare(forAppGroup groupName: String) {
-    CDStore.shared.appGroup = groupName
-  }
-  
-  public func isFavorite(_ event: EKEvent) -> Bool {
+  func isFavorite(_ event: EKEvent) -> Bool {
     let fetchRequest = fetchRequestForEvent(withID: event.eventIdentifier)
     
-    guard let objects = try? mainContext.fetch(fetchRequest) else {
+    guard let objects = try? container.viewContext.fetch(fetchRequest) else {
       return false
     }
     
     return !objects.isEmpty
   }
   
-  public var allFavIdentifiers: [String] {
-    guard let objects = try? mainContext.fetch(FavEvent.fetchRequest) as? [NSManagedObject] else {
-      return []
-    }
-    
-    return objects.compactMap({ $0.value(forKey: FavEvent.id) as? String })
-  }
-  
-  //    public var allFavorites: [FavoriteEvent] {
-  //        guard let objects = try? mainContext?.fetch(FavEvent.fetchRequest) as? [NSManagedObject] else {
-  //                return []
-  //        }
-  //
-  //        return objects.compactMap({ $0.value(forKey: FavEvent.id) as? String })
-  //    }
-  
-  public func favorite(_ event: EKEvent) {
-    let object = NSEntityDescription.insertNewObject(forEntityName: entityName, into: mainContext)
-    
-    //        if let favEvent = object as? FavoriteEvent {
-    //            favEvent.eventID = event.eventIdentifier
-    //            favEvent.occurenceDate = event.occurrenceDate
-    //        } else {
-    object.setValue(event.eventIdentifier, forKey: FavEvent.id)
-    object.setValue(event.occurrenceDate, forKey: FavEvent.date)
-    //        }
-    
-    "event saved with id - \(event.eventIdentifier ?? "")".log()
-    
-    mainContext.update()
-  }
-  
-  public func deleteEvent(withID string: String) {
-    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequestForEvent(withID: string))
+  func favorite(_ event: EKEvent) {
+    let newItem = FavoriteEvent(context: container.viewContext)
+    newItem.eventID = event.eventIdentifier
+    newItem.occurenceDate = event.occurrenceDate
     
     do {
-      try mainContext.execute(batchDeleteRequest)
-      "deleted event with id - \(string)".log()
+      try container.viewContext.save()
+      
     } catch {
-      "Unable to delete entity with name \(entityName)".log()
+      // Replace this implementation with code to handle the error appropriately.
+      // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+      let nsError = error as NSError
+      fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
     }
+  }
+  
+  func deleteEvent(withID id: String) {
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequestForEvent(withID: id))
     
-    // Core data save not required after performing delete batch request
-    // as it acts directly on the underlying SQLite store
-    //        MICoreData.update()
+    do {
+      try container.viewContext.execute(batchDeleteRequest)
+      "deleted event with id - \(id)".log()
+    } catch {
+      "Unable to delete entity with name FavoriteEvent".log()
+    }
   }
   
   func fetchRequestForEvent(withID string: String) -> NSFetchRequest<NSFetchRequestResult>{
-    let fetchRequest = FavEvent.fetchRequest
-    fetchRequest.predicate = NSPredicate(format: "\(FavEvent.id) = %@", string)
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteEvent")
+    fetchRequest.predicate = NSPredicate(format: "eventID = %@", string)
     return fetchRequest
   }
   
-  public override func makeContainer() -> NSPersistentContainer {
-    SharedContainer(name: "Countdown", managedObjectModel: objectModel)
-  }
-  
-  var objectModel: NSManagedObjectModel {
-    let model: NSManagedObjectModel = NSManagedObjectModel()
-    model.entities = [favoriteEntity]
-    return model
-  }
-  
-  var favoriteEntity: NSEntityDescription {
-    let entity = NSEntityDescription()
-    entity.name = entityName
-    entity.addAttribute(name: FavEvent.id, type: .stringAttributeType, isUnique: true)
-    entity.addAttribute(name: FavEvent.date, type: .dateAttributeType)
-    return entity
-  }
 }
 
-class SharedContainer: NSPersistentCloudKitContainer {
-  override open class func defaultDirectoryURL() -> URL {
-    let storeURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: CDStore.shared.appGroup)
-    return storeURL ?? super.defaultDirectoryURL()
-  }
-}
-
-struct FavEvent {
-  static var fetchRequest: NSFetchRequest<NSFetchRequestResult> {
-    NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-  }
-  
-  static var entityName: String { "FavoriteEvent" }
-  static var id: String { "eventID" }
-  static var date: String { "occurenceDate" }
-}
-
-//@objc(FavoriteEvent) public class FavoriteEvent: NSManagedObject {
-////    @nonobjc public class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-////        return NSFetchRequest<NSFetchRequestResult>(entityName: CDStore.entityName)
-////    }
-//
-//    @NSManaged public var eventID: String
-//    @NSManaged public var occurenceDate: Date
-//}
