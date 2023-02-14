@@ -5,6 +5,7 @@
 //  Created by Asif on 11/02/23.
 //
 
+import CoreData
 import EventKit
 import SwiftUI
 
@@ -28,7 +29,7 @@ public class Preferences: ObservableObject {
   //    @Published public var favoriteEvents = [EKEvent]()
   
   public var favoriteEvents: [EKEvent] {
-    events.filter { CDStore.shared.isFavorite($0) }
+    events.filter { PersistenceController.shared.isFavorite($0) }
   }
   
   public var upcomingEventsCount: Int {events.count }

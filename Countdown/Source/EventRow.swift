@@ -104,7 +104,7 @@ struct EventRow: View {
     }
     .secondaryText()
   }
-  
+
   var secondHstack: some View {
     HStack {
       eventTitle
