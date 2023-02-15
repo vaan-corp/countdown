@@ -32,7 +32,40 @@
 		E03129A8299757DE0015287F /* MIDataStore in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A7299757DE0015287F /* MIDataStore */; };
 		E03129AA299758C10015287F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03129A9299758C10015287F /* HomeView.swift */; };
 		E03129AF29975A3A0015287F /* SwiftyUserInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E03129AE29975A3A0015287F /* SwiftyUserInterface */; };
+		E0ED779C299CF55A00003A2B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0ED779B299CF55A00003A2B /* WidgetKit.framework */; };
+		E0ED779E299CF55A00003A2B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0ED779D299CF55A00003A2B /* SwiftUI.framework */; };
+		E0ED77A1299CF55A00003A2B /* CDWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ED77A0299CF55A00003A2B /* CDWidgetBundle.swift */; };
+		E0ED77A3299CF55A00003A2B /* CDWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ED77A2299CF55A00003A2B /* CDWidgetLiveActivity.swift */; };
+		E0ED77A5299CF55A00003A2B /* CDWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ED77A4299CF55A00003A2B /* CDWidget.swift */; };
+		E0ED77A8299CF55A00003A2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0ED77A7299CF55A00003A2B /* Assets.xcassets */; };
+		E0ED77AA299CF55A00003A2B /* CDWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E0ED77A6299CF55A00003A2B /* CDWidget.intentdefinition */; };
+		E0ED77AB299CF55A00003A2B /* CDWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E0ED77A6299CF55A00003A2B /* CDWidget.intentdefinition */; };
+		E0ED77AE299CF55A00003A2B /* CDWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E0ED779A299CF55A00003A2B /* CDWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E0ED77AC299CF55A00003A2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0312945299741B20015287F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0ED7799299CF55A00003A2B;
+			remoteInfo = CDWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E0ED77AF299CF55A00003A2B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E0ED77AE299CF55A00003A2B /* CDWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E031294D299741B20015287F /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +93,15 @@
 		E03129AD299759F60015287F /* SwiftyUserInterface */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftyUserInterface; path = ../../Frameworks/SwiftyUserInterface; sourceTree = "<group>"; };
 		E03129DF299784E10015287F /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		E03129E0299785320015287F /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E0ED779A299CF55A00003A2B /* CDWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CDWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0ED779B299CF55A00003A2B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E0ED779D299CF55A00003A2B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		E0ED77A0299CF55A00003A2B /* CDWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDWidgetBundle.swift; sourceTree = "<group>"; };
+		E0ED77A2299CF55A00003A2B /* CDWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		E0ED77A4299CF55A00003A2B /* CDWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDWidget.swift; sourceTree = "<group>"; };
+		E0ED77A6299CF55A00003A2B /* CDWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CDWidget.intentdefinition; sourceTree = "<group>"; };
+		E0ED77A7299CF55A00003A2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E0ED77A9299CF55A00003A2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +116,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0ED7797299CF55A00003A2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0ED779E299CF55A00003A2B /* SwiftUI.framework in Frameworks */,
+				E0ED779C299CF55A00003A2B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -82,6 +133,7 @@
 			children = (
 				E03129AB2997596A0015287F /* Packages */,
 				E031294F299741B20015287F /* Countdown */,
+				E0ED779F299CF55A00003A2B /* CDWidget */,
 				E031294E299741B20015287F /* Products */,
 				E03129A32997579A0015287F /* Frameworks */,
 			);
@@ -91,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				E031294D299741B20015287F /* Countdown.app */,
+				E0ED779A299CF55A00003A2B /* CDWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +220,8 @@
 		E03129A32997579A0015287F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E0ED779B299CF55A00003A2B /* WidgetKit.framework */,
+				E0ED779D299CF55A00003A2B /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,6 +243,19 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		E0ED779F299CF55A00003A2B /* CDWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E0ED77A0299CF55A00003A2B /* CDWidgetBundle.swift */,
+				E0ED77A2299CF55A00003A2B /* CDWidgetLiveActivity.swift */,
+				E0ED77A4299CF55A00003A2B /* CDWidget.swift */,
+				E0ED77A6299CF55A00003A2B /* CDWidget.intentdefinition */,
+				E0ED77A7299CF55A00003A2B /* Assets.xcassets */,
+				E0ED77A9299CF55A00003A2B /* Info.plist */,
+			);
+			path = CDWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,10 +266,12 @@
 				E0312949299741B20015287F /* Sources */,
 				E031294A299741B20015287F /* Frameworks */,
 				E031294B299741B20015287F /* Resources */,
+				E0ED77AF299CF55A00003A2B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E0ED77AD299CF55A00003A2B /* PBXTargetDependency */,
 			);
 			name = Countdown;
 			packageProductDependencies = (
@@ -214,6 +284,23 @@
 			productReference = E031294D299741B20015287F /* Countdown.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E0ED7799299CF55A00003A2B /* CDWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0ED77B2299CF55A00003A2B /* Build configuration list for PBXNativeTarget "CDWidgetExtension" */;
+			buildPhases = (
+				E0ED7796299CF55A00003A2B /* Sources */,
+				E0ED7797299CF55A00003A2B /* Frameworks */,
+				E0ED7798299CF55A00003A2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CDWidgetExtension;
+			productName = CDWidgetExtension;
+			productReference = E0ED779A299CF55A00003A2B /* CDWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -225,6 +312,9 @@
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					E031294C299741B20015287F = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					E0ED7799299CF55A00003A2B = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -248,6 +338,7 @@
 			projectRoot = "";
 			targets = (
 				E031294C299741B20015287F /* Countdown */,
+				E0ED7799299CF55A00003A2B /* CDWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -259,6 +350,14 @@
 			files = (
 				E0312958299741B30015287F /* Preview Assets.xcassets in Resources */,
 				E0312955299741B30015287F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0ED7798299CF55A00003A2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0ED77A8299CF55A00003A2B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +381,7 @@
 				E0312990299754FF0015287F /* CommonUI.swift in Sources */,
 				E031299C2997568D0015287F /* Utils.swift in Sources */,
 				E0312987299754560015287F /* EventKitUIWrappers.swift in Sources */,
+				E0ED77AB299CF55A00003A2B /* CDWidget.intentdefinition in Sources */,
 				E031298B299754A60015287F /* IAPview.swift in Sources */,
 				E031298D299754CB0015287F /* SettingsView.swift in Sources */,
 				E031299A299756550015287F /* TodayViews.swift in Sources */,
@@ -291,7 +391,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0ED7796299CF55A00003A2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0ED77A1299CF55A00003A2B /* CDWidgetBundle.swift in Sources */,
+				E0ED77AA299CF55A00003A2B /* CDWidget.intentdefinition in Sources */,
+				E0ED77A3299CF55A00003A2B /* CDWidgetLiveActivity.swift in Sources */,
+				E0ED77A5299CF55A00003A2B /* CDWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E0ED77AD299CF55A00003A2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E0ED7799299CF55A00003A2B /* CDWidgetExtension */;
+			targetProxy = E0ED77AC299CF55A00003A2B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E031295E299741B30015287F /* Debug */ = {
@@ -344,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -398,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -411,6 +530,7 @@
 		E0312961299741B30015287F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -441,6 +561,7 @@
 		E0312962299741B30015287F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -468,6 +589,62 @@
 			};
 			name = Release;
 		};
+		E0ED77B0299CF55A00003A2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2WD7UU4A8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CDWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CDWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skydevz.Countdown.CDWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E0ED77B1299CF55A00003A2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2WD7UU4A8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CDWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CDWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skydevz.Countdown.CDWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -485,6 +662,15 @@
 			buildConfigurations = (
 				E0312961299741B30015287F /* Debug */,
 				E0312962299741B30015287F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0ED77B2299CF55A00003A2B /* Build configuration list for PBXNativeTarget "CDWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0ED77B0299CF55A00003A2B /* Debug */,
+				E0ED77B1299CF55A00003A2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
