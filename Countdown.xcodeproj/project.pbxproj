@@ -32,6 +32,19 @@
 		E03129A8299757DE0015287F /* MIDataStore in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A7299757DE0015287F /* MIDataStore */; };
 		E03129AA299758C10015287F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03129A9299758C10015287F /* HomeView.swift */; };
 		E03129AF29975A3A0015287F /* SwiftyUserInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E03129AE29975A3A0015287F /* SwiftyUserInterface */; };
+		E0D71A1D299DF50800E79F2F /* NSCustomPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A1C299DF50800E79F2F /* NSCustomPersistentContainer.swift */; };
+		E0D71A1E299DFC1200E79F2F /* Countdown.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E031295B299741B30015287F /* Countdown.xcdatamodeld */; };
+		E0D71A1F299DFC1800E79F2F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312959299741B30015287F /* Persistence.swift */; };
+		E0D71A25299DFCA100E79F2F /* CDSmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A24299DFCA100E79F2F /* CDSmallWidgetView.swift */; };
+		E0D71A27299DFDFB00E79F2F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A26299DFDFB00E79F2F /* Helper.swift */; };
+		E0D71A2A299DFEE800E79F2F /* SharedEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A29299DFEE800E79F2F /* SharedEvents.swift */; };
+		E0D71A2F299E001900E79F2F /* NSCustomPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A1C299DF50800E79F2F /* NSCustomPersistentContainer.swift */; };
+		E0D71A31299E002F00E79F2F /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = E0D71A30299E002F00E79F2F /* SwiftDate */; };
+		E0D71A32299E053400E79F2F /* SharedEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A29299DFEE800E79F2F /* SharedEvents.swift */; };
+		E0D71A33299E053700E79F2F /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312995299755740015287F /* Ext.swift */; };
+		E0D71A34299E053A00E79F2F /* FavoriteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312997299755A10015287F /* FavoriteEvent.swift */; };
+		E0D71A35299E053C00E79F2F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031299B2997568D0015287F /* Utils.swift */; };
+		E0D71A37299E0AC500E79F2F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0D71A36299E0AC500E79F2F /* EventKit.framework */; };
 		E0ED779C299CF55A00003A2B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0ED779B299CF55A00003A2B /* WidgetKit.framework */; };
 		E0ED779E299CF55A00003A2B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0ED779D299CF55A00003A2B /* SwiftUI.framework */; };
 		E0ED77A1299CF55A00003A2B /* CDWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ED77A0299CF55A00003A2B /* CDWidgetBundle.swift */; };
@@ -93,6 +106,13 @@
 		E03129AD299759F60015287F /* SwiftyUserInterface */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftyUserInterface; path = ../../Frameworks/SwiftyUserInterface; sourceTree = "<group>"; };
 		E03129DF299784E10015287F /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		E03129E0299785320015287F /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E0D71A1A299DF2F800E79F2F /* Countdown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Countdown.entitlements; sourceTree = "<group>"; };
+		E0D71A1B299DF30A00E79F2F /* CDWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CDWidgetExtension.entitlements; sourceTree = "<group>"; };
+		E0D71A1C299DF50800E79F2F /* NSCustomPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCustomPersistentContainer.swift; sourceTree = "<group>"; };
+		E0D71A24299DFCA100E79F2F /* CDSmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSmallWidgetView.swift; sourceTree = "<group>"; };
+		E0D71A26299DFDFB00E79F2F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		E0D71A29299DFEE800E79F2F /* SharedEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedEvents.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		E0D71A36299E0AC500E79F2F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		E0ED779A299CF55A00003A2B /* CDWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CDWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0ED779B299CF55A00003A2B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E0ED779D299CF55A00003A2B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -120,8 +140,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0D71A37299E0AC500E79F2F /* EventKit.framework in Frameworks */,
 				E0ED779E299CF55A00003A2B /* SwiftUI.framework in Frameworks */,
 				E0ED779C299CF55A00003A2B /* WidgetKit.framework in Frameworks */,
+				E0D71A31299E002F00E79F2F /* SwiftDate in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +153,7 @@
 		E0312944299741B20015287F = {
 			isa = PBXGroup;
 			children = (
+				E0D71A1B299DF30A00E79F2F /* CDWidgetExtension.entitlements */,
 				E03129AB2997596A0015287F /* Packages */,
 				E031294F299741B20015287F /* Countdown */,
 				E0ED779F299CF55A00003A2B /* CDWidget */,
@@ -151,6 +174,8 @@
 		E031294F299741B20015287F /* Countdown */ = {
 			isa = PBXGroup;
 			children = (
+				E0D71A28299DFED200E79F2F /* Data */,
+				E0D71A1A299DF2F800E79F2F /* Countdown.entitlements */,
 				E03129D9299780750015287F /* Configs */,
 				E031297F29974CBA0015287F /* CountdownKit */,
 				E031297E29974C9E0015287F /* Source */,
@@ -161,6 +186,7 @@
 				E0312959299741B30015287F /* Persistence.swift */,
 				E031295B299741B30015287F /* Countdown.xcdatamodeld */,
 				E0312956299741B30015287F /* Preview Content */,
+				E0D71A1C299DF50800E79F2F /* NSCustomPersistentContainer.swift */,
 			);
 			path = Countdown;
 			sourceTree = "<group>";
@@ -220,6 +246,7 @@
 		E03129A32997579A0015287F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E0D71A36299E0AC500E79F2F /* EventKit.framework */,
 				E0ED779B299CF55A00003A2B /* WidgetKit.framework */,
 				E0ED779D299CF55A00003A2B /* SwiftUI.framework */,
 			);
@@ -243,9 +270,35 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		E0D71A20299DFC4300E79F2F /* SmallWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E0D71A24299DFCA100E79F2F /* CDSmallWidgetView.swift */,
+				E0D71A21299DFC5300E79F2F /* Helper */,
+			);
+			path = SmallWidget;
+			sourceTree = "<group>";
+		};
+		E0D71A21299DFC5300E79F2F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E0D71A26299DFDFB00E79F2F /* Helper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		E0D71A28299DFED200E79F2F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E0D71A29299DFEE800E79F2F /* SharedEvents.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		E0ED779F299CF55A00003A2B /* CDWidget */ = {
 			isa = PBXGroup;
 			children = (
+				E0D71A20299DFC4300E79F2F /* SmallWidget */,
 				E0ED77A0299CF55A00003A2B /* CDWidgetBundle.swift */,
 				E0ED77A2299CF55A00003A2B /* CDWidgetLiveActivity.swift */,
 				E0ED77A4299CF55A00003A2B /* CDWidget.swift */,
@@ -297,6 +350,9 @@
 			dependencies = (
 			);
 			name = CDWidgetExtension;
+			packageProductDependencies = (
+				E0D71A30299E002F00E79F2F /* SwiftDate */,
+			);
 			productName = CDWidgetExtension;
 			productReference = E0ED779A299CF55A00003A2B /* CDWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -368,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0D71A1D299DF50800E79F2F /* NSCustomPersistentContainer.swift in Sources */,
 				E0312998299755A10015287F /* FavoriteEvent.swift in Sources */,
 				E03129852997541E0015287F /* EventDetail.swift in Sources */,
 				E0312989299754760015287F /* EventRow.swift in Sources */,
@@ -386,6 +443,7 @@
 				E031298D299754CB0015287F /* SettingsView.swift in Sources */,
 				E031299A299756550015287F /* TodayViews.swift in Sources */,
 				E0312992299755210015287F /* Router.swift in Sources */,
+				E0D71A2A299DFEE800E79F2F /* SharedEvents.swift in Sources */,
 				E0312996299755740015287F /* Ext.swift in Sources */,
 				E03129AA299758C10015287F /* HomeView.swift in Sources */,
 			);
@@ -397,8 +455,17 @@
 			files = (
 				E0ED77A1299CF55A00003A2B /* CDWidgetBundle.swift in Sources */,
 				E0ED77AA299CF55A00003A2B /* CDWidget.intentdefinition in Sources */,
+				E0D71A25299DFCA100E79F2F /* CDSmallWidgetView.swift in Sources */,
+				E0D71A32299E053400E79F2F /* SharedEvents.swift in Sources */,
+				E0D71A1E299DFC1200E79F2F /* Countdown.xcdatamodeld in Sources */,
+				E0D71A35299E053C00E79F2F /* Utils.swift in Sources */,
+				E0D71A1F299DFC1800E79F2F /* Persistence.swift in Sources */,
+				E0D71A33299E053700E79F2F /* Ext.swift in Sources */,
 				E0ED77A3299CF55A00003A2B /* CDWidgetLiveActivity.swift in Sources */,
+				E0D71A34299E053A00E79F2F /* FavoriteEvent.swift in Sources */,
+				E0D71A2F299E001900E79F2F /* NSCustomPersistentContainer.swift in Sources */,
 				E0ED77A5299CF55A00003A2B /* CDWidget.swift in Sources */,
+				E0D71A27299DFDFB00E79F2F /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +600,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Countdown/Countdown.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Countdown/Preview Content\"";
@@ -564,6 +632,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Countdown/Countdown.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Countdown/Preview Content\"";
@@ -594,6 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CDWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2WD7UU4A8M;
@@ -622,6 +692,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CDWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2WD7UU4A8M;
@@ -723,6 +794,11 @@
 		E03129AE29975A3A0015287F /* SwiftyUserInterface */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftyUserInterface;
+		};
+		E0D71A30299E002F00E79F2F /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E031299D299757050015287F /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 /* End XCSwiftPackageProductDependency section */
 

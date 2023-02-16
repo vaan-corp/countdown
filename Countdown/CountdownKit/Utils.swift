@@ -32,6 +32,10 @@ public class Preferences: ObservableObject {
     events.filter { PersistenceController.shared.isFavorite($0) }
   }
   
+  public var firstSevenUpcomingEvents: [EKEvent] {Array(events.prefix(7)) }
+   
+  public var firstSevenFavoriteEvents: [EKEvent] {Array(favoriteEvents.prefix(7)) }
+  
   public var upcomingEventsCount: Int {events.count }
   
   public var favoriteEventsCount: Int {favoriteEvents.count }
@@ -213,7 +217,8 @@ public struct CDDefault {
 
 struct Default {
   
-  internal static var custom = UserDefaults(suiteName: "group.com.skydevz.countdown")
+  //TODO: change the app group to old one later ("group.com.skydevz.countdown")
+  internal static var custom = UserDefaults(suiteName: "group.com.skydevz.CountDown")
   
   static public var components: [Calendar.Component] {
     [.day, .weekOfYear, .month]

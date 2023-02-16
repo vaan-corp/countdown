@@ -42,9 +42,15 @@ struct SimpleEntry: TimelineEntry {
 
 struct CDWidgetEntryView : View {
   var entry: Provider.Entry
+  @Environment(\.widgetFamily) var family: WidgetFamily
   
   var body: some View {
-    Text(entry.date, style: .time)
+    switch family {
+    case .systemSmall:
+      CDSmallWidgetView()
+    default:
+      Text("Widget not supported")
+    }
   }
 }
 
@@ -57,6 +63,7 @@ struct CDWidget: Widget {
     }
     .configurationDisplayName("My Widget")
     .description("This is an example widget.")
+    .supportedFamilies([.systemSmall])
   }
 }
 
