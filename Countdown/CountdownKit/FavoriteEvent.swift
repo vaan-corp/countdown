@@ -9,6 +9,7 @@ import MIDataStore
 import CoreData
 import EventKit
 import SwiftUI
+import WidgetKit
 
 public class FavoriteModel: ObservableObject {
   let event: EKEvent
@@ -28,11 +29,13 @@ public class FavoriteModel: ObservableObject {
   public func toggle() {
     if isFavEvent {
       PersistenceController.shared.deleteEvent(withID: self.event.eventIdentifier)
+      Preferences.shared.displayEvents = Preferences.shared.favoriteEvents
       self.image = Image(systemName: "heart")
     } else {
       PersistenceController.shared.favorite(self.event)
       self.image = Image(systemName: "heart.fill")
     }
+    WidgetCenter.shared.reloadAllTimelines()
   }
   
   public var isFavEvent: Bool { PersistenceController.shared.isFavorite(event) }

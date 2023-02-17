@@ -83,7 +83,12 @@ struct HomeView: View {
   var favButton: some View {
     Button(action: {
       if self.preferences.isPaidUser {
-        self.showFavoritesOnly.toggle()
+        showFavoritesOnly.toggle()
+        if showFavoritesOnly {
+          preferences.displayEvents = preferences.favoriteEvents
+        } else {
+          preferences.displayEvents = preferences.events
+        }
       } else {
         if ProductStore.shared.products.isEmpty {
           IAPmanager.updateProductsInfo()
@@ -332,19 +337,11 @@ struct HomeView: View {
   
   var resultEvents: some View {
     Section {
-      ForEach(eventsArray, id: \.eventIdentifier) { event in
+      ForEach(preferences.displayEvents, id: \.eventIdentifier) { event in
         EventRow(event: event)
       }
       //.onDelete(perform: delete)
     }
-  }
-  
-  var eventsArray: [EKEvent] {
-    if showFavoritesOnly {
-      return preferences.favoriteEvents
-    }
-    
-    return preferences.searchResults
   }
   
   //    func delete(at offsets: IndexSet) {
