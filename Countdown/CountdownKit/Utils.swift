@@ -14,6 +14,7 @@ public class Preferences: ObservableObject {
   private init() {
     events = EventStore.getEvents(inCalendars: selectedCalendars)
     searchResults = events
+    displayEvents = events
   }
   
   static public let shared = Preferences()
@@ -25,6 +26,8 @@ public class Preferences: ObservableObject {
   @Published public var events = [EKEvent]()
   
   @Published public var searchResults = [EKEvent]()
+  
+  @Published public var displayEvents = [EKEvent]()
   
   //    @Published public var favoriteEvents = [EKEvent]()
   
