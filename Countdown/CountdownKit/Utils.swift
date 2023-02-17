@@ -40,6 +40,11 @@ public class Preferences: ObservableObject {
   
   public var favoriteEventsCount: Int {favoriteEvents.count }
   
+  //TODO: change the app group to old one later ("group.com.skydevz.countdown")
+  static public let appGroup: String = "group.com.skydevz.CountDown"
+  
+  static public let appName: String = "Countdown"
+  
   @Published public var endDate = CDDefault.endDate {
     didSet { CDDefault.endDate = endDate }
   }
@@ -217,8 +222,7 @@ public struct CDDefault {
 
 struct Default {
   
-  //TODO: change the app group to old one later ("group.com.skydevz.countdown")
-  internal static var custom = UserDefaults(suiteName: "group.com.skydevz.CountDown")
+  internal static var custom = UserDefaults(suiteName: Preferences.appGroup)
   
   static public var components: [Calendar.Component] {
     [.day, .weekOfYear, .month]

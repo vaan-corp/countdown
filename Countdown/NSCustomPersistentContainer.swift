@@ -12,9 +12,10 @@ import CoreData
 class NSCustomPersistentContainer: NSPersistentContainer {
   
   override open class func defaultDirectoryURL() -> URL {
-    var storeURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.skydevz.CountDown")
-    storeURL = storeURL?.appendingPathComponent("Countdown.sqlite")
-    return storeURL!
+    let storeURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Preferences.appGroup)
+    guard let url = storeURL else {
+      return super.defaultDirectoryURL()
+    }
+    return url.appendingPathComponent("\(Preferences.appName).sqlite")
   }
-  
 }
