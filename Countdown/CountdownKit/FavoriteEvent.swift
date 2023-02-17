@@ -37,7 +37,7 @@ public class FavoriteModel: ObservableObject {
       PersistenceController.shared.favorite(self.event)
       self.image = Image(systemName: "heart.fill")
     }
-    WidgetCenter.shared.reloadAllTimelines()
+    WidgetCenter.shared.reloadTimelines(ofKind: "favEvents")
   }
   
   public var isFavEvent: Bool { PersistenceController.shared.isFavorite(event) }

@@ -9,18 +9,22 @@ import SwiftUI
 import EventKit
 
 struct CDSmallWidgetView: View {
+  let kind: String
   var body: some View {
     VStack(spacing: 18){
-      TimerVStack()
-      MoreEventsStack()
+      TimerVStack(kind:kind)
+      MoreEventsStack(kind:kind)
     }
   }
 }
 
 private struct TimerVStack: View {
+  let kind: String
+  var firstTwoEvents : [EKEvent] { kind == "favEvents" ? Events().firstTwoFavoriteEvents : Events().firstTwoUpcomingEvents }
+  
   var body: some View {
     VStack(spacing: 10) {
-      ForEach(Events().firstTwoFavoriteEvents, id: \.eventIdentifier) { event in
+      ForEach(firstTwoEvents, id: \.eventIdentifier) { event in
         TimerDetailStack(event: event)
           .frame(width: 134, height: 42)
           .foregroundColor(event.color)
@@ -76,6 +80,10 @@ private struct TimerDetailStack: View {
 }
 
 private struct MoreEventsStack: View {
+  let kind: String
+  var nextFiveEvents : [EKEvent] { kind == "favEvents" ? Events().nextFiveFavoriteEvents : Events().nextFiveUpcomingEvents }
+  var nextEventsCount : Int { kind == "favEvents" ? Events().nextFavoriteEventsCount : Events().nextUpcomingEventsCount }
+  
   var body: some View {
     HStack(alignment: .firstTextBaseline, spacing: 6){
       firstHStack
@@ -85,7 +93,7 @@ private struct MoreEventsStack: View {
   
   var firstHStack: some View {
     HStack(spacing: 3){
-      ForEach(Events().nextFiveFavoriteEvents, id: \.eventIdentifier){ event in
+      ForEach(nextFiveEvents, id: \.eventIdentifier){ event in
         RoundedRectangle(cornerRadius: 5)
           .foregroundColor(event.color)
           .frame(width: 2,height: 12)
@@ -95,7 +103,7 @@ private struct MoreEventsStack: View {
   
   var secondHStack: some View {
     HStack(alignment: .firstTextBaseline, spacing: 5){
-      Text("\(Events().nextFavoriteEventsCount) more events")
+      Text("\(nextEventsCount) more events")
         .foregroundColor(.secondary)
         .font(.caption)
       Image("MoreEvents")
@@ -106,6 +114,6 @@ private struct MoreEventsStack: View {
 
 struct CDSmallWidgetView_Previews: PreviewProvider {
   static var previews: some View {
-    CDSmallWidgetView()
+    CDSmallWidgetView(kind: "String")
   }
 }

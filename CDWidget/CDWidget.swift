@@ -42,34 +42,51 @@ struct SimpleEntry: TimelineEntry {
 
 struct CDWidgetEntryView : View {
   var entry: Provider.Entry
+  let kind: String
   @Environment(\.widgetFamily) var family: WidgetFamily
   
   var body: some View {
     switch family {
     case .systemSmall:
-      CDSmallWidgetView()
+      CDSmallWidgetView(kind: kind)
     default:
-      Text("Widget not supported")
+      Text("Widget not supported yet")
+
     }
   }
 }
 
-struct CDWidget: Widget {
-  let kind: String = "CDWidget"
+struct FavEventsWidget: Widget {
+
+  let kind : String = "favEvents"
+  
+  var body: some WidgetConfiguration {
+    IntentConfiguration(kind: self.kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+      CDWidgetEntryView(entry: entry, kind: kind)
+    }
+    .configurationDisplayName("Favorite Events")
+    .description("Your Favorite Events.")
+    .supportedFamilies([.systemSmall])
+  }
+}
+
+struct AllEventsWidget: Widget {
+
+  let kind : String = "allEvents"
   
   var body: some WidgetConfiguration {
     IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-      CDWidgetEntryView(entry: entry)
+      CDWidgetEntryView(entry: entry, kind: kind)
     }
-    .configurationDisplayName("My Widget")
-    .description("This is an example widget.")
+    .configurationDisplayName("All Events")
+    .description("Your Upcoming Events.")
     .supportedFamilies([.systemSmall])
   }
 }
 
 struct CDWidget_Previews: PreviewProvider {
   static var previews: some View {
-    CDWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+    CDWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()), kind: "")
       .previewContext(WidgetPreviewContext(family: .systemSmall))
   }
 }

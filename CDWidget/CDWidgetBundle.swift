@@ -11,7 +11,8 @@ import SwiftUI
 @main
 struct CDWidgetBundle: WidgetBundle {
   var body: some Widget {
-    CDWidget()
+    FavEventsWidget()
+    AllEventsWidget()
     if #available(iOSApplicationExtension 16.1, *) {
       CDWidgetLiveActivity()
     }
