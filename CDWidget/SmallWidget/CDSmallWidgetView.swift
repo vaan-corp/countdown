@@ -9,18 +9,21 @@ import SwiftUI
 import EventKit
 
 struct CDSmallWidgetView: View {
-  let kind: String
+  var events: [EKEvent]
+  
   var body: some View {
-    VStack(spacing: 18){
-      TimerVStack(kind:kind)
-      MoreEventsStack(kind:kind)
-    }
+    VStack(alignment: .leading, spacing: 18){
+      TimerVStack(events: events)
+      if(events.count > 2){
+        MoreEventsStack(events: events)
+      }
+    }.padding(.leading, 10)
   }
 }
 
 private struct TimerVStack: View {
-  let kind: String
-  var firstTwoEvents : [EKEvent] { kind == "favEvents" ? Events().firstTwoFavoriteEvents : Events().firstTwoUpcomingEvents }
+  var events: [EKEvent]
+  var firstTwoEvents : [EKEvent] { Array(events.prefix(2))}
   
   var body: some View {
     VStack(spacing: 10) {
@@ -30,19 +33,15 @@ private struct TimerVStack: View {
           .foregroundColor(event.color)
       }
     }
-    .padding(.leading, 10)
   }
 }
 
 private struct TimerDetailStack: View {
   let event : EKEvent
+  let helper = Helper()
   
-  init(event: EKEvent) {
-    self.event = event
-  }
-  
-  var days: Int { Helper().getDays(targetTimeStamp: event.occurrenceDate.timeIntervalSince1970)}
-  var date: Date { Helper().getDate(targetTimeStamp: event.occurrenceDate.timeIntervalSince1970)}
+  var days: Int { helper.getDays(targetTimeStamp: event.occurrenceDate.timeIntervalSince1970)}
+  var date: Date { helper.getDate(targetTimeStamp: event.occurrenceDate.timeIntervalSince1970)}
   
   var body: some View {
     HStack {
@@ -80,9 +79,10 @@ private struct TimerDetailStack: View {
 }
 
 private struct MoreEventsStack: View {
-  let kind: String
-  var nextFiveEvents : [EKEvent] { kind == "favEvents" ? Events().nextFiveFavoriteEvents : Events().nextFiveUpcomingEvents }
-  var nextEventsCount : Int { kind == "favEvents" ? Events().nextFavoriteEventsCount : Events().nextUpcomingEventsCount }
+  var events: [EKEvent]
+  var firstSevenEvents: [EKEvent] { Array(events.prefix(7))}
+  var nextEvents : [EKEvent] { Array(firstSevenEvents.dropFirst(2)) }
+  var nextEventsCount : Int { events.count - 2}
   
   var body: some View {
     HStack(alignment: .firstTextBaseline, spacing: 6){
@@ -93,7 +93,7 @@ private struct MoreEventsStack: View {
   
   var firstHStack: some View {
     HStack(spacing: 3){
-      ForEach(nextFiveEvents, id: \.eventIdentifier){ event in
+      ForEach(nextEvents, id: \.eventIdentifier){ event in
         RoundedRectangle(cornerRadius: 5)
           .foregroundColor(event.color)
           .frame(width: 2,height: 12)
@@ -114,6 +114,6 @@ private struct MoreEventsStack: View {
 
 struct CDSmallWidgetView_Previews: PreviewProvider {
   static var previews: some View {
-    CDSmallWidgetView(kind: "String")
+    CDSmallWidgetView(events: [])
   }
 }

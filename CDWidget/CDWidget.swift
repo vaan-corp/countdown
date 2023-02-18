@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 import Intents
+import EventKit
 
 struct Provider: IntentTimelineProvider {
   func placeholder(in context: Context) -> SimpleEntry {
@@ -43,15 +44,23 @@ struct SimpleEntry: TimelineEntry {
 struct CDWidgetEntryView : View {
   var entry: Provider.Entry
   let kind: String
+  var events: [EKEvent]
   @Environment(\.widgetFamily) var family: WidgetFamily
   
   var body: some View {
     switch family {
     case .systemSmall:
-      CDSmallWidgetView(kind: kind)
+      if(events.count == 0){
+        NoEventsView(kind: kind)
+      } else if(events.count == 1){
+        //TODO: add small widget with single event
+        Text("small widget single event")
+      }
+      else {
+        CDSmallWidgetView(events: events)
+      }
     default:
       Text("Widget not supported yet")
-
     }
   }
 }
@@ -59,10 +68,12 @@ struct CDWidgetEntryView : View {
 struct FavEventsWidget: Widget {
 
   let kind : String = "favEvents"
+  var favEvents: [EKEvent] { Preferences.shared.favoriteEvents}
+  var firstSevenFavEvents: [EKEvent] { Array(favEvents.prefix(7))}
   
   var body: some WidgetConfiguration {
     IntentConfiguration(kind: self.kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-      CDWidgetEntryView(entry: entry, kind: kind)
+      CDWidgetEntryView(entry: entry, kind: kind, events: favEvents)
     }
     .configurationDisplayName("Favorite Events")
     .description("Your Favorite Events.")
@@ -73,10 +84,13 @@ struct FavEventsWidget: Widget {
 struct AllEventsWidget: Widget {
 
   let kind : String = "allEvents"
+  var allEvents: [EKEvent] { Preferences.shared.events}
+  var allEventsCount :Int { allEvents.count}
+  var firstSevenAllEvents: [EKEvent] { Array(allEvents.prefix(7))}
   
   var body: some WidgetConfiguration {
     IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-      CDWidgetEntryView(entry: entry, kind: kind)
+      CDWidgetEntryView(entry: entry, kind: kind, events: allEvents)
     }
     .configurationDisplayName("All Events")
     .description("Your Upcoming Events.")
@@ -86,7 +100,7 @@ struct AllEventsWidget: Widget {
 
 struct CDWidget_Previews: PreviewProvider {
   static var previews: some View {
-    CDWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()), kind: "")
+    CDWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()), kind: "", events: [])
       .previewContext(WidgetPreviewContext(family: .systemSmall))
   }
 }
