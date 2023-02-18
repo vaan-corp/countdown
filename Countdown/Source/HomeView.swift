@@ -137,7 +137,7 @@ struct HomeView: View {
       toggleButtonImage()
         .imageScale(.large)
         .frame(width: .averageTouchSize, height: .averageTouchSize)
-    }).disabled(preferences.searchResults.isEmpty)
+    }).disabled(preferences.displayEvents.isEmpty)
   }
   
   //    func optionA() {
@@ -203,7 +203,7 @@ struct HomeView: View {
         noCalendarSelected
       } else if preferences.events.isEmpty {
         noEvents
-      } else if preferences.searchResults.isEmpty {
+      } else if preferences.displayEvents.isEmpty {
         noResultsView
       } else if showFavoritesOnly && preferences.favoriteEvents.isEmpty {
         noFavoritesView

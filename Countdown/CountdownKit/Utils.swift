@@ -12,8 +12,6 @@ import SwiftUI
 public class Preferences: ObservableObject {
   
   private init() {
-    events = EventStore.getEvents(inCalendars: selectedCalendars)
-    searchResults = events
     displayEvents = events
   }
   
@@ -22,10 +20,10 @@ public class Preferences: ObservableObject {
   //    public static var layoutDirection: LayoutDirection = .leftToRight
   
   @Published public var searchText: String = ""
-  
-  @Published public var events = [EKEvent]()
-  
-  @Published public var searchResults = [EKEvent]()
+
+  public var events: [EKEvent] {
+    EventStore.getEvents(inCalendars: selectedCalendars)
+  }
   
   @Published public var displayEvents = [EKEvent]()
   
@@ -124,17 +122,16 @@ public class Preferences: ObservableObject {
   }
   
   public func updateEvents() {
-    events = EventStore.getEvents(inCalendars: selectedCalendars)
     updateSearchResults()
   }
   
   public func updateSearchResults() {
     guard !searchText.isEmpty else {
-      searchResults = events
+      displayEvents = events
       return
     }
     
-    searchResults = events.filter {
+    displayEvents = events.filter {
       $0.title
         .localizedCaseInsensitiveContains(
           searchText

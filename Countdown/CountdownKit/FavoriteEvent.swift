@@ -29,7 +29,9 @@ public class FavoriteModel: ObservableObject {
   public func toggle() {
     if isFavEvent {
       PersistenceController.shared.deleteEvent(withID: self.event.eventIdentifier)
-      Preferences.shared.displayEvents = Preferences.shared.favoriteEvents
+      withAnimation {
+        Preferences.shared.displayEvents.removeAll(where: { $0.eventIdentifier == self.event.eventIdentifier })
+      }
       self.image = Image(systemName: "heart")
     } else {
       PersistenceController.shared.favorite(self.event)
