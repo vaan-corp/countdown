@@ -44,20 +44,21 @@ struct SimpleEntry: TimelineEntry {
 struct CDWidgetEntryView : View {
   var entry: Provider.Entry
   let kind: String
-  var events: [EKEvent]
+  var firstSevenEvents: [EKEvent]
+  var eventsCount: Int
   @Environment(\.widgetFamily) var family: WidgetFamily
   
   var body: some View {
     switch family {
     case .systemSmall:
-      if(events.count == 0){
+      if(eventsCount == 0){
         NoEventsView(kind: kind)
-      } else if(events.count == 1){
+      } else if(eventsCount == 1){
         //TODO: add small widget with single event
         Text("small widget single event")
       }
       else {
-        CDSmallWidgetView(events: events)
+        CDSmallWidgetView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
       }
     default:
       Text("Widget not supported yet")
@@ -69,14 +70,15 @@ struct FavEventsWidget: Widget {
 
   let kind : String = "favEvents"
   var favEvents: [EKEvent] { Preferences.shared.favoriteEvents}
-  var firstSevenFavEvents: [EKEvent] { Array(favEvents.prefix(7))}
+  var favEventsCount: Int { favEvents.count}
+  var firstSevenEvents: [EKEvent] { Array(favEvents.prefix(7))}
   
   var body: some WidgetConfiguration {
     IntentConfiguration(kind: self.kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-      CDWidgetEntryView(entry: entry, kind: kind, events: favEvents)
+      CDWidgetEntryView(entry: entry, kind: kind, firstSevenEvents: firstSevenEvents, eventsCount: favEventsCount)
     }
     .configurationDisplayName("Favorite Events")
-    .description("Your Favorite Events.")
+    .description("Add favorties in the app to see countdown quickly on your home screen")
     .supportedFamilies([.systemSmall])
   }
 }
@@ -86,21 +88,21 @@ struct AllEventsWidget: Widget {
   let kind : String = "allEvents"
   var allEvents: [EKEvent] { Preferences.shared.events}
   var allEventsCount :Int { allEvents.count}
-  var firstSevenAllEvents: [EKEvent] { Array(allEvents.prefix(7))}
+  var firstSevenEvents: [EKEvent] { Array(allEvents.prefix(7))}
   
   var body: some WidgetConfiguration {
     IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-      CDWidgetEntryView(entry: entry, kind: kind, events: allEvents)
+      CDWidgetEntryView(entry: entry, kind: kind, firstSevenEvents: firstSevenEvents, eventsCount: allEventsCount)
     }
-    .configurationDisplayName("All Events")
-    .description("Your Upcoming Events.")
+    .configurationDisplayName("Upcoming events")
+    .description("See countdown for all events on your calendar")
     .supportedFamilies([.systemSmall])
   }
 }
 
 struct CDWidget_Previews: PreviewProvider {
   static var previews: some View {
-    CDWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()), kind: "", events: [])
+    CDWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()), kind: "", firstSevenEvents: [], eventsCount: 7)
       .previewContext(WidgetPreviewContext(family: .systemSmall))
   }
 }

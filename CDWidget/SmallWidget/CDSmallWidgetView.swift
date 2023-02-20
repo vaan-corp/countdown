@@ -9,21 +9,22 @@ import SwiftUI
 import EventKit
 
 struct CDSmallWidgetView: View {
-  var events: [EKEvent]
+  var firstSevenEvents: [EKEvent]
+  var eventsCount: Int
+  var firstTwoEvents : [EKEvent] { Array(firstSevenEvents.prefix(2))}
   
   var body: some View {
     VStack(alignment: .leading, spacing: 18){
-      TimerVStack(events: events)
-      if(events.count > 2){
-        MoreEventsStack(events: events)
+      TimerVStack(firstTwoEvents: firstTwoEvents)
+      if(eventsCount > 2){
+        MoreEventsStack(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
       }
     }.padding(.leading, 10)
   }
 }
 
 private struct TimerVStack: View {
-  var events: [EKEvent]
-  var firstTwoEvents : [EKEvent] { Array(events.prefix(2))}
+  var firstTwoEvents: [EKEvent]
   
   var body: some View {
     VStack(spacing: 10) {
@@ -79,10 +80,10 @@ private struct TimerDetailStack: View {
 }
 
 private struct MoreEventsStack: View {
-  var events: [EKEvent]
-  var firstSevenEvents: [EKEvent] { Array(events.prefix(7))}
-  var nextEvents : [EKEvent] { Array(firstSevenEvents.dropFirst(2)) }
-  var nextEventsCount : Int { events.count - 2}
+  var firstSevenEvents: [EKEvent]
+  var eventsCount: Int
+  var nextEvents : [EKEvent] { Array(firstSevenEvents.dropFirst(2))}
+  var nextEventsCount : Int { eventsCount - 2}
   
   var body: some View {
     HStack(alignment: .firstTextBaseline, spacing: 6){
@@ -114,6 +115,6 @@ private struct MoreEventsStack: View {
 
 struct CDSmallWidgetView_Previews: PreviewProvider {
   static var previews: some View {
-    CDSmallWidgetView(events: [])
+    CDSmallWidgetView(firstSevenEvents: [], eventsCount: 1)
   }
 }
