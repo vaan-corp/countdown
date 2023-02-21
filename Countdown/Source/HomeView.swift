@@ -32,9 +32,7 @@ struct HomeView: View {
   @State var showsAddEventVC = false
   @State var showFavoritesOnly = false
   @State var newEventAdded = false
-  @State var search = ""
-  
-  var searchText: String { preferences.searchText }
+  @State var searchText = ""
   
   var body: some View {
     NavigationStack {
@@ -49,8 +47,8 @@ struct HomeView: View {
       //        .navigationViewStyle(StackNavigationViewStyle())
       //        .stacked(for: device)
     }
-    .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always))
-    .onChange(of: search) {newValue in
+    .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+    .onChange(of: searchText) {newValue in
       if !newValue.isEmpty {
         return preferences.displayEvents = preferences.events.filter { $0.title.contains(newValue) }
       } else {
