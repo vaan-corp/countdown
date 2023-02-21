@@ -57,7 +57,6 @@ struct SettingsView: View {
               
             }
         }
-//        toggleEventsStyle
       }
       .padding(.top, .small)
       
@@ -179,31 +178,6 @@ struct SettingsView: View {
     }.padding()
   }
 #endif
-  
-  var toggleEventsStyle: some View {
-    HStack {
-      cardImage
-        .foregroundColor(.blue)
-      Text("Change events display style")
-      Spacer()
-    }
-    .onTapGesture {
-      self.preferences.showEventAsCard.toggle()
-      self.presentationMode.wrappedValue.dismiss()
-    }
-    //        Toggle(isOn: $preferences.showEventAsCard, label: {
-    //                            cardImage
-    //                                .foregroundColor(.blue)
-    //                            Text("Display Events as cards")
-    //                        })
-    .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
-  }
-  
-  var cardImage: some View {
-    preferences.showEventAsCard ?
-    ScaledImage(systemName: "rectangle.grid.1x2.fill") :
-    ScaledImage(systemName: "list.bullet")
-  }
   
   var contactUs: some View {
     HStack {
