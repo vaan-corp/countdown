@@ -57,7 +57,7 @@ struct SettingsView: View {
               
             }
         }
-        toggleEventsStyle
+//        toggleEventsStyle
       }
       .padding(.top, .small)
       

@@ -32,104 +32,83 @@ struct HomeView: View {
   @State var showsAddEventVC = false
   @State var showFavoritesOnly = false
   @State var newEventAdded = false
+  @State var search = ""
   
   var searchText: String { preferences.searchText }
   
   var body: some View {
-    NavigationView {
+    NavigationStack {
       mainView
-        .accentColor(.appTintColor)
+        .sheet(isPresented: $appState.showsSettings, onDismiss: updateEvents, content: settingsView)
+        .sheet(isPresented: $showsAddEventVC, onDismiss: dismissedAddEventVC, content: addEventView)
         .multilineTextAlignment(.center)
         .sheet(isPresented: $appState.showIAPview, content: { IAPview() })
         .onAppear(perform: checkPermission)
-        .navigationBarTitle("Events", displayMode: .inline)
-        .navigationBarItems(leading: leadingStack, trailing: trailingStack)
+        .navigationBarTitle("Countdown", displayMode: .inline)
+        .navigationBarItems(trailing: trailingStack)
       //        .navigationViewStyle(StackNavigationViewStyle())
       //        .stacked(for: device)
     }
-  }
-  
-  var settingsButton: some View {
-    Button(action: {
-      self.appState.showsSettings = true
-    }, label: {
-      Image(systemName: "gear")
-        .imageScale(.large)
-        .frame(width: .averageTouchSize, height: .averageTouchSize)
-    })
-    .sheet(isPresented: $appState.showsSettings, onDismiss: updateEvents, content: settingsView)
-  }
-  
-  var leadingStack: some View {
-    HStack(spacing: .zero) {
-      settingsButton
-      addEventButton
-      //            toggleListButton
-      //            favButton//.foregroundColor(.red)
+    .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always))
+    .onChange(of: search) {newValue in
+      if !newValue.isEmpty {
+        return preferences.displayEvents = preferences.events.filter { $0.title.contains(newValue) }
+      } else {
+        return preferences.displayEvents = preferences.events
+      }
     }
+    .accentColor(.appTintColor)
   }
   
   var trailingStack: some View {
     HStack(spacing: .zero) {
-      //            toggleListButton
-      //            if preferences.isPaidUser {
-      favButton
-      //            }
-      searchButton
-      //            addEventButton
-    }
-  }
-  
-  var favButton: some View {
-    Button(action: {
-      if self.preferences.isPaidUser {
-        showFavoritesOnly.toggle()
-        if showFavoritesOnly {
-          preferences.displayEvents = preferences.favoriteEvents
-        } else {
-          preferences.displayEvents = preferences.events
+      Menu {
+        Button( action: favButtonActions) {
+          Label( showFavoritesOnly ? "Show All Events" : "Show Favorites only", systemImage: "heart.fill")
+            .labelStyle(.iconOnly)
+            .foregroundColor(.red)
         }
-      } else {
-        if ProductStore.shared.products.isEmpty {
-          IAPmanager.updateProductsInfo()
+        .foregroundColor(.red)
+        
+        Button(action: {
+          self.appState.showsSettings = true
+        }, label: {
+          Text("Settings")
+          Image(systemName: "gear")
+            .imageScale(.large)
+            .frame(width: .averageTouchSize, height: .averageTouchSize)
+            .foregroundColor(.red)
+        })
+        
+        Button( action: {
+          self.showsAddEventVC = true
+        }) {
+          Label("Add Event",systemImage: "plus")
         }
-        self.appState.showIAPview = true
       }
-      
-    }, label: {
-      favImage
-    })
-  }
-  
-  var favImage: some View {
-    if showFavoritesOnly {
-      return ScaledImage(systemName: "heart.fill")
+    label: {
+      Label("", systemImage: "ellipsis.circle")
     }
-    
-    return ScaledImage(systemName: "heart")
+    .tint(Color.accentColor)
+    .foregroundColor(.red)
+    .accentColor(.appTintColor)
+    }
   }
   
-  var searchButton: some View {
-    Button(action: {
-      self.showFavoritesOnly = false
-      Router.shared.showSearchBar()
-    }, label: {
-      Image(systemName: "magnifyingglass")
-        .imageScale(.large)
-        .frame(width: .averageTouchSize, height: .averageTouchSize)
-    }).disabled(preferences.events.isEmpty)
-  }
-  
-  var addEventButton: some View {
-    Button(action: {
-      self.showsAddEventVC = true
-    }, label: {
-      Image(systemName: "plus")
-        .imageScale(.large)
-        .frame(width: .averageTouchSize, height: .averageTouchSize)
-    })
-    .disabled(preferences.accessDenied)
-    .sheet(isPresented: $showsAddEventVC, onDismiss: dismissedAddEventVC, content: addEventView)
+  func favButtonActions() {
+    if self.preferences.isPaidUser {
+      showFavoritesOnly.toggle()
+      if showFavoritesOnly {
+        preferences.displayEvents = preferences.favoriteEvents
+      } else {
+        preferences.displayEvents = preferences.events
+      }
+    } else {
+      if ProductStore.shared.products.isEmpty {
+        IAPmanager.updateProductsInfo()
+      }
+      self.appState.showIAPview = true
+    }
   }
   
   var toggleListButton: some View {

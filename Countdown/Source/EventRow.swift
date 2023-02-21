@@ -23,9 +23,9 @@ struct EventRow: View {
   }
   
   var body: some View {
-    Button(action: {
-      Router.shared.showDetail(for: self.$event)
-    }, label: {
+    NavigationLink {
+      EventDetail(event: self.$event)
+    } label: {
       Group {
         if preferences.showEventAsCard {
           eventCard.contentShape(RoundedRectangle(cornerRadius: .small))
@@ -35,34 +35,7 @@ struct EventRow: View {
           //                        .transition(AnyTransition.scale.combined(with: .opacity))
         }
       }
-      
-    })
-    .buttonStyle(TappableButton(isRoundedCorners: $preferences.showEventAsCard, cornerRadius: .small))
-    //            .contextMenu(menuItems: {
-    //                VStack {
-    //                    Button(action: favModel.toggle, label: {
-    //                        if favModel.isFavEvent {
-    //                            Text("Remove from favorites")
-    //                            Image(systemName: "heart")
-    //                        } else {
-    //                            Text("Add to favorites")
-    //                            Image(systemName: "heart.fill")
-    //                        }
-    //                    })
-    //                    Button(action: {
-    //                        "Edit Event".log()
-    //                    }, label: {
-    //                        Text("Edit")
-    //                        Image(systemName: "square.and.pencil")
-    //                    })
-    //                    Button(action: {
-    //                        "Delete Event".log()
-    //                    }, label: {
-    //                        Text("Delete")
-    //                        Image(systemName: "trash")
-    //                    })
-    //                }
-    //            })
+    }
     .listRowBackground(preferences.showEventAsCard ?  Color(.systemGroupedBackground) : .clear)
     .listRowInsets(insets)
   }
@@ -113,6 +86,7 @@ struct EventRow: View {
       Text(event.difference(in: preferences.calendarComponent))
         .makeTag(with: event.color.opacity(0.5))
     }
+    .foregroundColor(.primary)
   }
   
   var eventTitle: some View {
