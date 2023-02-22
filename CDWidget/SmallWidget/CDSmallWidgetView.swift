@@ -37,14 +37,14 @@ private struct TimerVStack: View {
   }
 }
 
-private struct TimerDetailStack: View {
+public struct TimerDetailStack: View {
   let event : EKEvent
   let helper = Helper()
   
   var days: Int { helper.getDays(targetTimeStamp: event.occurrenceDate.timeIntervalSince1970)}
   var date: Date { helper.getDate(targetTimeStamp: event.occurrenceDate.timeIntervalSince1970)}
   
-  var body: some View {
+  public var body: some View {
     HStack {
       RoundedRectangle(cornerRadius: 5)
         .frame(width: 2, height: .infinity)

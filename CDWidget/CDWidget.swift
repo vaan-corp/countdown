@@ -45,6 +45,7 @@ struct CDWidgetEntryView : View {
   var entry: Provider.Entry
   let kind: String
   var firstSevenEvents: [EKEvent]
+  var firstEvent: EKEvent? { firstSevenEvents.first }
   var eventsCount: Int
   @Environment(\.widgetFamily) var family: WidgetFamily
   
@@ -54,8 +55,7 @@ struct CDWidgetEntryView : View {
       if(eventsCount == 0){
         NoEventsView(kind: kind)
       } else if(eventsCount == 1){
-        //TODO: add small widget with single event
-        Text("small widget single event")
+        SmallWidgetSingleEventView(firstEvent: firstEvent)
       }
       else {
         CDSmallWidgetView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)

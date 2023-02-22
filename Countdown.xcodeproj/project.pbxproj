@@ -32,6 +32,7 @@
 		E03129A8299757DE0015287F /* MIDataStore in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A7299757DE0015287F /* MIDataStore */; };
 		E03129AA299758C10015287F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03129A9299758C10015287F /* HomeView.swift */; };
 		E03129AF29975A3A0015287F /* SwiftyUserInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E03129AE29975A3A0015287F /* SwiftyUserInterface */; };
+		E052114D29A4A47600271E16 /* SmallWidgetSingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */; };
 		E0CC9E1029A0D49500F46E58 /* NoEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC9E0F29A0D49500F46E58 /* NoEventsView.swift */; };
 		E0D71A1D299DF50800E79F2F /* NSCustomPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A1C299DF50800E79F2F /* NSCustomPersistentContainer.swift */; };
 		E0D71A1E299DFC1200E79F2F /* Countdown.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E031295B299741B30015287F /* Countdown.xcdatamodeld */; };
@@ -105,6 +106,7 @@
 		E03129AD299759F60015287F /* SwiftyUserInterface */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftyUserInterface; path = ../../Frameworks/SwiftyUserInterface; sourceTree = "<group>"; };
 		E03129DF299784E10015287F /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		E03129E0299785320015287F /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetSingleEventView.swift; sourceTree = "<group>"; };
 		E0CC9E0F29A0D49500F46E58 /* NoEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoEventsView.swift; sourceTree = "<group>"; };
 		E0D71A1A299DF2F800E79F2F /* Countdown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Countdown.entitlements; sourceTree = "<group>"; };
 		E0D71A1B299DF30A00E79F2F /* CDWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CDWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				E0D71A24299DFCA100E79F2F /* CDSmallWidgetView.swift */,
 				E0CC9E0F29A0D49500F46E58 /* NoEventsView.swift */,
 				E0D71A21299DFC5300E79F2F /* Helper */,
+				E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */,
 			);
 			path = SmallWidget;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				E0ED77AA299CF55A00003A2B /* CDWidget.intentdefinition in Sources */,
 				E0D71A25299DFCA100E79F2F /* CDSmallWidgetView.swift in Sources */,
 				E0D71A1E299DFC1200E79F2F /* Countdown.xcdatamodeld in Sources */,
+				E052114D29A4A47600271E16 /* SmallWidgetSingleEventView.swift in Sources */,
 				E0D71A35299E053C00E79F2F /* Utils.swift in Sources */,
 				E0D71A1F299DFC1800E79F2F /* Persistence.swift in Sources */,
 				E0D71A33299E053700E79F2F /* Ext.swift in Sources */,
