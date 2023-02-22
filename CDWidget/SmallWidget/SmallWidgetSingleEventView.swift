@@ -9,26 +9,26 @@ import SwiftUI
 import EventKit
 
 struct SmallWidgetSingleEventView: View {
-  var firstEvent: EKEvent?
+  var event: EKEvent
   
   var body: some View {
     HStack(alignment: .top,spacing: 7) {
       HStack{
         RoundedRectangle(cornerRadius: 5)
-          .foregroundColor(firstEvent!.color)
+          .foregroundColor(event.color)
           .frame(width: 2, height: 108)
       }
       
       VStack(alignment: .leading, spacing: 9) {
-        Text(firstEvent!.title)
+        Text(event.title)
           .font(.callout)
-          .foregroundColor(firstEvent!.color)
+          .foregroundColor(event.color)
           .fontWeight(.bold)
         
         middleStack
-          
-        TimerDetailStack(event: firstEvent!).timerStack
-          .foregroundColor(firstEvent!.color)
+        
+        TimerDetailStack(event: event).timerStack
+          .foregroundColor(event.color)
       }
     }.padding(.leading,20)
   }
@@ -37,11 +37,11 @@ struct SmallWidgetSingleEventView: View {
     VStack(alignment: .leading, spacing: 7){
       firstDetailStack
       
-      if(firstEvent!.alarmsString != ""){
+      if(!event.alarmsString.isEmpty){
         secondDetailStack
       }
       
-      if(firstEvent!.urlString != ""){
+      if(!event.urlString.isEmpty){
         thirdDetailStack
       }
     }.foregroundColor(.secondary)
@@ -52,7 +52,11 @@ struct SmallWidgetSingleEventView: View {
       Image("calendar_icon")
         .resizable()
         .frame(width: 12, height: 12)
-      Text(firstEvent!.occurrenceDate.toString(inFormat: "MMM d, hh.mm a"))
+      HStack(spacing:2){
+        Text(event.occurrenceDate.formatted(.dateTime.day().month()))
+        Text(",")
+        Text(event.occurrenceDate, style: .time)
+      }
         .font(.caption2)
     }
   }
@@ -61,7 +65,7 @@ struct SmallWidgetSingleEventView: View {
     HStack(alignment: .bottom,spacing: 5) {
       Image(systemName: "clock")
         .imageScale(.small)
-      Text(firstEvent!.alarmsString)
+      Text(event.alarmsString)
         .font(.caption2)
     }
   }
@@ -70,14 +74,9 @@ struct SmallWidgetSingleEventView: View {
     HStack(alignment: .firstTextBaseline,spacing: 5) {
       Image(systemName: "person.fill")
         .imageScale(.small)
-      Text(firstEvent!.urlString)
+      Text(event.urlString)
         .font(.caption2)
     }
   }
 }
 
-struct SmallWidgetSingleEventView_Previews: PreviewProvider {
-  static var previews: some View {
-    SmallWidgetSingleEventView()
-  }
-}
