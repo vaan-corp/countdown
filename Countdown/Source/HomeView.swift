@@ -268,11 +268,13 @@ struct HomeView: View {
   @ViewBuilder var eventList: some View {
     if #available(iOS 14.0, *) {
       VStack {
-        LazyVStack {
+        Spacer()
           resultEvents
-        }.embedInScrollView()
         Spacer()
       }
+      .embedInScrollView()
+      .background(Color(.secondarySystemBackground))
+      .clipped()
       
       //            if preferences.showEventAsCard {
       //                List(eventsArray, id: \.eventIdentifier) { event in
