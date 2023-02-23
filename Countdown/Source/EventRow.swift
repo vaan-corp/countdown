@@ -58,6 +58,7 @@ struct EventRow: View {
       RoundedRectangle(cornerRadius: .small)
         .fill(Color(.secondarySystemGroupedBackground))
     )
+    .padding(.horizontal)
   }
   
   var firstHstack: some View {
