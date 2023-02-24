@@ -5,10 +5,10 @@
 //  Created by Asif on 11/02/23.
 //
 
-import EventKit
 import Combine
-import SwiftUI
+import EventKit
 import SwiftDate
+import SwiftUI
 
 public extension Array where Element: EKEvent {
   var distinct: [Element] {
@@ -79,11 +79,9 @@ public extension Date {
     
     return result
   }
-  
 }
 
 public extension Timer {
-  
   /// publishes time value every second
   static var secondlyPublisher: Publishers.Autoconnect<Timer.TimerPublisher> {
     return Timer.publish(
@@ -103,7 +101,6 @@ public extension String {
 }
 
 public extension EKEvent {
-  
   func difference(in component: Calendar.Component) -> String {
     guard let diff = DateInRegion(occurrenceDate).difference(in: component, from: DateInRegion()),
           diff > 1 else {
@@ -133,7 +130,7 @@ public extension EKEvent {
     
     for alarm in array {
       var relativeTime = alarm.relativeOffset.relativeTime()
-      if let date = alarm.absoluteDate  {
+      if let date = alarm.absoluteDate {
         result.append(date.toString(inFormat: "MMM dd, yyyy, HH:mm, "))
       } else if !relativeTime.isEmpty {
         if alarm.relativeOffset < 0 {
@@ -143,7 +140,6 @@ public extension EKEvent {
         }
         result.append("\(relativeTime), ")
       }
-      
     }
     
 //    result.removeLast(2)
@@ -155,14 +151,12 @@ public extension EKEvent {
 }
 
 public extension EKCalendar {
-  
   var color: Color {
     Color(UIColor(cgColor: cgColor))
   }
 }
 
 public extension Calendar.Component {
-  
   var nowString: String {
     switch self {
       //        case .minute:
@@ -241,4 +235,3 @@ public extension Array {
     return self[index]
   }
 }
-

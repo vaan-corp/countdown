@@ -5,15 +5,13 @@
 //  Created by Asif on 11/02/23.
 //
 
-import SwiftUI
 import EventKit
-import SwiftDate
-import SwiftyUserInterface
 import Introspect
-//import CountdownKit
+import SwiftDate
+import SwiftUI
+import SwiftyUserInterface
 
 class AppState: ObservableObject {
-  
   private init() { }
   
   static let shared = AppState()
@@ -23,7 +21,6 @@ class AppState: ObservableObject {
 }
 
 struct HomeView: View {
-  
   @ObservedObject var preferences = Preferences.shared
   @ObservedObject var device: Device = Device.shared
   @ObservedObject var appState = AppState.shared
@@ -63,33 +60,25 @@ struct HomeView: View {
       Menu {
         Button( action: favButtonActions) {
           Label( showFavoritesOnly ? "Show All Events" : "Show Favorites only", systemImage: "heart.fill")
-            .labelStyle(.iconOnly)
-            .foregroundColor(.red)
         }
-        .foregroundColor(.red)
         
         Button(action: {
           self.appState.showsSettings = true
         }, label: {
           Text("Settings")
           Image(systemName: "gear")
-            .imageScale(.large)
-            .frame(width: .averageTouchSize, height: .averageTouchSize)
-            .foregroundColor(.red)
         })
         
-        Button( action: {
+        Button(action: {
           self.showsAddEventVC = true
-        }) {
-          Label("Add Event",systemImage: "plus")
-        }
+        }, label: {
+          Text("Add Event")
+          Image(systemName: "plus")
+        })
       }
     label: {
       Label("", systemImage: "ellipsis.circle")
-    }
-    .tint(Color.accentColor)
-    .foregroundColor(.red)
-    .accentColor(.appTintColor)
+      }
     }
   }
   
@@ -269,13 +258,12 @@ struct HomeView: View {
     if #available(iOS 14.0, *) {
       VStack {
         Spacer()
-          resultEvents
+        resultEvents
         Spacer()
       }
       .embedInScrollView()
       .background(Color(.secondarySystemBackground))
       .clipped()
-      
       //            if preferences.showEventAsCard {
       //                List(eventsArray, id: \.eventIdentifier) { event in
       //                    EventRow(event: event)
@@ -285,11 +273,9 @@ struct HomeView: View {
       //                resultList
       //                    .listStyle(InsetGroupedListStyle())
       //            }
-      
     } else {
       introspectedList
     }
-    
   }
   
   var introspectedList: some View {
@@ -305,7 +291,6 @@ struct HomeView: View {
         let footerView = UIView()
         footerView.backgroundColor = .clear
         tableView.tableFooterView = footerView
-        
       }
   }
   var resultList: some View {
@@ -319,7 +304,7 @@ struct HomeView: View {
       ForEach(preferences.displayEvents, id: \.eventIdentifier) { event in
         EventRow(event: event)
       }
-      //.onDelete(perform: delete)
+      // .onDelete(perform: delete)
     }
   }
   
@@ -362,7 +347,7 @@ struct HomeView: View {
   }
   
   func requestPermission() {
-    EventStore.store.requestAccess(to: .event, completion: { (isGranted, error) in
+    EventStore.store.requestAccess(to: .event, completion: { (isGranted, _) in
       DispatchQueue.main.async {
         if isGranted {
           self.grantedPermission()
@@ -390,10 +375,8 @@ struct HomeView: View {
     if let openSettingsUrl = URL(string: UIApplication.openSettingsURLString) {
       UIApplication.shared.open(openSettingsUrl, options: [:], completionHandler: nil)
     }
-    
   }
 }
-
 
 extension Int {
   func spellOut(singular: String, plural: String) -> String {

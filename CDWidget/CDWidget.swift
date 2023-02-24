@@ -5,22 +5,30 @@
 //  Created by Asif on 15/02/23.
 //
 
-import WidgetKit
-import SwiftUI
-import Intents
 import EventKit
+import Intents
+import SwiftUI
+import WidgetKit
 
 struct Provider: IntentTimelineProvider {
   func placeholder(in context: Context) -> SimpleEntry {
     SimpleEntry(date: Date(), configuration: ConfigurationIntent())
   }
   
-  func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+  func getSnapshot(
+    for configuration: ConfigurationIntent,
+    in context: Context,
+    completion: @escaping (SimpleEntry) -> Void
+  ) {
     let entry = SimpleEntry(date: Date(), configuration: configuration)
     completion(entry)
   }
   
-  func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+  func getTimeline(
+    for configuration: ConfigurationIntent,
+    in context: Context,
+    completion: @escaping (Timeline<Entry>) -> Void
+  ) {
     var entries: [SimpleEntry] = []
     
     // Generate a timeline consisting of five entries an hour apart, starting from the current date.
@@ -41,7 +49,7 @@ struct SimpleEntry: TimelineEntry {
   let configuration: ConfigurationIntent
 }
 
-struct CDWidgetEntryView : View {
+struct CDWidgetEntryView: View {
   var entry: Provider.Entry
   let kind: String
   var firstSevenEvents: [EKEvent]
@@ -51,14 +59,13 @@ struct CDWidgetEntryView : View {
   var body: some View {
     switch family {
     case .systemSmall:
-      if(eventsCount == 0){
+      if eventsCount == 0 {
         NoEventsView(kind: kind)
-      } else if(eventsCount == 1){
+      } else if eventsCount == 1 {
         if let event = firstSevenEvents.first {
           SmallWidgetSingleEventView(event: event)
         }
-      }
-      else {
+      } else {
         CDSmallWidgetView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
       }
     default:
@@ -68,8 +75,7 @@ struct CDWidgetEntryView : View {
 }
 
 struct FavEventsWidget: Widget {
-
-  let kind : String = "favEvents"
+  let kind: String = "favEvents"
   var favEvents: [EKEvent] { Preferences.shared.favoriteEvents}
   var favEventsCount: Int { favEvents.count}
   var firstSevenEvents: [EKEvent] { Array(favEvents.prefix(7))}
@@ -85,10 +91,9 @@ struct FavEventsWidget: Widget {
 }
 
 struct AllEventsWidget: Widget {
-
-  let kind : String = "allEvents"
+  let kind: String = "allEvents"
   var allEvents: [EKEvent] { Preferences.shared.events}
-  var allEventsCount :Int { allEvents.count}
+  var allEventsCount: Int { allEvents.count}
   var firstSevenEvents: [EKEvent] { Array(allEvents.prefix(7))}
   
   var body: some WidgetConfiguration {
@@ -103,7 +108,11 @@ struct AllEventsWidget: Widget {
 
 struct CDWidget_Previews: PreviewProvider {
   static var previews: some View {
-    CDWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()), kind: "", firstSevenEvents: [], eventsCount: 7)
+    CDWidgetEntryView(
+      entry: SimpleEntry(date: Date(),
+      configuration: ConfigurationIntent()), kind: "",
+      firstSevenEvents: [], eventsCount: 7
+    )
       .previewContext(WidgetPreviewContext(family: .systemSmall))
   }
 }

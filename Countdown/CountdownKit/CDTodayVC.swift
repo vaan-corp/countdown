@@ -5,20 +5,19 @@
 //  Created by Asif on 11/02/23.
 //
 
-import UIKit
 import EventKit
-import SwiftUI
 import NotificationCenter
+import SwiftUI
+import UIKit
 
 public protocol TodayControllerProtocol: UIViewController, NCWidgetProviding {
-  associatedtype Model : TodayViewProtocol
+  associatedtype Model: TodayViewProtocol
   var todayModel: Model { get }
   var host: UIViewController { get }
   var hostView: UIView { get }
 }
 
 public extension TodayControllerProtocol {
-  
   func onViewLoad() {
 //    CDStore.shared.prepare(forAppGroup: "group.imthath.countdown")
     CDDefault.migrate()
@@ -60,12 +59,10 @@ public extension TodayControllerProtocol {
         break
       }
     }
-    
   }
 }
 
 public extension UIView {
-  
   @discardableResult func align(_ type1: NSLayoutConstraint.Attribute,
                                 with view: UIView? = nil, on type2: NSLayoutConstraint.Attribute? = nil,
                                 offset constant: CGFloat = 0,
@@ -96,5 +93,3 @@ public extension UIView {
     align(.trailing, with: view, offset: -constant)
   }
 }
-
-

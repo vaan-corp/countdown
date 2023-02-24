@@ -7,10 +7,8 @@
 
 import EventKit
 import SwiftUI
-//import CountdownKit
 
 class Router: NSObject {
-  
   private override init() {
     super.init()
     setUpSearch()

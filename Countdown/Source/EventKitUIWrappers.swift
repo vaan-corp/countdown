@@ -5,20 +5,17 @@
 //  Created by Asif on 11/02/23.
 //
 
-import SwiftUI
 import EventKitUI
 import MessageUI
-//import CountdownKit
+import SwiftUI
 
 struct AddEventVC: UIViewControllerRepresentable {
-  
   typealias UIViewControllerType = EKEventEditViewController
   
   @Environment(\.presentationMode) var presentationMode
   @Binding var eventAdded: Bool
   
   func makeUIViewController(context: Context) -> EKEventEditViewController {
-    
     let controller = EKEventEditViewController()
     controller.event = EKEvent(eventStore: EventStore.store)
     controller.eventStore = EventStore.store
@@ -34,7 +31,7 @@ struct AddEventVC: UIViewControllerRepresentable {
     return Coordinator(presentationMode: presentationMode, eventAdded: $eventAdded)
   }
   
-  class Coordinator : NSObject, UINavigationControllerDelegate, EKEventEditViewDelegate {
+  class Coordinator: NSObject, UINavigationControllerDelegate, EKEventEditViewDelegate {
     var presentationMode: Binding<PresentationMode>
     var isEventAdded: Binding<Bool>
     
@@ -43,7 +40,10 @@ struct AddEventVC: UIViewControllerRepresentable {
       self.isEventAdded = eventAdded
     }
     
-    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+    func eventEditViewController(
+      _ controller: EKEventEditViewController,
+      didCompleteWith action: EKEventEditViewAction
+    ) {
       switch action {
       case .canceled:
         "Canceled".log()
@@ -53,8 +53,7 @@ struct AddEventVC: UIViewControllerRepresentable {
           try controller.eventStore.save(controller.event!, span: .thisEvent, commit: true)
           "saved event".log()
           self.isEventAdded.wrappedValue = true
-        }
-        catch {
+        } catch {
           "Problem saving event".log()
         }
         presentationMode.wrappedValue.dismiss()
@@ -70,7 +69,6 @@ struct AddEventVC: UIViewControllerRepresentable {
 }
 
 struct EditEventVC: UIViewControllerRepresentable {
-  
   typealias UIViewControllerType = EKEventEditViewController
   
   @Environment(\.presentationMode) var presentationMode
@@ -95,7 +93,7 @@ struct EditEventVC: UIViewControllerRepresentable {
                        event: $event, isDeleted: $isDeleted)
   }
   
-  class Coordinator : NSObject, UINavigationControllerDelegate, EKEventEditViewDelegate {
+  class Coordinator: NSObject, UINavigationControllerDelegate, EKEventEditViewDelegate {
     var presentationMode: Binding<PresentationMode>
     var event: Binding<EKEvent>
     var isDeleted: Binding<Bool>
@@ -107,7 +105,10 @@ struct EditEventVC: UIViewControllerRepresentable {
       self.isDeleted = isDeleted
     }
     
-    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+    func eventEditViewController(
+      _ controller: EKEventEditViewController,
+      didCompleteWith action: EKEventEditViewAction
+    ) {
       switch action {
       case .canceled:
         "Canceled".log()
@@ -116,8 +117,7 @@ struct EditEventVC: UIViewControllerRepresentable {
         do {
           try controller.eventStore.save(controller.event!, span: .thisEvent, commit: true)
           "saved event".log()
-        }
-        catch {
+        } catch {
           "Problem saving event".log()
         }
         event.wrappedValue = controller.event!
@@ -132,7 +132,6 @@ struct EditEventVC: UIViewControllerRepresentable {
       }
     }
   }
-  
 }
 
 struct EventVC: UIViewControllerRepresentable {
@@ -141,7 +140,6 @@ struct EventVC: UIViewControllerRepresentable {
   @Binding var event: EKEvent
   
   func makeUIViewController(context: Context) -> EKEventViewController {
-    
     let controller = EKEventViewController()
     controller.event = event
     controller.allowsEditing = true
@@ -153,7 +151,7 @@ struct EventVC: UIViewControllerRepresentable {
   }
 }
 
-//struct CalendarChooser: UIViewControllerRepresentable {
+// struct CalendarChooser: UIViewControllerRepresentable {
 //
 //
 //    typealias UIViewControllerType = EKCalendarChooser
@@ -186,10 +184,9 @@ struct EventVC: UIViewControllerRepresentable {
 //        }
 //    }
 //
-//}
+// }
 
 public struct ComposeMail: UIViewControllerRepresentable {
-  
   public typealias UIViewControllerType = MFMailComposeViewController
   
   @Environment(\.presentationMode) var presentationMode
@@ -217,9 +214,12 @@ public struct ComposeMail: UIViewControllerRepresentable {
       self.presentationMode = presentationMode
     }
     
-    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    public func mailComposeController(
+      _ controller: MFMailComposeViewController,
+      didFinishWith result: MFMailComposeResult,
+      error: Error?
+    ) {
       presentationMode.wrappedValue.dismiss()
     }
   }
 }
-

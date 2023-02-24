@@ -9,13 +9,13 @@ import SwiftUI
 
 struct NoEventsView: View {
   let kind: String
-  var image: Image { kind == "favEvents" ? Image(systemName:"heart.fill") : Image("countdown")}
+  var image: Image { kind == "favEvents" ? Image(systemName: "heart.fill") : Image("countdown")}
   var favEventsText: String { "Open the app to add favorites." }
   var upcomigEventsText: String { "Please check if your calendars have events and are enabled in the app's settings" }
   var text: String { kind == "favEvents" ? favEventsText : upcomigEventsText}
   
   var body: some View {
-    VStack(spacing: 10){
+    VStack(spacing: 10) {
       image
         .foregroundColor(.red)
         .imageScale(.large)

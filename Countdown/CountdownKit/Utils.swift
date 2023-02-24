@@ -10,7 +10,6 @@ import EventKit
 import SwiftUI
 
 public class Preferences: ObservableObject {
-  
   private init() {
     displayEvents = events
   }
@@ -41,7 +40,7 @@ public class Preferences: ObservableObject {
   
   public var favoriteEventsCount: Int {favoriteEvents.count }
   
-  //TODO: change the app group to old one later ("group.com.skydevz.countdown")
+  // TODO: change the app group to old one later ("group.com.skydevz.countdown")
   static public let appGroup: String = "group.com.skydevz.CountDown"
   
   static public let appName: String = "Countdown"
@@ -221,7 +220,6 @@ public struct CDDefault {
 }
 
 struct Default {
-  
   internal static var custom = UserDefaults(suiteName: Preferences.appGroup)
   
   static public var components: [Calendar.Component] {
@@ -268,7 +266,7 @@ public class EventStore {
   static public func getCalendars() -> [EKCalendar] {
     let calendars = store
       .calendars(for: .event)
-      .sorted(by: { $0.type.rawValue < $1.type.rawValue } )
+      .sorted(by: { $0.type.rawValue < $1.type.rawValue })
     
     if CDDefault.isFirstLaunch {
       CDDefault.selectedCalIDs = calendars.map { $0.calendarIdentifier }
@@ -297,12 +295,11 @@ public class EventStore {
     let predicate = store.predicateForEvents(withStart: Date(),
                                              end: CDDefault.endDate,
                                              calendars: calendars)
-    
-    
+        
     return store
       .events(matching: predicate)
       .distinct
-      .sorted(by: { $0.occurrenceDate < $1.occurrenceDate})
+      .sorted(by: { $0.occurrenceDate < $1.occurrenceDate })
   }
 }
 
@@ -362,18 +359,16 @@ public class CDCalendar: ObservableObject {
   }
 }
 
-
-
-//public struct User: Codable {
+// public struct User: Codable {
 //    let isPaidUser: Bool
 //
 //
-//}
+// }
 //
-////userdefaults
-//let defaults = UserDefaults.standard
-//let user = User(isPaidUser: true)
-//let encoder =   JSONEncoder()
-//if let encodedUser = try? encoder.encode(user) {
+//// userdefaults
+// let defaults = UserDefaults.standard
+// let user = User(isPaidUser: true)
+// let encoder =   JSONEncoder()
+// if let encodedUser = try? encoder.encode(user) {
 //    defaults.set(encodedUser, forKey: "user")
-//}
+// }

@@ -5,10 +5,10 @@
 ////  Created by Asif on 11/02/23.
 ////
 //
-//import SwiftUI
-//import UIKit
+// import SwiftUI
+// import UIKit
 //
-//class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+// class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //  var window: UIWindow?
 //  
 //  func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
@@ -57,4 +57,4 @@
 //    // to restore the scene back to its current state.
 //    (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
 //  }
-//}
+// }

@@ -5,14 +5,12 @@
 //  Created by Asif on 11/02/23.
 //
 
-import SwiftUI
 import EventKit
 import SwiftDate
+import SwiftUI
 import SwiftyUserInterface
-//import CountdownKit
 
 struct EventRow: View {
-  
   @ObservedObject var preferences = Preferences.shared
   @State var event: EKEvent
   @ObservedObject var favModel: FavoriteModel
@@ -102,7 +100,6 @@ struct EventRow: View {
   
   var eventStack: some View {
     HStack {
-      
       if preferences.isPaidUser {
         favModel.image
           .font(.footnote)
@@ -113,8 +110,7 @@ struct EventRow: View {
           .fill(event.color)
           .frame(width: .small, height: .small)
       }
-      
-      
+            
       eventTitle
         .multilineTextAlignment(.leading)
       //                .padding(.leading)
@@ -152,9 +148,8 @@ struct EventRow: View {
   }
 }
 
-//struct EventRow_Previews: PreviewProvider {
+// struct EventRow_Previews: PreviewProvider {
 //    static var previews: some View {
 //        EventRow()
 //    }
-//}
-
+// }

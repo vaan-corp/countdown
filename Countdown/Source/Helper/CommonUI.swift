@@ -5,15 +5,12 @@
 //  Created by Asif on 11/02/23.
 //
 
-import SwiftUI
 import StoreKit
-//import CountdownKit
+import SwiftUI
 import SwiftyStoreKit
 import SwiftyUserInterface
 
-
 public struct TappableButton: ButtonStyle {
-  
   @Binding var isRoundedCorners: Bool
   var cornerRadius: CGFloat
   
@@ -28,7 +25,6 @@ public struct TappableButton: ButtonStyle {
       background(basedOn: configuration)
       configuration.label
     }
-    
   }
   
   @ViewBuilder func background(basedOn config: Configuration) -> some View {
@@ -46,7 +42,6 @@ public struct TappableButton: ButtonStyle {
 }
 
 public extension View {
-  
   /// overlays an activity indicator and the background color in a ZStack
   /// make sure to pass color which suits default activity indicator and is
   /// translucent for better UI/UX
@@ -78,13 +73,11 @@ extension Image {
 }
 
 class ProductStore: ObservableObject {
-  
   private init() { }
   
   public static let shared = ProductStore()
   
   @Published var products: [SKProduct] = []
-  
 }
 
 public struct SKErrorMessage {
@@ -95,13 +88,12 @@ public struct SKErrorMessage {
 }
 
 class IAPmanager {
-  
   static var productIdentifiers: Set<String> = []
   static var purchasedProductIdentifiers: Set<String> = []
   //    static var purchasedProducts: Set<SKProduct> = []
   
   static var products: Set<SKProduct> = []
-  static var productsSortedByPrice: [SKProduct] { products.sorted(by: {$0.price.intValue < $1.price.intValue })}
+  static var productsSortedByPrice: [SKProduct] { products.sorted(by: { $0.price.intValue < $1.price.intValue })}
   static var isPaidUser: Bool { !purchasedProductIdentifiers.isEmpty }
   
   static func initialize(productIdentifiers: Set<String>) {
@@ -116,7 +108,8 @@ class IAPmanager {
       ProductStore.shared.products = IAPmanager.productsSortedByPrice
       for product in result.retrievedProducts {
         let priceString = product.localizedPrice
-        debugPrint("Product: \(product.localizedTitle), price: \(priceString ?? ""), description: \(product.localizedDescription)")
+        debugPrint("Product: \(product.localizedTitle), price: \(priceString ?? ""), " +
+                   "description: \(product.localizedDescription)")
       }
       
       for productId in result.invalidProductIDs {
@@ -128,12 +121,10 @@ class IAPmanager {
         debugPrint("Error: \(error.localizedDescription)")
         SKErrorMessage.current = SKErrorMessage.general
       }
-      
     }
   }
   
   static func finishTransactions() {
-    
     guard SKPaymentQueue.canMakePayments() else {
       SKErrorMessage.current = SKErrorMessage.userCantPurchase
       return
@@ -168,7 +159,6 @@ class IAPmanager {
   
   static func restorePurchases(onCompletion handler: @escaping (Bool) -> Void) {
     SwiftyStoreKit.restorePurchases { results in
-      
       for purchase in results.restoredPurchases {
         purchasedProductIdentifiers.insert(purchase.productId)
       }
@@ -211,7 +201,6 @@ class IAPmanager {
       }
     }
   }
-  
 }
 
 public extension SKError.Code {
@@ -221,14 +210,18 @@ public extension SKError.Code {
       return "Unable to process payment from this account. Please try again later."
     case .paymentNotAllowed:
       return "Unable to process payment from this device. Please try again later."
-    case .unknown, .paymentInvalid, .unauthorizedRequestData, .invalidOfferPrice, .invalidSignature, .invalidOfferIdentifier, .missingOfferParams:
+    case .unknown, .paymentInvalid, .unauthorizedRequestData,
+        .invalidOfferPrice, .invalidSignature, .invalidOfferIdentifier, .missingOfferParams:
       return "Unable to process your purchase at the moment. Please try again later."
     case .paymentCancelled:
-      return "We regret that you changed your mind. You can come back anytime to upgrade. Kindly consider leaving a feedback in the meantime."
+      return "We regret that you changed your mind. You can come back anytime to upgrade. " +
+      "Kindly consider leaving a feedback in the meantime."
     case .storeProductNotAvailable:
-      return "We regret to inform you that this product is not availble in your region. We are working hard to bring it here, please stay tuned."
+      return "We regret to inform you that this product is not availble in your region. " +
+      "We are working hard to bring it here, please stay tuned."
     case .cloudServicePermissionDenied, .cloudServiceRevoked:
-      return "Unable to access clould services at the moment. Kindly check your permission settings and try again later."
+      return "Unable to access clould services at the moment. " +
+      "Kindly check your permission settings and try again later."
     case .cloudServiceNetworkConnectionFailed:
       return "Unable to access clould services at the moment. Please try again later."
     case .privacyAcknowledgementRequired:
@@ -250,4 +243,3 @@ extension SKProductSubscriptionPeriod {
     }
   }
 }
-

@@ -5,8 +5,8 @@
 //  Created by Asif on 15/02/23.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
 @main
 struct CDWidgetBundle: WidgetBundle {
