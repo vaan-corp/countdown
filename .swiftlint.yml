@@ -1,9 +1,10 @@
 included:
   - Countdown
   - CDWidget
-
-excluded:
   - Packages
+
+#excluded:
+#  - Packages
 
 indentation: 2
 
@@ -41,6 +42,6 @@ identifier_name:
     - os
 
 line_length:
-  warning: 120
-  error: 160
+  warning: 140
+  error: 200
   ignores_comments: true
