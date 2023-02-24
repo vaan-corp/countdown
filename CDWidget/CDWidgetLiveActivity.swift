@@ -6,8 +6,8 @@
 //
 
 import ActivityKit
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
 struct CDWidgetAttributes: ActivityAttributes {
   public struct ContentState: Codable, Hashable {
@@ -22,15 +22,14 @@ struct CDWidgetAttributes: ActivityAttributes {
 @available(iOSApplicationExtension 16.1, *)
 struct CDWidgetLiveActivity: Widget {
   var body: some WidgetConfiguration {
-    ActivityConfiguration(for: CDWidgetAttributes.self) { context in
+    ActivityConfiguration(for: CDWidgetAttributes.self) { _ in
       // Lock screen/banner UI goes here
       VStack {
         Text("Hello")
       }
       .activityBackgroundTint(Color.cyan)
       .activitySystemActionForegroundColor(Color.black)
-      
-    } dynamicIsland: { context in
+    } dynamicIsland: { _ in
       DynamicIsland {
         // Expanded UI goes here.  Compose the expanded UI through
         // various regions, like leading/trailing/center/bottom

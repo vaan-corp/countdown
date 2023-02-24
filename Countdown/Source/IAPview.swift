@@ -5,10 +5,9 @@
 //  Created by Asif on 11/02/23.
 //
 
-import SwiftUI
-//import CountdownKit
-import SwiftyUserInterface
 import StoreKit
+import SwiftUI
+import SwiftyUserInterface
 
 struct IAPview: View {
   @Environment(\.presentationMode) var presentationMode
@@ -35,7 +34,6 @@ struct IAPview: View {
           staticPurchaseButtons
         } else {
           dynamicPurchaseButtons
-          
         }
         PremiumFeaturesView()
           .padding([.top, .bottom], .small)
@@ -109,7 +107,7 @@ struct IAPview: View {
     .padding(.bottom, .large * 1.25)
   }
   
-  func unitName(unitRawValue:UInt) -> String {
+  func unitName(unitRawValue: UInt) -> String {
     switch unitRawValue {
     case 0: return "days"
     case 1: return "weeks"
@@ -133,7 +131,6 @@ struct IAPview: View {
             self.alertMessage = code.userAlertMessage
             self.showAlert = true
           }
-          
         }
       }, label: {
         HStack {
@@ -161,16 +158,18 @@ struct IAPview: View {
     case "imthath_countdown_lifetime": return "one time purchase"
     case "imthath_countdown_oneyear": return "yearly (first 2 weeks free)"
     default: return "tap for details"
-      
     }
   }
   var staticPurchaseButtons: some View {
-//    IAPmanager.updateProductsInfo()
+    //    IAPmanager.updateProductsInfo()
     "ideally this should never be reached, because we have checked the same in settings page".log()
     
     return VStack {
-      Text("Unable to connect to app store at the moment. Please check your internet connection and try again later.").multilineTextAlignment(.center)
-        .padding()
+      Text("Unable to connect to app store at the moment." +
+        "Please check your internet connection and try again later."
+      )
+      .multilineTextAlignment(.center)
+      .padding()
       DismissButton(title: "Dismiss", presentationMode: presentationMode)
     }
     .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
@@ -178,7 +177,6 @@ struct IAPview: View {
 }
 
 public struct PurchaseCompletedView: View {
-  
   @Binding var isRestored: Bool
   @Environment(\.presentationMode) var presentationMode
   
@@ -220,7 +218,6 @@ public struct PurchaseCompletedView: View {
 public struct PremiumFeaturesView: View {
   public var body: some View {
     VStack(alignment: .leading, spacing: .large) {
-      
       Text("The upgrade adds the ability to")
         .foregroundColor(.secondary)
         .font(Font.body.monospacedDigit())
@@ -228,7 +225,11 @@ public struct PremiumFeaturesView: View {
       //                    .secondaryText()
       
       HStack(spacing: .small) {
-        ScaledImage(systemName: "rectangle.fill.on.rectangle.angled.fill", scale: .medium).foregroundColor(Color.yellow)//.opacity(0.8))
+        ScaledImage(
+          systemName: "rectangle.fill.on.rectangle.angled.fill",
+          scale: .medium
+        )
+        .foregroundColor(Color.yellow)// .opacity(0.8))
         Text("Add widgets in today view")
         Spacer()
       }
@@ -273,23 +274,22 @@ public struct PremiumFeaturesView: View {
 
 struct XCodeImage: View {
   let fontSize: CGFloat = 20
-  var x: CGFloat { fontSize / 14 }
+  var newFontSize: CGFloat { fontSize / 14 }
   var body: some View {
     ZStack {
       Image(systemName: "wrench")
         .rotationEffect(.init(degrees: 270))
-        .offset(x: -4*x, y: x)
-        .font(.system(size: 12*x))
+        .offset(x: -4*newFontSize, y: newFontSize)
+        .font(.system(size: 12*newFontSize))
       Image(systemName: "hammer.fill")
       
-        .font(.system(size: 14*x))
+        .font(.system(size: 14*newFontSize))
       //                .rotationEffect(.init(degrees: 15))
     }
   }
 }
 
 public struct PurchaseCard: View {
-  
   @Environment(\.colorScheme) var colorScheme
   
   public var body: some View {
@@ -309,7 +309,6 @@ public struct PurchaseCard: View {
   }
   
   var image: some View {
-    
     Image(systemName: "wand.and.stars")
     //                    Image(systemName: "cart.fill.badge.plus")
       .font(.system(size: .averageTouchSize * 1.25) )
@@ -351,11 +350,13 @@ public struct TermsView: View {
   var textStack: some View {
     VStack(alignment: .leading, spacing: .medium) {
       Text("Free version").font(.title)
-      Text("Countdown app provides a free version in which you can view the list of events in your calendar and their countdown. ")
-        .padding(.bottom, .medium)
+      Text("Countdown app provides a free version in which you can view the list of " +
+           "events in your calendar and their countdown. ")
+      .padding(.bottom, .medium)
       Text("Pro upgrade").font(.title)
-      Text("Countdown PRO provides support for favorites, widgets and many exciting features. You can upgrade by opting for yearly subscription or one time purchase from within the app.")
-        .padding(.bottom, .averageTouchSize)
+      Text("Countdown PRO provides support for favorites, widgets and many exciting features." +
+           "You can upgrade by opting for yearly subscription or one time purchase from within the app.")
+      .padding(.bottom, .averageTouchSize)
       Spacer()
       
       Button("Contact us") {
@@ -390,4 +391,3 @@ struct IAPview_Previews: PreviewProvider {
     TermsView()
   }
 }
-

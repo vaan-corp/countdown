@@ -5,14 +5,12 @@
 //  Created by Asif on 11/02/23.
 //
 
-import SwiftUI
-import EventKit
 import Combine
+import EventKit
+import SwiftUI
 import SwiftyUserInterface
-//import CountdownKit
 
 struct EventDetail: View {
-  
   @Environment(\.presentationMode) var presentationMode
   
   @ObservedObject var preferences = Preferences.shared
@@ -57,7 +55,6 @@ struct EventDetail: View {
   
   var viewStack: some View {
     VStack(spacing: .medium) {
-      
       if event.occurrenceDate <= Date() || timeGap.isNegative {
         eventStarted
       } else {
@@ -84,7 +81,6 @@ struct EventDetail: View {
   
   var customDetailCard: some View {
     VStack(alignment: .leading, spacing: .medium) {
-      
       HStack(alignment: .center, spacing: .medium) {
         Text("Event details: ")
         //                    .foregroundColor(.secondary)
@@ -269,4 +265,3 @@ struct EventDetail_Previews: PreviewProvider {
     UnitView(value: "895", unit: "days")
   }
 }
-

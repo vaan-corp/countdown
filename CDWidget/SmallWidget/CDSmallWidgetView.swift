@@ -5,18 +5,18 @@
 //  Created by Asif on 16/02/23.
 //
 
-import SwiftUI
 import EventKit
+import SwiftUI
 
 struct CDSmallWidgetView: View {
   var firstSevenEvents: [EKEvent]
   var eventsCount: Int
-  var firstTwoEvents : [EKEvent] { Array(firstSevenEvents.prefix(2))}
+  var firstTwoEvents: [EKEvent] { Array(firstSevenEvents.prefix(2))}
   
   var body: some View {
-    VStack(alignment: .leading, spacing: 18){
+    VStack(alignment: .leading, spacing: 18) {
       TimerVStack(firstTwoEvents: firstTwoEvents)
-      if(eventsCount > 2){
+      if eventsCount > 2 {
         MoreEventsStack(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
       }
     }.padding(.leading, 10)
@@ -38,7 +38,7 @@ private struct TimerVStack: View {
 }
 
 struct TimerDetailStack: View {
-  let event : EKEvent
+  let event: EKEvent
   let helper = Helper()
   
   var days: Int { helper.getDays(targetTimeStamp: event.occurrenceDate.timeIntervalSince1970)}
@@ -60,15 +60,15 @@ struct TimerDetailStack: View {
   var timerStack: some View {
     HStack(alignment: .lastTextBaseline, spacing: 6) {
       HStack(alignment: .top, spacing: 3) {
-        if(days < 10) {
-          HStack(spacing: 0){
+        if days < 10 {
+          HStack(spacing: 0) {
             Text("0").font(.callout)
             Text(String(days)).font(.callout)
           }
         } else {
           Text(String(days)).font(.callout)
         }
-        if(days < 2){
+        if days < 2 {
           Text("day").font(.system(size: 6))
         } else {
           Text("days").font(.system(size: 6))
@@ -82,28 +82,28 @@ struct TimerDetailStack: View {
 private struct MoreEventsStack: View {
   var firstSevenEvents: [EKEvent]
   var eventsCount: Int
-  var nextEvents : [EKEvent] { Array(firstSevenEvents.dropFirst(2))}
-  var nextEventsCount : Int { eventsCount - 2}
+  var nextEvents: [EKEvent] { Array(firstSevenEvents.dropFirst(2))}
+  var nextEventsCount: Int { eventsCount - 2}
   
   var body: some View {
-    HStack(alignment: .firstTextBaseline, spacing: 6){
+    HStack(alignment: .firstTextBaseline, spacing: 6) {
       firstHStack
       secondHStack
     }
   }
   
   var firstHStack: some View {
-    HStack(spacing: 3){
-      ForEach(nextEvents, id: \.eventIdentifier){ event in
+    HStack(spacing: 3) {
+      ForEach(nextEvents, id: \.eventIdentifier) { event in
         RoundedRectangle(cornerRadius: 5)
           .foregroundColor(event.color)
-          .frame(width: 2,height: 12)
+          .frame(width: 2, height: 12)
       }
     }
   }
   
   var secondHStack: some View {
-    HStack(alignment: .firstTextBaseline, spacing: 5){
+    HStack(alignment: .firstTextBaseline, spacing: 5) {
       Text("\(nextEventsCount) more events")
         .foregroundColor(.secondary)
         .font(.caption)

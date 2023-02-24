@@ -6,13 +6,11 @@
 //
 
 import EventKit
+import MessageUI
 import SwiftUI
 import SwiftyUserInterface
-import MessageUI
-//import CountdownKit
 
 struct SettingsView: View {
-  
   @Environment(\.presentationMode) var presentationMode
   @ObservedObject var preferences = Preferences.shared
   //    @ObservedObject var appState = AppState.shared
@@ -95,7 +93,6 @@ struct SettingsView: View {
       //                })
       //            }
       //            .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
-      
       
       //            Text("Developed by Imthath").secondaryText().padding(.top)
     }
@@ -201,9 +198,10 @@ struct SettingsView: View {
   }
   
   var privacyPolicyText: some View {
-    Text("""
-            We do not save any of your data. We access the Calendar data in this device to show the count down for your events. We also let you add, edit and delete events from this device's Calendar and we have no hold over any of your data. \n \n If you have any questions, feel free to contact us\(MFMailComposeViewController.canSendMail() ? "" : " at imthath.m@icloud.com").
-            """)
+    Text("We do not save any of your data. We access the Calendar data in this device to show the count down " +
+         "for your events. We also let you add, edit and delete events from this device's Calendar and we have " +
+         "no hold over any of your data. \n \n If you have any questions, feel free to contact " +
+         "us\(MFMailComposeViewController.canSendMail() ? "" : " at imthath.m@icloud.com").")
     .multilineTextAlignment(.leading)
     .padding()
   }
@@ -255,7 +253,6 @@ struct SettingsView: View {
 }
 
 struct CalendarSelectionView: View {
-  
   @ObservedObject var preferences = Preferences.shared
   @ObservedObject var calendar: CDCalendar
   
@@ -296,7 +293,7 @@ struct CalendarSelectionView: View {
     self.calendar.isSelected.toggle()
     self.preferences.selectedCalIDs = self.preferences.allCalendars
       .filter({ $0.isSelected })
-      .map({ $0.id})
+      .map({ $0.id })
   }
 }
 
@@ -305,4 +302,3 @@ struct SettingsView_Previews: PreviewProvider {
     SettingsView()
   }
 }
-

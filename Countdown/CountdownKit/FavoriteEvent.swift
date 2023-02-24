@@ -5,9 +5,9 @@
 //  Created by Asif on 11/02/23.
 //
 
-import MIDataStore
 import CoreData
 import EventKit
+import MIDataStore
 import SwiftUI
 import WidgetKit
 
@@ -44,7 +44,6 @@ public class FavoriteModel: ObservableObject {
 }
 
 extension PersistenceController {
-  
   func isFavorite(_ event: EKEvent) -> Bool {
     let fetchRequest = fetchRequestForEvent(withID: event.eventIdentifier)
     
@@ -62,7 +61,6 @@ extension PersistenceController {
     
     do {
       try container.viewContext.save()
-      
     } catch {
       // Replace this implementation with code to handle the error appropriately.
       // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -82,11 +80,9 @@ extension PersistenceController {
     }
   }
   
-  func fetchRequestForEvent(withID string: String) -> NSFetchRequest<NSFetchRequestResult>{
+  func fetchRequestForEvent(withID string: String) -> NSFetchRequest<NSFetchRequestResult> {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteEvent")
     fetchRequest.predicate = NSPredicate(format: "eventID = %@", string)
     return fetchRequest
   }
-  
 }
-

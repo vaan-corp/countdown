@@ -5,11 +5,11 @@
 //  Created by Asif on 11/02/23.
 //
 
-import SwiftUI
-import EventKit
 import Combine
 import CoreData
+import EventKit
 import MIDataStore
+import SwiftUI
 
 public enum CDWidget {
   case favorites
@@ -52,7 +52,6 @@ extension TodayViewProtocol {
 }
 
 public struct TodayView<Model: TodayViewProtocol>: View {
-  
   @ObservedObject var model: Model
   
   @State var timeGap0: TimeGap
@@ -173,15 +172,14 @@ public struct TodayView<Model: TodayViewProtocol>: View {
   }
 }
 
-//struct Today_Preview: PreviewProvider {
+// struct Today_Preview: PreviewProvider {
 //    static var previews: some View {
 //        TodayView(model: UpcomingEventsModel())
 //    }
-//}
-
+// }
 
 // might be requried in future if we show only one event
-//public struct CDEventCard: View {
+// public struct CDEventCard: View {
 //    @State var timeGap: TimeGap
 //
 //    var event: EKEvent
@@ -198,10 +196,9 @@ public struct TodayView<Model: TodayViewProtocol>: View {
 //                self.timeGap = self.event.occurrenceDate.timeGap
 //        }
 //    }
-//}
+// }
 
 public struct EventCountDownCard: View {
-  
   var event: EKEvent
   
   @Binding var timeGap: TimeGap
@@ -249,12 +246,10 @@ public struct EventCountDownCard: View {
       UnitView(value: String(format: "%02d", timeGap.seconds), unit: "seconds")
       Spacer()
     }
-    
   }
 }
 
 struct UnitsView: View {
-  
   var value: String
   var unit: String
   
@@ -296,7 +291,6 @@ extension CGFloat {
 }
 
 extension View {
-  
   func secondarysText() -> some View {
     self
       .font(.footnote)
@@ -304,4 +298,3 @@ extension View {
       .multilineTextAlignment(.leading)
   }
 }
-

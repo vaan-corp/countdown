@@ -5,11 +5,11 @@
 ////  Created by Asif on 11/02/23.
 ////
 //
-//import UIKit
-//import CoreData
+// import UIKit
+// import CoreData
 //
-//@main
-//class AppDelegate: UIResponder, UIApplicationDelegate {
+// @main
+// class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //
 //
@@ -77,4 +77,4 @@
 //      }
 //  }
 //
-//}
+// }

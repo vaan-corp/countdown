@@ -1,0 +1,46 @@
+included:
+  - Countdown
+  - CDWidget
+
+excluded:
+  - Packages
+
+indentation: 2
+
+disabled_rules:
+  - cyclomatic_complexity
+  - unused_setter_value
+  - trailing_whitespace
+
+opt_in_rules:
+  - array_init
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - empty_collection_literal
+  - empty_count
+  - empty_string
+  - fallthrough
+  - fatal_error_message
+  - overridden_super_call
+  - sorted_imports
+  - unused_declaration
+  - unused_import
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+  - yoda_condition
+
+trailing_comma:
+  mandatory_comma: true
+
+identifier_name:
+  min_length:
+    error: 3
+  excluded:
+    - id
+    - os
+
+line_length:
+  warning: 120
+  error: 160
+  ignores_comments: true
