@@ -47,7 +47,7 @@ struct HomeView: View {
     .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
     .onChange(of: searchText) {newValue in
       if !newValue.isEmpty {
-        return preferences.displayEvents = preferences.events.filter { $0.title.contains(newValue) }
+        return preferences.displayEvents = preferences.events.filter { $0.title.localizedCaseInsensitiveContains(newValue) }
       } else {
         return preferences.displayEvents = preferences.events
       }
@@ -317,13 +317,12 @@ struct HomeView: View {
       Image.resizable(withName: "magGlass")
         .frame(width: 200, height: 200)
         .padding(.top, .imageSize)
-      Text("No reults found for the keyword \"\(searchText)\"")
+      Text("No results found for the keyword \"\(searchText)\"")
         .multilineTextAlignment(.center)
         .padding(.top, .averageTouchSize)
       Spacer()
     }
     .padding()
-    .embedInScrollView()
   }
   
   var canShowSearch: Bool {
