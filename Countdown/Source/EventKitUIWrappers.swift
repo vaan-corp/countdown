@@ -8,6 +8,7 @@
 import EventKitUI
 import MessageUI
 import SwiftUI
+import WidgetKit
 
 struct AddEventVC: UIViewControllerRepresentable {
   typealias UIViewControllerType = EKEventEditViewController
@@ -53,6 +54,7 @@ struct AddEventVC: UIViewControllerRepresentable {
           try controller.eventStore.save(controller.event!, span: .thisEvent, commit: true)
           "saved event".log()
           self.isEventAdded.wrappedValue = true
+          WidgetCenter.shared.reloadTimelines(ofKind: "allEvents")
         } catch {
           "Problem saving event".log()
         }
@@ -122,10 +124,12 @@ struct EditEventVC: UIViewControllerRepresentable {
         }
         event.wrappedValue = controller.event!
         presentationMode.wrappedValue.dismiss()
+        WidgetCenter.shared.reloadTimelines(ofKind: "allEvents")
       case .deleted:
         print("Deleted")
         isDeleted.wrappedValue = true
         presentationMode.wrappedValue.dismiss()
+        WidgetCenter.shared.reloadTimelines(ofKind: "allEvents")
       @unknown default:
         print("I shouldn't be here")
         presentationMode.wrappedValue.dismiss()

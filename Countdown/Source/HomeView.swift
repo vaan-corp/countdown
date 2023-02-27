@@ -27,7 +27,6 @@ struct HomeView: View {
   
   @State var isLoading = false
   @State var showsAddEventVC = false
-  @State var showFavoritesOnly = false
   @State var newEventAdded = false
   @State var searchText = ""
   
@@ -59,7 +58,7 @@ struct HomeView: View {
     HStack(spacing: .zero) {
       Menu {
         Button( action: favButtonActions) {
-          Label( showFavoritesOnly ? "Show All Events" : "Show Favorites only", systemImage: "heart.fill")
+          Label( preferences.showFavoritesOnly ? "Show All Events" : "Show Favorites only", systemImage: "heart.fill")
         }
         
         Button(action: {
@@ -84,8 +83,8 @@ struct HomeView: View {
   
   func favButtonActions() {
     if self.preferences.isPaidUser {
-      showFavoritesOnly.toggle()
-      if showFavoritesOnly {
+      preferences.showFavoritesOnly.toggle()
+      if preferences.showFavoritesOnly {
         preferences.displayEvents = preferences.favoriteEvents
       } else {
         preferences.displayEvents = preferences.events
@@ -146,7 +145,7 @@ struct HomeView: View {
   
   func dismissedAddEventVC() {
     if newEventAdded {
-      showFavoritesOnly = false
+      preferences.showFavoritesOnly = false
     }
     
     updateEvents()
@@ -169,10 +168,10 @@ struct HomeView: View {
         noCalendarSelected
       } else if preferences.events.isEmpty {
         noEvents
+      } else if preferences.showFavoritesOnly && preferences.favoriteEvents.isEmpty {
+        noFavoritesView
       } else if preferences.displayEvents.isEmpty {
         noResultsView
-      } else if showFavoritesOnly && preferences.favoriteEvents.isEmpty {
-        noFavoritesView
       } else {
         eventList
       }
@@ -194,7 +193,8 @@ struct HomeView: View {
     .padding()
     .embedInScrollView()
     .onTapGesture {
-      self.showFavoritesOnly = false
+      self.preferences.showFavoritesOnly = false
+      preferences.displayEvents = preferences.events
     }
   }
   
@@ -262,7 +262,7 @@ struct HomeView: View {
         Spacer()
       }
       .embedInScrollView()
-      .background(Color(.secondarySystemBackground))
+      .background(Color(.systemGroupedBackground))
       .clipped()
       //            if preferences.showEventAsCard {
       //                List(eventsArray, id: \.eventIdentifier) { event in
