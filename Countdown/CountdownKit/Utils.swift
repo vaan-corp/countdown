@@ -19,6 +19,8 @@ public class Preferences: ObservableObject {
   //    public static var layoutDirection: LayoutDirection = .leftToRight
   
   @Published public var searchText: String = ""
+  
+  @Published public var showFavoritesOnly: Bool = false
 
   public var events: [EKEvent] {
     EventStore.getEvents(inCalendars: selectedCalendars)
@@ -40,8 +42,7 @@ public class Preferences: ObservableObject {
   
   public var favoriteEventsCount: Int {favoriteEvents.count }
   
-  // TODO: change the app group to old one later ("group.com.skydevz.countdown")
-  static public let appGroup: String = "group.com.imthath.countdown"
+  static public let appGroup: String = "group.imthath.countdown"
   
   static public let appName: String = "Countdown"
   
@@ -182,11 +183,9 @@ public struct CDDefault {
   
 //  @CustomDefault("isPaidUser", defaultValue: false)
 //  static public var isPaidUser: Bool
-  
-//  #if DEBUG
+
   @CustomDefault("isPaidUser", defaultValue: false)
   static public var isPaidUser: Bool
-//  #endif
   
   @CustomDefault("hasSubscriptionEnded", defaultValue: false)
   static public var hasSubscriptionEnded: Bool
