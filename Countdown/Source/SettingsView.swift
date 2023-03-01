@@ -129,7 +129,7 @@ struct SettingsView: View {
     HStack {
       ScaledImage(systemName: "hourglass")
         .foregroundColor(.green)
-      Text("Display count down in ")
+      Text("Display countdown in ")
       Spacer()
       Text(CDDefault.components[preferences.displayComponent].displayString)
         .foregroundColor(.accentColor)
@@ -198,7 +198,7 @@ struct SettingsView: View {
   }
   
   var privacyPolicyText: some View {
-    Text("We do not save any of your data. We access the Calendar data in this device to show the count down " +
+    Text("We do not save any of your data. We access the Calendar data in this device to show the countdown " +
          "for your events. We also let you add, edit and delete events from this device's Calendar and we have " +
          "no hold over any of your data. \n \n If you have any questions, feel free to contact " +
          "us\(MFMailComposeViewController.canSendMail() ? "" : " at imthath.m@icloud.com").")

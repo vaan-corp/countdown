@@ -349,14 +349,21 @@ public struct TermsView: View {
   
   var textStack: some View {
     VStack(alignment: .leading, spacing: .medium) {
-      Text("Free version").font(.title)
+      Text("Free version")
+        .font(.title)
+        .foregroundColor(.primary)
       Text("Countdown app provides a free version in which you can view the list of " +
-           "events in your calendar and their countdown. ")
+           "events in your calendar and their countdown.")
+      .multilineTextAlignment(.leading)
       .padding(.bottom, .medium)
-      Text("Pro upgrade").font(.title)
+      .foregroundColor(.secondary)
+      
+      Text("Pro upgrade").font(.title).foregroundColor(.primary)
       Text("Countdown PRO provides support for favorites, widgets and many exciting features." +
            "You can upgrade by opting for yearly subscription or one time purchase from within the app.")
       .padding(.bottom, .averageTouchSize)
+      .foregroundColor(.secondary)
+      .multilineTextAlignment(.leading)
       Spacer()
       
       Button("Contact us") {
