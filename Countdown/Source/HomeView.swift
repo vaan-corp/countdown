@@ -45,10 +45,11 @@ struct HomeView: View {
     }
     .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
     .onChange(of: searchText) {newValue in
+      let events = preferences.showFavoritesOnly ? preferences.favoriteEvents : preferences.events
       if !newValue.isEmpty {
-        return preferences.displayEvents = preferences.events.filter { $0.title.localizedCaseInsensitiveContains(newValue) }
+        return preferences.displayEvents = events.filter { $0.title.localizedCaseInsensitiveContains(newValue) }
       } else {
-        return preferences.displayEvents = preferences.events
+        return preferences.displayEvents = events
       }
     }
     .accentColor(.appTintColor)
@@ -58,7 +59,8 @@ struct HomeView: View {
     HStack(spacing: .zero) {
       Menu {
         Button( action: favButtonActions) {
-          Label( preferences.showFavoritesOnly ? "Show All Events" : "Show Favorites only", systemImage: "heart.fill")
+          let image = preferences.showFavoritesOnly ? "heart" : "heart.fill"
+          Label( preferences.showFavoritesOnly ? "Show All Events" : "Show Favorites only", systemImage: image)
         }
         
         Button(action: {
@@ -204,7 +206,7 @@ struct HomeView: View {
         .frame(width: 300, height: 300)
       Text("Allow access to the ")
       Text("Calendar").foregroundColor(.accentColor)
-      Text("to view the count down for events")
+      Text("to view the countdown for events")
     }
     .padding()
     .embedInScrollView()
@@ -216,7 +218,7 @@ struct HomeView: View {
       notepad
       Text("Select some calendars from")
       Text("Settings").foregroundColor(.accentColor)
-      Text("to view the count down for events")
+      Text("to view the countdown for events")
     }
     .padding()
     .embedInScrollView()
@@ -241,7 +243,7 @@ struct HomeView: View {
           self.appState.showsSettings = true
         }
       }
-      Text("to view the count down for events")
+      Text("to view the countdown for events")
     }
     .padding()
     .embedInScrollView()
@@ -261,7 +263,7 @@ struct HomeView: View {
         resultEvents
         Spacer()
       }
-      .embedInScrollView()
+      .embedInScrollView(canShowIndicators: true)
       .background(Color(.systemGroupedBackground))
       .clipped()
       //            if preferences.showEventAsCard {

@@ -124,12 +124,12 @@ struct EditEventVC: UIViewControllerRepresentable {
         }
         event.wrappedValue = controller.event!
         presentationMode.wrappedValue.dismiss()
-        WidgetCenter.shared.reloadTimelines(ofKind: "allEvents")
+        WidgetCenter.shared.reloadAllTimelines()
       case .deleted:
         print("Deleted")
         isDeleted.wrappedValue = true
         presentationMode.wrappedValue.dismiss()
-        WidgetCenter.shared.reloadTimelines(ofKind: "allEvents")
+        WidgetCenter.shared.reloadAllTimelines()
       @unknown default:
         print("I shouldn't be here")
         presentationMode.wrappedValue.dismiss()
@@ -198,7 +198,7 @@ public struct ComposeMail: UIViewControllerRepresentable {
   public func makeUIViewController(context: Context) -> MFMailComposeViewController {
     let mail = MFMailComposeViewController()
     mail.setToRecipients(["imthath.m@icloud.com"])
-    mail.setSubject("Count Down app feedback - ")
+    mail.setSubject("CountDown app feedback - ")
     mail.mailComposeDelegate = context.coordinator
     return mail
   }
