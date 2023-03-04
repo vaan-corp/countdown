@@ -177,7 +177,6 @@ struct HomeView: View {
       Text("to view the countdown for events")
     }
     .padding()
-    .embedInScrollView()
     .onTapGesture {
       self.appState.showsSettings = true
     }
