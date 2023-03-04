@@ -34,6 +34,8 @@ public class Preferences: ObservableObject {
     events.filter { PersistenceController.shared.isFavorite($0) }
   }
   
+  public var selectedCalIDs: [String] { PersistenceController.shared.fetchSelectedCalendars() }
+  
   public var firstSevenUpcomingEvents: [EKEvent] {Array(events.prefix(7)) }
    
   public var firstSevenFavoriteEvents: [EKEvent] {Array(favoriteEvents.prefix(7)) }
@@ -52,10 +54,6 @@ public class Preferences: ObservableObject {
   
   @Published public var displayComponent = CDDefault.displayComponent {
     didSet { CDDefault.displayComponent = displayComponent }
-  }
-  
-  @Published public var selectedCalIDs = CDDefault.selectedCalIDs {
-    didSet { CDDefault.selectedCalIDs = selectedCalIDs }
   }
   
   @Published public var showEventAsCard = CDDefault.showEventAsCard {
@@ -105,10 +103,6 @@ public class Preferences: ObservableObject {
   
   public func updateAllCalendars() {
     allCalendars = Preferences.getAllCalendars()
-    if selectedCalIDs.isEmpty,
-       let defaultID = EventStore.store.defaultCalendarForNewEvents?.calendarIdentifier {
-      selectedCalIDs = [defaultID]
-    }
   }
   
   public var selectedCalendarsDisplayString: String {
@@ -258,7 +252,6 @@ public class EventStore {
   static public var store = EKEventStore()
   
   static public func updateCalendars() {
-    calendars = getCalendars()
     Preferences.shared.updateAllCalendars()
   }
   
@@ -280,9 +273,7 @@ public class EventStore {
     try? store.commit()
   }
   
-  static public var calendars: [EKCalendar] = {
-    getCalendars()
-  }()
+  static public var calendars: [EKCalendar] { getCalendars() }
   
   //    static public var events: [EKEvent] = {
   //        return getEvents(inCalendars: Preferences.shared.selectedCalendars)

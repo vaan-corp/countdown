@@ -54,3 +54,48 @@ struct PersistenceController {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
+
+extension PersistenceController {
+  func saveSelectedCallID(_ id: String) {
+    let newItem = SelectedCalendar(context: container.viewContext)
+    newItem.identifier = id
+    
+    do {
+      try container.viewContext.save()
+    } catch {
+      let nsError = error as NSError
+      fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    }
+  }
+  
+  func isSelectedCallID(_ id: String) -> Bool {
+    let fetchRequest = fetchRequestForSelectedCallID(withID: id)
+    guard let objects = try? container.viewContext.fetch(fetchRequest) else {
+      return false
+    }
+    return !objects.isEmpty
+  }
+  
+  func removeSelectedCallID(withID id: String) {
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequestForSelectedCallID(withID: id))
+    
+    do {
+      try container.viewContext.execute(batchDeleteRequest)
+      "deleted calendar with id - \(id)".log()
+    } catch {
+      "Unable to delete entity with name SelectedCallID".log()
+    }
+  }
+  
+  func fetchRequestForSelectedCallID(withID string: String) -> NSFetchRequest<NSFetchRequestResult> {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SelectedCalendar")
+    fetchRequest.predicate = NSPredicate(format: "identifier = %@", string)
+    return fetchRequest
+  }
+  
+  func fetchSelectedCalendars() -> [String] {
+    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SelectedCalendar")
+    guard let objects = try? container.viewContext.fetch(fetchRequest) as? [SelectedCalendar] else { return [] }
+    return objects.compactMap { $0.identifier }
+  }
+}
