@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="EnabledCalendar" representedClassName="EnabledCalendar" syncable="YES" codeGenerationType="class">
+        <attribute name="identifier" attributeType="String"/>
+    </entity>
     <entity name="FavoriteEvent" representedClassName="FavoriteEvent" syncable="YES" codeGenerationType="class">
         <attribute name="eventID" attributeType="String"/>
         <attribute name="occurenceDate" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-    </entity>
-    <entity name="SelectedCalendar" representedClassName="SelectedCalendar" syncable="YES" codeGenerationType="class">
-        <attribute name="identifier" attributeType="String"/>
     </entity>
 </model>

@@ -153,7 +153,7 @@ struct SettingsView: View {
         .foregroundColor(.purple)
       Text("Display events in ")
       Spacer()
-      Text(preferences.selectedCalendarsDisplayString)
+      Text(preferences.enabledCalendarsDisplayString)
         .foregroundColor(.accentColor)
         .layoutPriority(1)
     }
@@ -258,7 +258,7 @@ struct CalendarSelectionView: View {
   @ObservedObject var calendar: CDCalendar
   
   @State var showsAlert = false
-  var alertMessage = "You must have at least one calendar selected to view events."
+  var alertMessage = "You must have at least one calendar enabled to view events."
   
   var body: some View {
     HStack {
@@ -275,7 +275,7 @@ struct CalendarSelectionView: View {
   }
   
   var image: some View {
-    if PersistenceController.shared.isSelectedCallID(self.calendar.id) {
+    if PersistenceController.shared.isEnabledCallID(self.calendar.id) {
       return Image(systemName: "checkmark.circle.fill")
     } else {
       return Image(systemName: "circle")
@@ -283,20 +283,20 @@ struct CalendarSelectionView: View {
   }
   
   var imageColor: Color {
-    PersistenceController.shared.isSelectedCallID(self.calendar.id) ? calendar.color : Color(.tertiaryLabel)
+    PersistenceController.shared.isEnabledCallID(self.calendar.id) ? calendar.color : Color(.tertiaryLabel)
   }
   
   func changeSelection() {
-    if calendar.isSelected && preferences.selectedCalIDs.count <= 1 {
+    if calendar.isEnabled && preferences.enabledCalIDs.count <= 1 {
       showsAlert = true
       return
     }
-    self.calendar.isSelected.toggle()
+    self.calendar.isEnabled.toggle()
     
-    if !PersistenceController.shared.isSelectedCallID(self.calendar.id) {
-      PersistenceController.shared.saveSelectedCallID(self.calendar.id)
+    if !PersistenceController.shared.isEnabledCallID(self.calendar.id) {
+      PersistenceController.shared.saveEnabledCallID(self.calendar.id)
     } else {
-      PersistenceController.shared.removeSelectedCallID(withID: self.calendar.id)
+      PersistenceController.shared.removeEnabledCallID(withID: self.calendar.id)
     }
     
     WidgetCenter.shared.reloadAllTimelines()

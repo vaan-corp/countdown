@@ -166,8 +166,8 @@ struct HomeView: View {
     Group {
       if preferences.accessDenied {
         noAccess
-      } else if preferences.selectedCalIDs.isEmpty {
-        noCalendarSelected
+      } else if preferences.enabledCalIDs.isEmpty {
+        noCalendarEnabled
       } else if preferences.events.isEmpty {
         noEvents
       } else if preferences.showFavoritesOnly && preferences.favoriteEvents.isEmpty {
@@ -213,7 +213,7 @@ struct HomeView: View {
     .onTapGesture(perform: openSettings)
   }
   
-  var noCalendarSelected: some View {
+  var noCalendarEnabled: some View {
     VStack(spacing: .medium) {
       notepad
       Text("Select some calendars from")
@@ -230,7 +230,7 @@ struct HomeView: View {
   var noEvents: some View {
     VStack(spacing: .medium) {
       notepad
-      Text("There are no events in the selected calendar(s)")
+      Text("There are no events in the enabled calendar(s)")
       
       HStack(spacing: .small) {
         Button("Add Events") {
@@ -364,7 +364,7 @@ struct HomeView: View {
     DispatchQueue.main.async {
       EventStore.store = EKEventStore()
       EventStore.calendars.forEach { id in
-        PersistenceController.shared.saveSelectedCallID(id.calendarIdentifier)
+        PersistenceController.shared.saveEnabledCallID(id.calendarIdentifier)
       }
       EventStore.updateCalendars()
       self.updateEvents()

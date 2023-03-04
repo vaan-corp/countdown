@@ -56,8 +56,8 @@ struct PersistenceController {
 }
 
 extension PersistenceController {
-  func saveSelectedCallID(_ id: String) {
-    let newItem = SelectedCalendar(context: container.viewContext)
+  func saveEnabledCallID(_ id: String) {
+    let newItem = EnabledCalendar(context: container.viewContext)
     newItem.identifier = id
     
     do {
@@ -68,34 +68,34 @@ extension PersistenceController {
     }
   }
   
-  func isSelectedCallID(_ id: String) -> Bool {
-    let fetchRequest = fetchRequestForSelectedCallID(withID: id)
+  func isEnabledCallID(_ id: String) -> Bool {
+    let fetchRequest = fetchRequestForEnabledCallID(withID: id)
     guard let objects = try? container.viewContext.fetch(fetchRequest) else {
       return false
     }
     return !objects.isEmpty
   }
   
-  func removeSelectedCallID(withID id: String) {
-    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequestForSelectedCallID(withID: id))
+  func removeEnabledCallID(withID id: String) {
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequestForEnabledCallID(withID: id))
     
     do {
       try container.viewContext.execute(batchDeleteRequest)
       "deleted calendar with id - \(id)".log()
     } catch {
-      "Unable to delete entity with name SelectedCallID".log()
+      "Unable to delete entity with name EnabledCallID".log()
     }
   }
   
-  func fetchRequestForSelectedCallID(withID string: String) -> NSFetchRequest<NSFetchRequestResult> {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SelectedCalendar")
+  func fetchRequestForEnabledCallID(withID string: String) -> NSFetchRequest<NSFetchRequestResult> {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "EnabledCalendar")
     fetchRequest.predicate = NSPredicate(format: "identifier = %@", string)
     return fetchRequest
   }
   
-  func fetchSelectedCalendars() -> [String] {
-    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SelectedCalendar")
-    guard let objects = try? container.viewContext.fetch(fetchRequest) as? [SelectedCalendar] else { return [] }
+  func fetchEnabledCalendars() -> [String] {
+    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "EnabledCalendar")
+    guard let objects = try? container.viewContext.fetch(fetchRequest) as? [EnabledCalendar] else { return [] }
     return objects.compactMap { $0.identifier }
   }
 }
