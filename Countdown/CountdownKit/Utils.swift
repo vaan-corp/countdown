@@ -23,7 +23,7 @@ public class Preferences: ObservableObject {
   @Published public var showFavoritesOnly: Bool = false
 
   public var events: [EKEvent] {
-    EventStore.getEvents(inCalendars: selectedCalendars)
+    EventStore.getEvents(inCalendars: enabledCalendars)
   }
   
   @Published public var displayEvents = [EKEvent]()
@@ -34,7 +34,7 @@ public class Preferences: ObservableObject {
     events.filter { PersistenceController.shared.isFavorite($0) }
   }
   
-  public var selectedCalIDs: [String] { PersistenceController.shared.fetchSelectedCalendars() }
+  public var enabledCalIDs: [String] { PersistenceController.shared.fetchEnabledCalendars() }
   
   public var firstSevenUpcomingEvents: [EKEvent] {Array(events.prefix(7)) }
    
@@ -77,9 +77,9 @@ public class Preferences: ObservableObject {
     return access == .denied || access == .restricted
   }()
   
-  public var selectedCalendars: [EKCalendar] {
+  public var enabledCalendars: [EKCalendar] {
     EventStore.calendars
-      .filter({ selectedCalIDs.contains($0.calendarIdentifier) })
+      .filter({ enabledCalIDs.contains($0.calendarIdentifier) })
   }
   
   public var calendarComponent: Calendar.Component {
@@ -97,7 +97,7 @@ public class Preferences: ObservableObject {
   static public func getAllCalendars() -> [CDCalendar] {
     EventStore.calendars.map {
       CDCalendar(calendar: $0,
-                 isSelected: CDDefault.selectedCalIDs.contains($0.calendarIdentifier))
+                 isEnabled: CDDefault.enabledCalIDs.contains($0.calendarIdentifier))
     }
   }
   
@@ -105,14 +105,14 @@ public class Preferences: ObservableObject {
     allCalendars = Preferences.getAllCalendars()
   }
   
-  public var selectedCalendarsDisplayString: String {
-    if selectedCalIDs.isEmpty {
+  public var enabledCalendarsDisplayString: String {
+    if enabledCalIDs.isEmpty {
       return "No calendar"
-    } else if selectedCalIDs.count == 1 {
-      return selectedCalendars.first?.title ?? "1 Calendar"
+    } else if enabledCalIDs.count == 1 {
+      return enabledCalendars.first?.title ?? "1 Calendar"
     }
     
-    return "\(selectedCalIDs.count) Calendars"
+    return "\(enabledCalIDs.count) Calendars"
   }
   
   public func updateEvents() {
@@ -163,8 +163,8 @@ public struct CDDefault {
   @CustomDefault("displayComponent", defaultValue: 0)
   static public var displayComponent: Int
   
-  @CustomDefault("selectedCalendars", defaultValue: [])
-  static public var selectedCalIDs: [String]
+  @CustomDefault("enabledCalendars", defaultValue: [])
+  static public var enabledCalIDs: [String]
   
   @CustomDefault("isFirstLaunch", defaultValue: true)
   static public var isFirstLaunch: Bool
@@ -192,8 +192,8 @@ public struct CDDefault {
   //    @CustomDefault("firstAccessGranted", defaultValue: true)
   //    static public var isFirstLaunch: Bool
   
-  static public var selectedCalendars: [EKCalendar] {
-    EventStore.calendars.filter({ selectedCalIDs.contains($0.calendarIdentifier) })
+  static public var enabledCalendars: [EKCalendar] {
+    EventStore.calendars.filter({ enabledCalIDs.contains($0.calendarIdentifier) })
   }
   
   static public var defaultEndDate: Date {
@@ -205,7 +205,7 @@ public struct CDDefault {
     
     endDate = Default.endDate
     displayComponent = Default.displayComponent
-    selectedCalIDs = Default.selectedCalendars
+    enabledCalIDs = Default.enabledCalendars
     isFirstLaunch = Default.isFirstLaunch
     showEventAsCard = Default.showEventAsCard
     isMigratedFromStandardDefaults = true
@@ -228,8 +228,8 @@ struct Default {
   @StandardDefault("displayComponent", defaultValue: 0)
   static public var displayComponent: Int
   
-  @StandardDefault("selectedCalendars", defaultValue: [])
-  static public var selectedCalendars: [String]
+  @StandardDefault("enabledCalendars", defaultValue: [])
+  static public var enabledCalendars: [String]
   
   @StandardDefault("isFirstLaunch", defaultValue: true)
   static public var isFirstLaunch: Bool
@@ -261,7 +261,7 @@ public class EventStore {
       .sorted(by: { $0.type.rawValue < $1.type.rawValue })
     
     if CDDefault.isFirstLaunch {
-      CDDefault.selectedCalIDs = calendars.map { $0.calendarIdentifier }
+      CDDefault.enabledCalIDs = calendars.map { $0.calendarIdentifier }
       CDDefault.installedDate = Date()
       CDDefault.isFirstLaunch = false
     }
@@ -335,16 +335,16 @@ public struct StandardDefault<T> {
 }
 
 public class CDCalendar: ObservableObject {
-  @Published public var isSelected: Bool
+  @Published public var isEnabled: Bool
   
   public var name: String
   public var id: String
   public var color: Color
   
-  public init(calendar: EKCalendar, isSelected: Bool = false) {
+  public init(calendar: EKCalendar, isEnabled: Bool = false) {
     self.id = calendar.calendarIdentifier
     self.name = calendar.title
-    self.isSelected = isSelected
+    self.isEnabled = isEnabled
     self.color = calendar.color
   }
 }
