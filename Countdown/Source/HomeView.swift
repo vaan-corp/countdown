@@ -40,8 +40,6 @@ struct HomeView: View {
         .onAppear(perform: checkPermission)
         .navigationBarTitle("Countdown", displayMode: .inline)
         .navigationBarItems(trailing: trailingStack)
-      //        .navigationViewStyle(StackNavigationViewStyle())
-      //        .stacked(for: device)
     }
     .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
     .onChange(of: searchText) {newValue in
@@ -99,50 +97,8 @@ struct HomeView: View {
     }
   }
   
-  var toggleListButton: some View {
-    Button(action: optionC, label: {
-      toggleButtonImage()
-        .imageScale(.large)
-        .frame(width: .averageTouchSize, height: .averageTouchSize)
-    }).disabled(preferences.displayEvents.isEmpty)
-  }
-  
-  //    func optionA() {
-  //        let temp = self.preferences.searchResults
-  //        self.preferences.searchResults = []
-  //        self.preferences.showEventAsCard.toggle()
-  //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-  //            self.preferences.searchResults = temp
-  //        })
-  //    }
-  //
-  //    func optionB() {
-  //        withAnimation(.default, {
-  //            self.preferences.showEventAsCard.toggle()
-  //        })
-  //    }
-  //
-  func optionC() {
-    self.preferences.showEventAsCard.toggle()
-  }
-  
-  //    func optionD() {
-  //        withAnimation {
-  //            self.preferences.showEventAsCard.toggle()
-  //        }
-  //    }
-  
-  func toggleButtonImage() -> Image {
-    if preferences.showEventAsCard {
-      return Image(systemName: "list.bullet")
-    }
-    
-    return Image(systemName: "rectangle.grid.1x2.fill")
-  }
-  
   func settingsView() -> some View {
     SettingsView()
-    //            .environment(\.layoutDirection, Preferences.layoutDirection)
   }
   
   func dismissedAddEventVC() {
@@ -266,15 +222,6 @@ struct HomeView: View {
       .embedInScrollView(canShowIndicators: true)
       .background(Color(.systemGroupedBackground))
       .clipped()
-      //            if preferences.showEventAsCard {
-      //                List(eventsArray, id: \.eventIdentifier) { event in
-      //                    EventRow(event: event)
-      //                }
-      //                    .listStyle(SidebarListStyle())
-      //            } else {
-      //                resultList
-      //                    .listStyle(InsetGroupedListStyle())
-      //            }
     } else {
       introspectedList
     }
@@ -306,13 +253,8 @@ struct HomeView: View {
       ForEach(preferences.displayEvents, id: \.eventIdentifier) { event in
         EventRow(event: event)
       }
-      // .onDelete(perform: delete)
     }
   }
-  
-  //    func delete(at offsets: IndexSet) {
-  //        preferences.events.remove(atOffsets: offsets)
-  //    }
   
   var noResultsView: some View {
     VStack(spacing: .medium) {
@@ -332,7 +274,6 @@ struct HomeView: View {
   }
   
   func checkPermission() {
-    Router.shared.showSearchIfRequired()
     switch EKEventStore.authorizationStatus(for: .event) {
     case .authorized:
       EventStore.updateCalendars()

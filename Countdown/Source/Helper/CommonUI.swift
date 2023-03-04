@@ -162,16 +162,7 @@ class IAPmanager {
       for purchase in results.restoredPurchases {
         purchasedProductIdentifiers.insert(purchase.productId)
       }
-      
-      //            if !results.restoredPurchases.isEmpty {
-      //                handler(true)
-      //            }
-      
       handler(!results.restoredPurchases.isEmpty)
-      
-      //            if !results.restoreFailedPurchases.isEmpty {
-      //                handler(false)
-      //            }
     }
   }
   

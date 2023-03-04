@@ -14,8 +14,6 @@ import WidgetKit
 struct SettingsView: View {
   @Environment(\.presentationMode) var presentationMode
   @ObservedObject var preferences = Preferences.shared
-  //    @ObservedObject var appState = AppState.shared
-  //    @ObservedObject var device: Device = Device.shared
   
   @State var showsMail = false
   @State var showAlert = false
@@ -32,10 +30,8 @@ struct SettingsView: View {
         .accentColor(.appTintColor)
         .navigationBarTitle("Settings", displayMode: .inline)
         .navigationBarItems(trailing: DismissButton(title: "Done", presentationMode: presentationMode))
-      //            SettingsView()
     }
     .navigationViewStyle(StackNavigationViewStyle())
-    //        .stacked(for: device)
   }
   
   var viewStack: some View {
@@ -44,16 +40,11 @@ struct SettingsView: View {
         if !preferences.isPaidUser {
           PurchaseCard()
             .sheet(isPresented: $showIAPview, content: { IAPview() })
-          //                    .push(to: IAPview(), isPushed: $showIAPview)
             .onTapGesture {
               if ProductStore.shared.products.isEmpty {
                 IAPmanager.updateProductsInfo()
-                //                                self.showAlert = true
               }
-              //                            else {
               self.showIAPview = true
-              //                            }
-              
             }
         }
       }
@@ -61,12 +52,7 @@ struct SettingsView: View {
       
       ExpandableView(selectionView: displayUnitStack, expandedView: displayUnitPicker)
       
-      //            if #available(iOS 14.0, *) {
-      //                endDateStack
-      //                    .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
-      //            } else {
       ExpandableView(selectionView: endDateStack, expandedView: endDatePicker)
-      //            }
       
       if !preferences.accessDenied && !preferences.allCalendars.isEmpty {
         ExpandableView(selectionView: calendarStack, expandedView: calendarChooser)
@@ -83,19 +69,6 @@ struct SettingsView: View {
 #if DEBUG
       togglePurchase
 #endif
-      
-      //            VStack(spacing: .medium) {
-      
-      //                Divider()
-      //                Toggle(isOn: $preferences.confirmOnDelete, label: {
-      //                    ScaledImage(systemName: "exclamationmark.triangle")
-      //                        .foregroundColor(.red)
-      //                    Text("Confirm on delete")
-      //                })
-      //            }
-      //            .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
-      
-      //            Text("Developed by Imthath").secondaryText().padding(.top)
     }
     .onAppear(perform: preferences.updateAllCalendars)
     .embedInScrollView()
@@ -108,14 +81,9 @@ struct SettingsView: View {
         .foregroundColor(.orange)
       Text("Display events until")
       Spacer()
-      //            if #available(iOS 14.0, *) {
-      //                endDatePicker
-      //            } else {
       Text(preferences.endDate.words(in: .short))
         .foregroundColor(.accentColor)
         .layoutPriority(1)
-      //            }
-      
     }
   }
   
@@ -123,7 +91,6 @@ struct SettingsView: View {
     DatePicker("", selection: $preferences.endDate, in: Date()..., displayedComponents: .date)
       .labelsHidden()
       .datePickerStyle(WheelDatePickerStyle())
-    //            .colorMultiply(Color.primary)
   }
   
   var displayUnitStack: some View {
@@ -219,38 +186,6 @@ struct SettingsView: View {
       self.showAlert = !Router.shared.openAppStore()
     }
   }
-  
-  //    var toggleFav: some View {
-  //        HStack {
-  //            favImage
-  //                .foregroundColor(.red)
-  //            Text("Indicate favorites in event list")
-  ////            toggle(flag: $preferences.showHeartInList, withLabel: "Indicate favorites in event list")
-  //            Spacer()
-  //        }
-  //        .push(to: IAPview(), isPushed: $showIAPview)
-  //        .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
-  //    .onTapGesture(perform: showIAPifRequired)
-  //    }
-  //
-  //    var favImage: ScaledImage {
-  //        if preferences.showHeartInList {
-  //            return ScaledImage(systemName: "heart.fill")
-  //        }
-  //
-  //        return ScaledImage(systemName: "heart")
-  //    }
-  
-  //    func showIAPifRequired() {
-  //        preferences.showHeartInList.toggle()
-  //
-  ////        #warning("for testing and demo")
-  ////        showIAPview = true
-  //        if preferences.showHeartInList,
-  //            !preferences.isPaidUser {
-  //            appState.showIAPview = true
-  //        }
-  //    }
 }
 
 struct CalendarSelectionView: View {
