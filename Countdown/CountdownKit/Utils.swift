@@ -16,8 +16,6 @@ public class Preferences: ObservableObject {
   
   static public let shared = Preferences()
   
-  //    public static var layoutDirection: LayoutDirection = .leftToRight
-  
   @Published public var searchText: String = ""
   
   @Published public var showFavoritesOnly: Bool = false
@@ -27,8 +25,6 @@ public class Preferences: ObservableObject {
   }
   
   @Published public var displayEvents = [EKEvent]()
-  
-  //    @Published public var favoriteEvents = [EKEvent]()
   
   public var favoriteEvents: [EKEvent] {
     events.filter { PersistenceController.shared.isFavorite($0) }
@@ -67,10 +63,6 @@ public class Preferences: ObservableObject {
   @Published public var isPaidUser = CDDefault.isPaidUser {
     didSet { CDDefault.isPaidUser = isPaidUser }
   }
-  
-  //    @Published public var confirmOnDelete = CDDefault.confirmOnDelete {
-  //        didSet { CDDefault.confirmOnDelete = confirmOnDelete }
-  //    }
   
   @Published public var accessDenied: Bool = {
     let access = EKEventStore.authorizationStatus(for: .event)
@@ -133,23 +125,9 @@ public class Preferences: ObservableObject {
         )
     }
   }
-  
-  //    public func updateFavoriteEvents() {
-  //        guard isPaidUser else {
-  //            if !favoriteEvents.isEmpty {
-  //                "Favorites set for user in free plan".log()
-  //                favoriteEvents = []
-  //            }
-  //            return
-  //        }
-  //
-  //        favoriteEvents = events.filter { CDStore.isFavorite($0) }
-  //    }
 }
 
 public struct CDDefault {
-  //    internal static var custom = UserDefaults(suiteName: "group.imthath.countdown")
-  
   static public var components: [Calendar.Component] {
     [.day, .weekOfYear, .month]
   }
@@ -174,9 +152,6 @@ public struct CDDefault {
   
   @CustomDefault("showHeartInList", defaultValue: true)
   static public var showHeartInList: Bool
-  
-//  @CustomDefault("isPaidUser", defaultValue: false)
-//  static public var isPaidUser: Bool
 
   @CustomDefault("isPaidUser", defaultValue: false)
   static public var isPaidUser: Bool
@@ -184,13 +159,8 @@ public struct CDDefault {
   @CustomDefault("hasSubscriptionEnded", defaultValue: false)
   static public var hasSubscriptionEnded: Bool
   
-  //    @CustomDefault("confirmOnDelete", defaultValue: true)
-  //    static public var confirmOnDelete: Bool
-  
   @CustomDefault("isMigratedFromStandardDefaults", defaultValue: false)
   static public var isMigratedFromStandardDefaults: Bool
-  //    @CustomDefault("firstAccessGranted", defaultValue: true)
-  //    static public var isFirstLaunch: Bool
   
   static public var enabledCalendars: [EKCalendar] {
     EventStore.calendars.filter({ enabledCalIDs.contains($0.calendarIdentifier) })
@@ -237,12 +207,6 @@ struct Default {
   @StandardDefault("showEventAsCard", defaultValue: true)
   static public var showEventAsCard: Bool
   
-  //    @StandardDefault("confirmOnDelete", defaultValue: true)
-  //    static public var confirmOnDelete: Bool
-  
-  //    @StandardDefault("firstAccessGranted", defaultValue: true)
-  //    static public var isFirstLaunch: Bool
-  
   static public var defaultEndDate: Date {
     Calendar.current.date(byAdding: .year, value: 1, to: Date()) ??  Date(timeIntervalSinceNow: 31556952 * 1)
   }
@@ -274,10 +238,6 @@ public class EventStore {
   }
   
   static public var calendars: [EKCalendar] { getCalendars() }
-  
-  //    static public var events: [EKEvent] = {
-  //        return getEvents(inCalendars: Preferences.shared.selectedCalendars)
-  //    }()
   
   static public func getEvents(inCalendars calendars: [EKCalendar]) -> [EKEvent] {
     guard !calendars.isEmpty else { return [] }
@@ -348,17 +308,3 @@ public class CDCalendar: ObservableObject {
     self.color = calendar.color
   }
 }
-
-// public struct User: Codable {
-//    let isPaidUser: Bool
-//
-//
-// }
-//
-//// userdefaults
-// let defaults = UserDefaults.standard
-// let user = User(isPaidUser: true)
-// let encoder =   JSONEncoder()
-// if let encodedUser = try? encoder.encode(user) {
-//    defaults.set(encodedUser, forKey: "user")
-// }

@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import EventKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -97,5 +98,46 @@ extension PersistenceController {
     let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "EnabledCalendar")
     guard let objects = try? container.viewContext.fetch(fetchRequest) as? [EnabledCalendar] else { return [] }
     return objects.compactMap { $0.identifier }
+  }
+  
+  // favorite events
+  func isFavorite(_ event: EKEvent) -> Bool {
+    let fetchRequest = fetchRequestForEvent(withID: event.eventIdentifier)
+    
+    guard let objects = try? container.viewContext.fetch(fetchRequest) else {
+      return false
+    }
+    
+    return !objects.isEmpty
+  }
+  
+  func favorite(_ event: EKEvent) {
+    let newItem = FavoriteEvent(context: container.viewContext)
+    newItem.eventID = event.eventIdentifier
+    newItem.occurenceDate = event.occurrenceDate
+    
+    do {
+      try container.viewContext.save()
+    } catch {
+      let nsError = error as NSError
+      fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    }
+  }
+  
+  func deleteEvent(withID id: String) {
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequestForEvent(withID: id))
+    
+    do {
+      try container.viewContext.execute(batchDeleteRequest)
+      "deleted event with id - \(id)".log()
+    } catch {
+      "Unable to delete entity with name FavoriteEvent".log()
+    }
+  }
+  
+  func fetchRequestForEvent(withID string: String) -> NSFetchRequest<NSFetchRequestResult> {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteEvent")
+    fetchRequest.predicate = NSPredicate(format: "eventID = %@", string)
+    return fetchRequest
   }
 }

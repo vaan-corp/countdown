@@ -118,8 +118,6 @@ public extension EKEvent {
       guard let name = attendee.name else { continue }
       result.append("\(name), ")
     }
-    
-//    result.removeLast(2)
     return result
   }
   var locationString: String { location ?? "" }
@@ -135,14 +133,10 @@ public extension EKEvent {
       } else if !relativeTime.isEmpty {
         if alarm.relativeOffset < 0 {
           relativeTime = relativeTime.replacingOccurrences(of: "ago", with: "before")
-          //                } else {
-          //                    relativeTime.replacingOccurrences(of: "", with: <#T##StringProtocol#>)
         }
         result.append("\(relativeTime), ")
       }
     }
-    
-//    result.removeLast(2)
     return result
   }
   var urlString: String { url?.absoluteString ?? "" }
@@ -159,10 +153,6 @@ public extension EKCalendar {
 public extension Calendar.Component {
   var nowString: String {
     switch self {
-      //        case .minute:
-      //            return "Minutes"
-      //        case .hour:
-      //            return "Hours"
     case .weekOfYear:
       return "This week"
     case .month:
@@ -174,29 +164,8 @@ public extension Calendar.Component {
     }
   }
   
-  //    var suffixSingular: String {
-  //        switch self {
-  //            //        case .minute:
-  //            //            return "Minutes"
-  //            //        case .hour:
-  //        //            return "Hours"
-  //        case .weekOfYear:
-  //            return "a week"
-  //        case .month:
-  //            return "a month"
-  //        case .year:
-  //            return "an year"
-  //        default:
-  //            return "a day"
-  //        }
-  //    }
-  
   var suffixPlural: String {
     switch self {
-      //        case .minute:
-      //            return "Minutes"
-      //        case .hour:
-      //            return "Hours"
     case .weekOfYear:
       return "weeks"
     case .month:

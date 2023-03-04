@@ -27,10 +27,8 @@ struct EventRow: View {
       Group {
         if preferences.showEventAsCard {
           eventCard.contentShape(RoundedRectangle(cornerRadius: .small))
-          //                        .transition(AnyTransition.scale.combined(with: .opacity))
         } else {
           eventStack.contentShape(Rectangle())
-          //                        .transition(AnyTransition.scale.combined(with: .opacity))
         }
       }
     }
@@ -68,7 +66,6 @@ struct EventRow: View {
       if preferences.isPaidUser {
         favModel.image
           .foregroundColor(.red)
-        //                    .foregroundColor(event.color)
           .onTapGesture { self.favModel.toggle() }
       } else {
         Image(systemName: "clock")
@@ -113,7 +110,6 @@ struct EventRow: View {
             
       eventTitle
         .multilineTextAlignment(.leading)
-      //                .padding(.leading)
       Spacer()
       Text(event.difference(in: preferences.calendarComponent))
       Image(systemName: "chevron.right")
@@ -147,9 +143,3 @@ struct EventRow: View {
     return event.occurrenceDate.toString(inFormat: "MMM d, h:mm a")
   }
 }
-
-// struct EventRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventRow()
-//    }
-// }

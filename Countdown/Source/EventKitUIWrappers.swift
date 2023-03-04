@@ -155,41 +155,6 @@ struct EventVC: UIViewControllerRepresentable {
   }
 }
 
-// struct CalendarChooser: UIViewControllerRepresentable {
-//
-//
-//    typealias UIViewControllerType = EKCalendarChooser
-//
-//    var store = EKEventStore()
-//    @Binding var selectedCalendars: Set<EKCalendar>
-//
-//    func makeCoordinator() -> Coordinator {
-//        Coordinator()
-//    }
-//
-//    func makeUIViewController(context: Context) -> EKCalendarChooser {
-//        let calChooser = EKCalendarChooser(selectionStyle: .multiple, displayStyle: .allCalendars,
-//                                           entityType: .event, eventStore: store)
-//        calChooser.delegate = context.coordinator
-//        calChooser.selectedCalendars = selectedCalendars
-//        return calChooser
-//    }
-//
-//    func updateUIViewController(_ uiViewController: EKCalendarChooser, context: Context) {
-//        selectedCalendars = context.coordinator.selectedCalendars
-//    }
-//
-//    class Coordinator: NSObject, EKCalendarChooserDelegate {
-//
-//        var selectedCalendars = Set<EKCalendar>()
-//
-//        func calendarChooserSelectionDidChange(_ calendarChooser: EKCalendarChooser) {
-//            selectedCalendars = calendarChooser.selectedCalendars
-//        }
-//    }
-//
-// }
-
 public struct ComposeMail: UIViewControllerRepresentable {
   public typealias UIViewControllerType = MFMailComposeViewController
   

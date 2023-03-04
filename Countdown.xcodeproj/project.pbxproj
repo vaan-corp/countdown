@@ -8,13 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E0312951299741B20015287F /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312950299741B20015287F /* CountdownApp.swift */; };
-		E0312953299741B20015287F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312952299741B20015287F /* ContentView.swift */; };
 		E0312955299741B30015287F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312954299741B30015287F /* Assets.xcassets */; };
 		E0312958299741B30015287F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312957299741B30015287F /* Preview Assets.xcassets */; };
 		E031295A299741B30015287F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312959299741B30015287F /* Persistence.swift */; };
 		E031295D299741B30015287F /* Countdown.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E031295B299741B30015287F /* Countdown.xcdatamodeld */; };
-		E031298129974D600015287F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031298029974D600015287F /* AppDelegate.swift */; };
-		E031298329974DB50015287F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031298229974DB50015287F /* SceneDelegate.swift */; };
 		E03129852997541E0015287F /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03129842997541E0015287F /* EventDetail.swift */; };
 		E0312987299754560015287F /* EventKitUIWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312986299754560015287F /* EventKitUIWrappers.swift */; };
 		E0312989299754760015287F /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312988299754760015287F /* EventRow.swift */; };
@@ -22,10 +19,8 @@
 		E031298D299754CB0015287F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031298C299754CB0015287F /* SettingsView.swift */; };
 		E0312990299754FF0015287F /* CommonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031298F299754FF0015287F /* CommonUI.swift */; };
 		E0312992299755210015287F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312991299755210015287F /* Router.swift */; };
-		E03129942997555A0015287F /* CDTodayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03129932997555A0015287F /* CDTodayVC.swift */; };
 		E0312996299755740015287F /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312995299755740015287F /* Ext.swift */; };
 		E0312998299755A10015287F /* FavoriteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312997299755A10015287F /* FavoriteEvent.swift */; };
-		E031299A299756550015287F /* TodayViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312999299756550015287F /* TodayViews.swift */; };
 		E031299C2997568D0015287F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031299B2997568D0015287F /* Utils.swift */; };
 		E03129A2299757940015287F /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A1299757940015287F /* SwiftyStoreKit */; };
 		E03129A52997579A0015287F /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A42997579A0015287F /* SwiftDate */; };
@@ -83,13 +78,10 @@
 /* Begin PBXFileReference section */
 		E031294D299741B20015287F /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0312950299741B20015287F /* CountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownApp.swift; sourceTree = "<group>"; };
-		E0312952299741B20015287F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0312954299741B30015287F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0312957299741B30015287F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E0312959299741B30015287F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E031295C299741B30015287F /* Countdown.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Countdown.xcdatamodel; sourceTree = "<group>"; };
-		E031298029974D600015287F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E031298229974DB50015287F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E03129842997541E0015287F /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		E0312986299754560015287F /* EventKitUIWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitUIWrappers.swift; sourceTree = "<group>"; };
 		E0312988299754760015287F /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
@@ -97,10 +89,8 @@
 		E031298C299754CB0015287F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E031298F299754FF0015287F /* CommonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUI.swift; sourceTree = "<group>"; };
 		E0312991299755210015287F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		E03129932997555A0015287F /* CDTodayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTodayVC.swift; sourceTree = "<group>"; };
 		E0312995299755740015287F /* Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.swift; sourceTree = "<group>"; };
 		E0312997299755A10015287F /* FavoriteEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEvent.swift; sourceTree = "<group>"; };
-		E0312999299756550015287F /* TodayViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViews.swift; sourceTree = "<group>"; };
 		E031299B2997568D0015287F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E03129A9299758C10015287F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E03129AD299759F60015287F /* SwiftyUserInterface */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftyUserInterface; path = ../../Frameworks/SwiftyUserInterface; sourceTree = "<group>"; };
@@ -179,9 +169,7 @@
 				E03129D9299780750015287F /* Configs */,
 				E031297F29974CBA0015287F /* CountdownKit */,
 				E031297E29974C9E0015287F /* Source */,
-				E031297D29974C960015287F /* iOS */,
 				E0312950299741B20015287F /* CountdownApp.swift */,
-				E0312952299741B20015287F /* ContentView.swift */,
 				E0312954299741B30015287F /* Assets.xcassets */,
 				E0312959299741B30015287F /* Persistence.swift */,
 				E031295B299741B30015287F /* Countdown.xcdatamodeld */,
@@ -197,15 +185,6 @@
 				E0312957299741B30015287F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		E031297D29974C960015287F /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				E031298029974D600015287F /* AppDelegate.swift */,
-				E031298229974DB50015287F /* SceneDelegate.swift */,
-			);
-			path = iOS;
 			sourceTree = "<group>";
 		};
 		E031297E29974C9E0015287F /* Source */ = {
@@ -225,10 +204,8 @@
 		E031297F29974CBA0015287F /* CountdownKit */ = {
 			isa = PBXGroup;
 			children = (
-				E03129932997555A0015287F /* CDTodayVC.swift */,
 				E0312995299755740015287F /* Ext.swift */,
 				E0312997299755A10015287F /* FavoriteEvent.swift */,
-				E0312999299756550015287F /* TodayViews.swift */,
 				E031299B2997568D0015287F /* Utils.swift */,
 			);
 			path = CountdownKit;
@@ -444,19 +421,14 @@
 				E03129852997541E0015287F /* EventDetail.swift in Sources */,
 				E0312989299754760015287F /* EventRow.swift in Sources */,
 				E031295A299741B30015287F /* Persistence.swift in Sources */,
-				E03129942997555A0015287F /* CDTodayVC.swift in Sources */,
-				E0312953299741B20015287F /* ContentView.swift in Sources */,
 				E0312951299741B20015287F /* CountdownApp.swift in Sources */,
-				E031298129974D600015287F /* AppDelegate.swift in Sources */,
 				E031295D299741B30015287F /* Countdown.xcdatamodeld in Sources */,
-				E031298329974DB50015287F /* SceneDelegate.swift in Sources */,
 				E0312990299754FF0015287F /* CommonUI.swift in Sources */,
 				E031299C2997568D0015287F /* Utils.swift in Sources */,
 				E0312987299754560015287F /* EventKitUIWrappers.swift in Sources */,
 				E0ED77AB299CF55A00003A2B /* CDWidget.intentdefinition in Sources */,
 				E031298B299754A60015287F /* IAPview.swift in Sources */,
 				E031298D299754CB0015287F /* SettingsView.swift in Sources */,
-				E031299A299756550015287F /* TodayViews.swift in Sources */,
 				E0312992299755210015287F /* Router.swift in Sources */,
 				E0312996299755740015287F /* Ext.swift in Sources */,
 				E03129AA299758C10015287F /* HomeView.swift in Sources */,

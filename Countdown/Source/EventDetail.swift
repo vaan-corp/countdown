@@ -38,13 +38,6 @@ struct EventDetail: View {
       .navigationBarItems(trailing: editButton)
   }
   
-  //    var trailingItems: some View {
-  //        HStack {
-  //            favButton
-  //            editButton
-  //        }
-  //    }
-  
   var favButton: some View {
     Button(action: favModel.toggle, label: {
       self.favModel.image
@@ -60,8 +53,6 @@ struct EventDetail: View {
       } else {
         remainingTime
       }
-      
-      //            zCard
       customDetailCard
         .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
         .padding(.top, .averageTouchSize)
@@ -69,21 +60,10 @@ struct EventDetail: View {
     }
   }
   
-  //    var zCard: some View {
-  //        ZStack(alignment: .topTrailing) {
-  //            customDetailCard
-  //            .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
-  //            favImage
-  //                .offset(x: -.averageTouchSize, y: -.large)
-  //        }
-  //        .padding(.top, .averageTouchSize)
-  //    }
-  
   var customDetailCard: some View {
     VStack(alignment: .leading, spacing: .medium) {
       HStack(alignment: .center, spacing: .medium) {
         Text("Event details: ")
-        //                    .foregroundColor(.secondary)
           .secondaryText()
         Spacer()
         if preferences.isPaidUser {
@@ -140,36 +120,11 @@ struct EventDetail: View {
     }.padding(.horizontal, .medium)
   }
   
-  //    var favImage: some View {
-  //        ZStack {
-  //            Circle()
-  //                .stroke(lineWidth: 1)
-  //                .foregroundColor(Color.red.opacity(0.5))
-  //                .frame(width: .averageTouchSize * 0.8, height: .averageTouchSize * 0.8)
-  //            favButton.offset(x: 0, y: 1)
-  //        }
-  //    }
-  
-  //    var personImageString: String {
-  //        if event.attendees!.count == 1 {
-  //            return "person.fill"
-  //        } else if event.attendees!.count == 2 {
-  //            return "person.2.fill"
-  //        }
-  //
-  //        return "person.3.fill"
-  //    }
-  
   var eventStarted: some View {
     VStack(spacing: .small) {
-      //            Text("🎊")
-      //                .font(.system(size: .imageSize))
-      //                .padding(.top, .imageSize * 2)
       Text("started").foregroundColor(.secondary)
       Text(event.occurrenceDate.relativeTime())
         .font(.title)
-      //            Text("🎉")
-      //                .font(.system(size: .imageSize))
     }
     .padding(.top, .averageTouchSize)
   }
@@ -200,8 +155,6 @@ struct EventDetail: View {
       self.showsEditEventView = true
     }, label: {
       Text("Edit")
-      //            Image(systemName: "pencil")
-      //                .imageScale(.large)
     })
     .disabled(!event.calendar.allowsContentModifications)
     .sheet(isPresented: $showsEditEventView, onDismiss: checkChangeInEvent,
@@ -217,7 +170,6 @@ struct EventDetail: View {
   
   func eventEditView() -> some View {
     EditEventVC(event: $event, isDeleted: $isDeleted)
-    //        EKEventActionView(event: self.event)
   }
 }
 
@@ -245,7 +197,6 @@ struct UnitView: View {
           Color(.secondarySystemGroupedBackground)
             .frame(width: minimumSize * 1.5, height: minimumSize * 1.5)
             .clipShape(Circle())
-          //                        .shadow(radius: 2)
         )
         .padding(.bottom, minimumSize * 0.3)
       
