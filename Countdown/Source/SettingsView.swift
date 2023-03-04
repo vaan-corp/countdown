@@ -9,6 +9,7 @@ import EventKit
 import MessageUI
 import SwiftUI
 import SwiftyUserInterface
+import WidgetKit
 
 struct SettingsView: View {
   @Environment(\.presentationMode) var presentationMode
@@ -274,15 +275,15 @@ struct CalendarSelectionView: View {
   }
   
   var image: some View {
-    if calendar.isSelected {
+    if PersistenceController.shared.isSelectedCallID(self.calendar.id) {
       return Image(systemName: "checkmark.circle.fill")
+    } else {
+      return Image(systemName: "circle")
     }
-    
-    return Image(systemName: "circle")
   }
   
   var imageColor: Color {
-    calendar.isSelected ? calendar.color : Color(.tertiaryLabel)
+    PersistenceController.shared.isSelectedCallID(self.calendar.id) ? calendar.color : Color(.tertiaryLabel)
   }
   
   func changeSelection() {
@@ -291,9 +292,14 @@ struct CalendarSelectionView: View {
       return
     }
     self.calendar.isSelected.toggle()
-    self.preferences.selectedCalIDs = self.preferences.allCalendars
-      .filter({ $0.isSelected })
-      .map({ $0.id })
+    
+    if !PersistenceController.shared.isSelectedCallID(self.calendar.id) {
+      PersistenceController.shared.saveSelectedCallID(self.calendar.id)
+    } else {
+      PersistenceController.shared.removeSelectedCallID(withID: self.calendar.id)
+    }
+    
+    WidgetCenter.shared.reloadAllTimelines()
   }
 }
 

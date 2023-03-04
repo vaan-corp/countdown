@@ -363,8 +363,10 @@ struct HomeView: View {
   func grantedPermission() {
     DispatchQueue.main.async {
       EventStore.store = EKEventStore()
+      EventStore.calendars.forEach { id in
+        PersistenceController.shared.saveSelectedCallID(id.calendarIdentifier)
+      }
       EventStore.updateCalendars()
-      self.preferences.selectedCalIDs = EventStore.calendars.map { $0.calendarIdentifier }
       self.updateEvents()
       self.preferences.accessDenied = false
       self.isLoading = false
