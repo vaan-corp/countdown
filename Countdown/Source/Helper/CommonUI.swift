@@ -8,7 +8,6 @@
 import StoreKit
 import SwiftUI
 import SwiftyStoreKit
-import SwiftyUserInterface
 
 public struct TappableButton: ButtonStyle {
   @Binding var isRoundedCorners: Bool
@@ -51,12 +50,69 @@ public extension View {
       self.overlay(
         ZStack {
           bgColor.edgesIgnoringSafeArea(.all)
-          ActivityIndicator.large
+          ProgressView()
         }
       )
     } else {
       self
     }
+  }
+  
+  func rectangleBackground<T: View>(with color: T) -> some View {
+      self
+           .padding(EdgeInsets(top: .medium, leading: .small, bottom: .medium, trailing: .small))
+          .background(color)
+          .cornerRadius(.small)
+          .padding(EdgeInsets(top: .small, leading: .medium, bottom: .small, trailing: .medium))
+  }
+  
+  func secondaryText() -> some View {
+      self
+          .font(.footnote)
+          .foregroundColor(.secondary)
+          .multilineTextAlignment(.leading)
+  }
+  
+  func centerHorizontally() -> some View {
+      HStack {
+          Spacer()
+          self
+          Spacer()
+      }
+  }
+  
+  func simpleAlert(isPresented: Binding<Bool>, title: String = "Alert", message: String) -> some View {
+      return self.alert(isPresented: isPresented, content: {
+          Alert(title: Text(title), message: Text(message))
+      })
+  }
+  
+  func embedInScrollView(canShowIndicators showsIndicators: Bool = false,
+                         canBounce bounces: Bool = false) -> some View {
+      GeometryReader { geometry in
+          ScrollView(showsIndicators: showsIndicators) {
+              self
+          }
+          .frame(minHeight: geometry.size.height)
+          .introspectScrollView { $0.bounces = bounces }
+      }
+  }
+  
+  func alternateLoader(on isLoading: Binding<Bool>) -> some View {
+      Group {
+          if isLoading.wrappedValue {
+              ProgressView()
+          } else {
+              self
+          }
+      }
+  }
+  
+  func makeTag(with color: Color) -> some View {
+      self
+      .padding(EdgeInsets(top: .small * 0.5, leading: .small, bottom: .small * 0.5, trailing: .small))
+      .background(color)
+      .cornerRadius(.small * 1.5)
   }
 }
 
@@ -233,4 +289,114 @@ extension SKProductSubscriptionPeriod {
     default: return ""
     }
   }
+}
+
+public struct CardButtonStyle: ButtonStyle {
+  let backgroundColor: Color
+  let textColor: Color
+  let height: CGFloat
+  
+  public init(backgroundColor: Color = .blue,
+              textColor: Color = .white,
+              height: CGFloat = .averageTouchSize * 1.25) {
+    self.backgroundColor = backgroundColor
+    self.textColor = textColor
+    self.height = height
+  }
+  
+  public func makeBody(configuration: Configuration) -> some View {
+    Card(cornerRadius: .small, fillColor: bgColor(for: configuration)) {
+      configuration.label.foregroundColor(self.fgColor(for: configuration))
+    }
+    .frame(height: height)
+    .padding(.vertical, .small)
+  }
+  
+  func fgColor(for configuration: Configuration) -> Color {
+    configuration.isPressed ? textColor.opacity(0.6) : textColor
+  }
+  
+  func bgColor(for configuration: Configuration) -> Color {
+    configuration.isPressed ? backgroundColor.opacity(0.3) : backgroundColor
+  }
+}
+
+public struct Card<Content>: View where Content: View {
+  var alignment: Alignment = .center
+  var cornerRadius: CGFloat = .medium
+  var fillColor: Color = Color(UIColor.secondarySystemBackground)
+  var shadowRadius: CGFloat = .zero
+  var padding: CGFloat = .small
+  var content: () -> Content
+  
+  public init(alignment: Alignment = .center,
+              cornerRadius: CGFloat = .medium,
+              fillColor: Color = Color(UIColor.secondarySystemBackground),
+              shadowRadius: CGFloat = .zero,
+              padding: CGFloat = .small,
+              content: @escaping () -> Content) {
+    self.alignment = alignment
+    self.cornerRadius = cornerRadius
+    self.fillColor = fillColor
+    self.shadowRadius = shadowRadius
+    self.padding = padding
+    self.content = content
+  }
+  
+  public var body: some View {
+    GeometryReader { geometry in
+      ZStack(alignment: self.alignment) {
+        RoundedRectangle(cornerRadius: self.cornerRadius, style: .continuous)
+          .fill(self.fillColor)
+          .shadow(radius: self.shadowRadius)
+        
+        self.content()
+          .padding(self.padding)
+      }
+      .frame(width: geometry.size.width, height: geometry.size.height)
+    }
+  }
+}
+
+public struct ScaledImage: View {
+  let systemName: String
+  let scale: Image.Scale
+  let minWidth: CGFloat
+  
+  public init(systemName: String, scale: Image.Scale = .large, minWidth: CGFloat = .averageTouchSize) {
+    self.systemName = systemName
+    self.scale = scale
+    self.minWidth = minWidth
+  }
+  
+  public var body: some View {
+    Image(systemName: systemName)
+      .imageScale(scale)
+      .frame(minWidth: minWidth)
+  }
+}
+
+public struct DismissButton: View {
+  var title: String = "Cancel"
+  var dismiss: DismissAction
+  
+  public init(title: String = "Cancel",
+              dismiss: DismissAction) {
+    self.title = title
+    self.dismiss = dismiss
+  }
+  public var body: some View {
+    Button(title) {
+      dismiss()
+    }
+  }
+}
+
+public extension CGFloat {
+    static var small: CGFloat { 8 }
+    static var medium: CGFloat { 16 }
+    static var large: CGFloat { 24 }
+    
+    static var averageTouchSize: CGFloat { 44 }
+    static var imageSize: CGFloat { 72 }
 }

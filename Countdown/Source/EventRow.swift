@@ -8,16 +8,24 @@
 import EventKit
 import SwiftDate
 import SwiftUI
-import SwiftyUserInterface
 
 struct EventRow: View {
   @ObservedObject var preferences = Preferences.shared
   @State var event: EKEvent
   @ObservedObject var favModel: FavoriteModel
+  @Binding var searchText: String
   
-  init(event: EKEvent) {
+  init(event: EKEvent, searchText: Binding<String>) {
     self._event = State(initialValue: event)
     self.favModel = FavoriteModel(event: event)
+    _searchText = searchText
+  }
+  
+  func highlightedText(_ text: String, matching: String) -> AttributedString {
+      let attributedString = NSMutableAttributedString(string: text)
+      let range = (text as NSString).range(of: matching, options: .caseInsensitive)
+      attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
+      return AttributedString(attributedString)
   }
   
   var body: some View {
@@ -83,10 +91,10 @@ struct EventRow: View {
   
   var eventTitle: some View {
     Group {
-      if preferences.searchText.isEmpty {
+      if searchText.isEmpty {
         Text(event.title)
       } else {
-        HighlightedText(event.title, matching: preferences.searchText)
+        Text(highlightedText(event.title, matching: searchText))
       }
     }
   }

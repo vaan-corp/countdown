@@ -9,7 +9,6 @@ import EventKit
 import Introspect
 import SwiftDate
 import SwiftUI
-import SwiftyUserInterface
 
 class AppState: ObservableObject {
   private init() { }
@@ -22,7 +21,6 @@ class AppState: ObservableObject {
 
 struct HomeView: View {
   @ObservedObject var preferences = Preferences.shared
-  @ObservedObject var device: Device = Device.shared
   @ObservedObject var appState = AppState.shared
   
   @State var isLoading = false
@@ -252,7 +250,7 @@ struct HomeView: View {
   var resultEvents: some View {
     Section {
       ForEach(preferences.displayEvents, id: \.eventIdentifier) { event in
-        EventRow(event: event)
+        EventRow(event: event, searchText: $searchText)
       }
     }
   }
