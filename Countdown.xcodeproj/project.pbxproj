@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E02B2E2129BB9D820025FE61 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E02B2E2029BB9D820025FE61 /* Introspect */; };
 		E0312951299741B20015287F /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312950299741B20015287F /* CountdownApp.swift */; };
 		E0312955299741B30015287F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312954299741B30015287F /* Assets.xcassets */; };
 		E0312958299741B30015287F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312957299741B30015287F /* Preview Assets.xcassets */; };
@@ -26,7 +27,6 @@
 		E03129A52997579A0015287F /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A42997579A0015287F /* SwiftDate */; };
 		E03129A8299757DE0015287F /* MIDataStore in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A7299757DE0015287F /* MIDataStore */; };
 		E03129AA299758C10015287F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03129A9299758C10015287F /* HomeView.swift */; };
-		E03129AF29975A3A0015287F /* SwiftyUserInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E03129AE29975A3A0015287F /* SwiftyUserInterface */; };
 		E052114D29A4A47600271E16 /* SmallWidgetSingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */; };
 		E0CC9E1029A0D49500F46E58 /* NoEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC9E0F29A0D49500F46E58 /* NoEventsView.swift */; };
 		E0D71A1D299DF50800E79F2F /* NSCustomPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A1C299DF50800E79F2F /* NSCustomPersistentContainer.swift */; };
@@ -93,7 +93,6 @@
 		E0312997299755A10015287F /* FavoriteEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEvent.swift; sourceTree = "<group>"; };
 		E031299B2997568D0015287F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E03129A9299758C10015287F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		E03129AD299759F60015287F /* SwiftyUserInterface */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftyUserInterface; path = ../../Frameworks/SwiftyUserInterface; sourceTree = "<group>"; };
 		E03129DF299784E10015287F /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		E03129E0299785320015287F /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetSingleEventView.swift; sourceTree = "<group>"; };
@@ -121,7 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E03129A52997579A0015287F /* SwiftDate in Frameworks */,
-				E03129AF29975A3A0015287F /* SwiftyUserInterface in Frameworks */,
+				E02B2E2129BB9D820025FE61 /* Introspect in Frameworks */,
 				E03129A2299757940015287F /* SwiftyStoreKit in Frameworks */,
 				E03129A8299757DE0015287F /* MIDataStore in Frameworks */,
 			);
@@ -233,7 +232,6 @@
 		E03129AB2997596A0015287F /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				E03129AD299759F60015287F /* SwiftyUserInterface */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -303,7 +301,7 @@
 				E03129A1299757940015287F /* SwiftyStoreKit */,
 				E03129A42997579A0015287F /* SwiftDate */,
 				E03129A7299757DE0015287F /* MIDataStore */,
-				E03129AE29975A3A0015287F /* SwiftyUserInterface */,
+				E02B2E2029BB9D820025FE61 /* Introspect */,
 			);
 			productName = Countdown;
 			productReference = E031294D299741B20015287F /* Countdown.app */;
@@ -360,6 +358,7 @@
 				E031299D299757050015287F /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				E03129A0299757940015287F /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				E03129A6299757DE0015287F /* XCRemoteSwiftPackageReference "mi-data-store" */,
+				E02B2E1F29BB9D810025FE61 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = E031294E299741B20015287F /* Products */;
 			projectDirPath = "";
@@ -589,11 +588,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Countdown/Countdown.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Countdown/Preview Content\"";
 				DEVELOPMENT_TEAM = 67T577V5Q4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "To show you the CountDown for the events, you have already planned in your calendars.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -621,11 +621,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Countdown/Countdown.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Countdown/Preview Content\"";
 				DEVELOPMENT_TEAM = 67T577V5Q4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "To show you the CountDown for the events, you have already planned in your calendars.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -652,7 +653,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = CDWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 67T577V5Q4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CDWidget/Info.plist;
@@ -664,7 +665,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.imthath.CountDown.CDWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -681,7 +682,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = CDWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 67T577V5Q4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CDWidget/Info.plist;
@@ -693,7 +694,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.imthath.CountDown.CDWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -736,6 +737,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E02B2E1F29BB9D810025FE61 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
+			};
+		};
 		E031299D299757050015287F /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
@@ -763,6 +772,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E02B2E2029BB9D820025FE61 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E02B2E1F29BB9D810025FE61 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		E03129A1299757940015287F /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E03129A0299757940015287F /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
@@ -777,10 +791,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E03129A6299757DE0015287F /* XCRemoteSwiftPackageReference "mi-data-store" */;
 			productName = MIDataStore;
-		};
-		E03129AE29975A3A0015287F /* SwiftyUserInterface */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftyUserInterface;
 		};
 		E0D71A30299E002F00E79F2F /* SwiftDate */ = {
 			isa = XCSwiftPackageProductDependency;

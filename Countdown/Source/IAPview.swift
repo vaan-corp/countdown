@@ -7,10 +7,9 @@
 
 import StoreKit
 import SwiftUI
-import SwiftyUserInterface
 
 struct IAPview: View {
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.dismiss) var dismiss
   @ObservedObject var preferences = Preferences.shared
   @ObservedObject var productStore = ProductStore.shared
   
@@ -62,7 +61,7 @@ struct IAPview: View {
   var skipButton: some View {
     HStack {
       Button("Skip") {
-        self.presentationMode.wrappedValue.dismiss()
+        dismiss()
       }
       .padding([.top, .leading], .medium)
       Spacer()
@@ -170,7 +169,7 @@ struct IAPview: View {
       )
       .multilineTextAlignment(.center)
       .padding()
-      DismissButton(title: "Dismiss", presentationMode: presentationMode)
+      DismissButton(title: "Dismiss", dismiss: dismiss)
     }
     .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
   }
@@ -178,7 +177,7 @@ struct IAPview: View {
 
 public struct PurchaseCompletedView: View {
   @Binding var isRestored: Bool
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.dismiss) var dismiss
   
   public var body: some View {
     VStack(spacing: .averageTouchSize) {
@@ -195,7 +194,7 @@ public struct PurchaseCompletedView: View {
       textGroup
       Button("Continue") {
         Preferences.shared.isPaidUser = true
-        self.presentationMode.wrappedValue.dismiss()
+        dismiss()
       }.buttonStyle(CardButtonStyle())
     }
     .padding()
@@ -337,7 +336,7 @@ public struct PurchaseCard: View {
 }
 
 public struct TermsView: View {
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.dismiss) var dismiss
   @State var showMail = false
   
   public var body: some View {
@@ -371,7 +370,7 @@ public struct TermsView: View {
       }.buttonStyle(CardButtonStyle())
       
       Button("Close") {
-        self.presentationMode.wrappedValue.dismiss()
+        dismiss()
       }
       .foregroundColor(.secondary)
       .padding(.top)

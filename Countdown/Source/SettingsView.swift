@@ -8,11 +8,10 @@
 import EventKit
 import MessageUI
 import SwiftUI
-import SwiftyUserInterface
 import WidgetKit
 
 struct SettingsView: View {
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.dismiss) var dismiss
   @ObservedObject var preferences = Preferences.shared
   
   @State var showsMail = false
@@ -29,7 +28,7 @@ struct SettingsView: View {
       viewStack
         .accentColor(.appTintColor)
         .navigationBarTitle("Settings", displayMode: .inline)
-        .navigationBarItems(trailing: DismissButton(title: "Done", presentationMode: presentationMode))
+        .navigationBarItems(trailing: DismissButton(title: "Done", dismiss: dismiss))
     }
     .navigationViewStyle(StackNavigationViewStyle())
   }
@@ -235,6 +234,69 @@ struct CalendarSelectionView: View {
     }
     
     WidgetCenter.shared.reloadAllTimelines()
+  }
+}
+
+private struct ExpandableView<SelectionView: View, ExpandedView: View>: View {
+  
+  var selectionView: SelectionView
+  var expandedView: ExpandedView
+  var backgroundColor: Color
+  var canAddPadding: Bool
+  
+  @State var expandView: Bool
+  
+  public init(selectionView: SelectionView, expandedView: ExpandedView,
+              backgroundColor: Color = Color(.secondarySystemGroupedBackground),
+              openExpanded: Bool = false, addPadding: Bool = true) {
+    self.selectionView = selectionView
+    self.expandedView = expandedView
+    self.backgroundColor = backgroundColor
+    self._expandView = State(initialValue: openExpanded)
+    self.canAddPadding = addPadding
+  }
+  
+  public var body: some View {
+    VStack(alignment: .center, spacing: .zero) {
+      HStack {
+        selectionView
+        arrowMark
+          .imageScale(.small)
+          .foregroundColor(Color(.tertiaryLabel))
+      }
+      // using medium padding for trailing, small for the arrowMark and small for the HStack
+      .padding(EdgeInsets(top: .medium, leading: .small, bottom: .medium, trailing: .medium))
+      .contentShape(Rectangle())
+      .onTapGesture(perform: toggleView)
+      if expandView {
+        expandedView
+      }
+    }
+    .background(backgroundColor)
+    .cornerRadius(.small)
+    .padding(overallPadding)
+  }
+  
+  var overallPadding: EdgeInsets {
+    guard canAddPadding else {
+      return EdgeInsets(NSDirectionalEdgeInsets.zero)
+    }
+    
+    return EdgeInsets(top: .small, leading: .medium, bottom: .small, trailing: .medium)
+  }
+  
+  var arrowMark: Image {
+    if expandView {
+      return Image(systemName: "chevron.up")
+    }
+    
+    return Image(systemName: "chevron.down")
+  }
+  
+  func toggleView() {
+    withAnimation(.easeInOut(duration: 0.3), {
+      self.expandView.toggle()
+    })
   }
 }
 

@@ -8,10 +8,9 @@
 import Combine
 import EventKit
 import SwiftUI
-import SwiftyUserInterface
 
 struct EventDetail: View {
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.dismiss) var dismiss
   
   @ObservedObject var preferences = Preferences.shared
   @Binding var event: EKEvent
@@ -164,7 +163,7 @@ struct EventDetail: View {
   func checkChangeInEvent() {
     self.timeGap = self.event.occurrenceDate.timeGap
     if isDeleted {
-      presentationMode.wrappedValue.dismiss()
+      dismiss()
     }
   }
   
