@@ -25,11 +25,7 @@ struct EventRow: View {
       EventDetail(event: self.$event)
     } label: {
       Group {
-        if preferences.showEventAsCard {
-          eventCard.contentShape(RoundedRectangle(cornerRadius: .small))
-        } else {
-          eventStack.contentShape(Rectangle())
-        }
+        eventCard.contentShape(RoundedRectangle(cornerRadius: .small))
       }
     }
     .listRowBackground(preferences.showEventAsCard ?  Color(.systemGroupedBackground) : .clear)
@@ -93,30 +89,6 @@ struct EventRow: View {
         HighlightedText(event.title, matching: preferences.searchText)
       }
     }
-  }
-  
-  var eventStack: some View {
-    HStack {
-      if preferences.isPaidUser {
-        favModel.image
-          .font(.footnote)
-          .foregroundColor(event.color)
-          .onTapGesture { self.favModel.toggle() }
-      } else {
-        Circle()
-          .fill(event.color)
-          .frame(width: .small, height: .small)
-      }
-            
-      eventTitle
-        .multilineTextAlignment(.leading)
-      Spacer()
-      Text(event.difference(in: preferences.calendarComponent))
-      Image(systemName: "chevron.right")
-        .imageScale(.small)
-        .foregroundColor(Color(.quaternaryLabel))
-    }
-    .padding(EdgeInsets(top: .small, leading: .medium, bottom: .small, trailing: .small))
   }
   
   var eventDate: String {
