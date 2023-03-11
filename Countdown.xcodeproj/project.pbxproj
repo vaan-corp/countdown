@@ -355,7 +355,6 @@
 				E031299D299757050015287F /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				E03129A0299757940015287F /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				E03129A6299757DE0015287F /* XCRemoteSwiftPackageReference "mi-data-store" */,
-				E02B2E1F29BB9D810025FE61 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = E031294E299741B20015287F /* Products */;
 			projectDirPath = "";
@@ -734,14 +733,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E02B2E1F29BB9D810025FE61 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.3;
-			};
-		};
 		E031299D299757050015287F /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
