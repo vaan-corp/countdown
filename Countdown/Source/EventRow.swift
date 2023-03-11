@@ -20,14 +20,7 @@ struct EventRow: View {
     self.favModel = FavoriteModel(event: event)
     _searchText = searchText
   }
-  
-  func highlightedText(_ text: String, matching: String) -> AttributedString {
-      let attributedString = NSMutableAttributedString(string: text)
-      let range = (text as NSString).range(of: matching, options: .caseInsensitive)
-      attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
-      return AttributedString(attributedString)
-  }
-  
+
   var body: some View {
     NavigationLink {
       EventDetail(event: self.$event)
@@ -98,7 +91,14 @@ struct EventRow: View {
       }
     }
   }
-  
+
+  func highlightedText(_ text: String, matching: String) -> AttributedString {
+    let attributedString = NSMutableAttributedString(string: text)
+    let range = (text as NSString).range(of: matching, options: .caseInsensitive)
+    attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
+    return AttributedString(attributedString)
+  }
+
   var eventDate: String {
     let daysLeft = event.occurrenceDate.timeGap.days
     

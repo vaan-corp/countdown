@@ -28,7 +28,7 @@ struct SettingsView: View {
       viewStack
         .accentColor(.appTintColor)
         .navigationBarTitle("Settings", displayMode: .inline)
-        .navigationBarItems(trailing: DismissButton(title: "Done", dismiss: dismiss))
+        .navigationBarItems(trailing: Button("Done") { dismiss() })
     }
     .navigationViewStyle(StackNavigationViewStyle())
   }
@@ -76,8 +76,10 @@ struct SettingsView: View {
   
   var endDateStack: some View {
     HStack {
-      ScaledImage(systemName: "clock")
+      Image(systemName: "clock")
         .foregroundColor(.orange)
+        .imageScale(.large)
+        .frame(minWidth: .averageTouchSize)
       Text("Display events until")
       Spacer()
       Text(preferences.endDate.words(in: .short))
@@ -94,8 +96,10 @@ struct SettingsView: View {
   
   var displayUnitStack: some View {
     HStack {
-      ScaledImage(systemName: "hourglass")
+      Image(systemName: "hourglass")
         .foregroundColor(.green)
+        .imageScale(.large)
+        .frame(minWidth: .averageTouchSize)
       Text("Display countdown in ")
       Spacer()
       Text(CDDefault.components[preferences.displayComponent].displayString)
@@ -115,8 +119,10 @@ struct SettingsView: View {
   
   var calendarStack: some View {
     HStack {
-      ScaledImage(systemName: "calendar")
+      Image(systemName: "calendar")
         .foregroundColor(.purple)
+        .imageScale(.large)
+        .frame(minWidth: .averageTouchSize)
       Text("Display events in ")
       Spacer()
       Text(preferences.enabledCalendarsDisplayString)
@@ -145,7 +151,10 @@ struct SettingsView: View {
   
   var contactUs: some View {
     HStack {
-      ScaledImage(systemName: "envelope").foregroundColor(.blue)
+      Image(systemName: "envelope")
+        .foregroundColor(.blue)
+        .imageScale(.large)
+        .frame(minWidth: .averageTouchSize)
       Text("Contact us")
       Spacer()
     }
@@ -158,7 +167,10 @@ struct SettingsView: View {
   
   var privacyPolicyStack: some View {
     HStack {
-      ScaledImage(systemName: "lock.shield").foregroundColor(.red)
+      Image(systemName: "lock.shield")
+        .foregroundColor(.red)
+        .imageScale(.large)
+        .frame(minWidth: .averageTouchSize)
       Text("Privacy policy")
       Spacer()
     }
@@ -175,7 +187,10 @@ struct SettingsView: View {
   
   var writeReview: some View {
     HStack {
-      ScaledImage(systemName: "square.and.pencil").foregroundColor(.yellow)
+      Image(systemName: "square.and.pencil")
+        .foregroundColor(.yellow)
+        .imageScale(.large)
+        .frame(minWidth: .averageTouchSize)
       Text("Write us a review")
       Spacer()
     }
@@ -237,8 +252,7 @@ struct CalendarSelectionView: View {
   }
 }
 
-private struct ExpandableView<SelectionView: View, ExpandedView: View>: View {
-  
+private struct ExpandableView<SelectionView: View, ExpandedView: View>: View {  
   var selectionView: SelectionView
   var expandedView: ExpandedView
   var backgroundColor: Color

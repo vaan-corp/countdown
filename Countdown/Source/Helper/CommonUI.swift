@@ -358,39 +358,7 @@ public struct Card<Content>: View where Content: View {
   }
 }
 
-public struct ScaledImage: View {
-  let systemName: String
-  let scale: Image.Scale
-  let minWidth: CGFloat
-  
-  public init(systemName: String, scale: Image.Scale = .large, minWidth: CGFloat = .averageTouchSize) {
-    self.systemName = systemName
-    self.scale = scale
-    self.minWidth = minWidth
-  }
-  
-  public var body: some View {
-    Image(systemName: systemName)
-      .imageScale(scale)
-      .frame(minWidth: minWidth)
-  }
-}
 
-public struct DismissButton: View {
-  var title: String = "Cancel"
-  var dismiss: DismissAction
-  
-  public init(title: String = "Cancel",
-              dismiss: DismissAction) {
-    self.title = title
-    self.dismiss = dismiss
-  }
-  public var body: some View {
-    Button(title) {
-      dismiss()
-    }
-  }
-}
 
 public extension CGFloat {
     static var small: CGFloat { 8 }
