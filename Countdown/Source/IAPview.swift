@@ -169,7 +169,7 @@ struct IAPview: View {
       )
       .multilineTextAlignment(.center)
       .padding()
-      DismissButton(title: "Dismiss", dismiss: dismiss)
+      Button("Dismiss") { dismiss() }
     }
     .rectangleBackground(with: Color(.secondarySystemGroupedBackground))
   }
@@ -224,29 +224,37 @@ public struct PremiumFeaturesView: View {
       //                    .secondaryText()
       
       HStack(spacing: .small) {
-        ScaledImage(
-          systemName: "rectangle.fill.on.rectangle.angled.fill",
-          scale: .medium
-        )
-        .foregroundColor(Color.yellow)// .opacity(0.8))
+        Image(systemName: "rectangle.fill.on.rectangle.angled.fill")
+          .foregroundColor(Color.yellow)// .opacity(0.8))
+          .imageScale(.medium)
+          .frame(minWidth: .averageTouchSize)
         Text("Add widgets in today view")
         Spacer()
       }
       
       HStack(spacing: .small) {
-        ScaledImage(systemName: "heart.fill").foregroundColor(.red)
+        Image(systemName: "heart.fill")
+          .foregroundColor(.red)
+          .imageScale(.large)
+          .frame(minWidth: .averageTouchSize)
         Text("Add favorite events")
         Spacer()
       }
       
       HStack(spacing: .small) {
-        ScaledImage(systemName: "arrow.clockwise.icloud.fill").foregroundColor(.blue)
+        Image(systemName: "arrow.clockwise.icloud.fill")
+          .foregroundColor(.blue)
+          .imageScale(.large)
+          .frame(minWidth: .averageTouchSize)
         Text("iCloud sync across your devices")
         Spacer()
       }
       
       HStack(spacing: .small) {
-        ScaledImage(systemName: "calendar.badge.plus").foregroundColor(Color.purple.opacity(0.9))
+        Image(systemName: "calendar.badge.plus")
+          .foregroundColor(Color.purple.opacity(0.9))
+          .imageScale(.large)
+          .frame(minWidth: .averageTouchSize)
         Text("Access all Calendars and Events")
           .multilineTextAlignment(.leading)
           .layoutPriority(1)
@@ -254,7 +262,10 @@ public struct PremiumFeaturesView: View {
       }
       
       HStack(spacing: .small) {
-        ScaledImage(systemName: "sparkles").foregroundColor(Color.green.opacity(0.9))
+        Image(systemName: "sparkles")
+          .foregroundColor(Color.green.opacity(0.9))
+          .imageScale(.large)
+          .frame(minWidth: .averageTouchSize)
         Text("Support for all upcoming features")
         Spacer()
       }
