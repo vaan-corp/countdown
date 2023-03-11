@@ -175,7 +175,9 @@ struct HomeView: View {
       Text("Select some calendars from")
       Text("Settings").foregroundColor(.accentColor)
       Text("to view the countdown for events")
+      Spacer()
     }
+    .foregroundColor(.secondary)
     .padding()
     .onTapGesture {
       self.appState.showsSettings = true
@@ -260,9 +262,10 @@ struct HomeView: View {
       Image.resizable(withName: "magGlass")
         .frame(width: 200, height: 200)
         .padding(.top, .imageSize)
-      Text("No results found for the keyword \"\(searchText)\"")
+      Text("No events found for \"\(searchText)\"")
         .multilineTextAlignment(.center)
         .padding(.top, .averageTouchSize)
+        .foregroundColor(.secondary)
       Spacer()
     }
     .padding()
