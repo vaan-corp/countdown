@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E02B2E2129BB9D820025FE61 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E02B2E2029BB9D820025FE61 /* Introspect */; };
 		E0312951299741B20015287F /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312950299741B20015287F /* CountdownApp.swift */; };
 		E0312955299741B30015287F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312954299741B30015287F /* Assets.xcassets */; };
 		E0312958299741B30015287F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312957299741B30015287F /* Preview Assets.xcassets */; };
@@ -120,7 +119,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E03129A52997579A0015287F /* SwiftDate in Frameworks */,
-				E02B2E2129BB9D820025FE61 /* Introspect in Frameworks */,
 				E03129A2299757940015287F /* SwiftyStoreKit in Frameworks */,
 				E03129A8299757DE0015287F /* MIDataStore in Frameworks */,
 			);
@@ -301,7 +299,6 @@
 				E03129A1299757940015287F /* SwiftyStoreKit */,
 				E03129A42997579A0015287F /* SwiftDate */,
 				E03129A7299757DE0015287F /* MIDataStore */,
-				E02B2E2029BB9D820025FE61 /* Introspect */,
 			);
 			productName = Countdown;
 			productReference = E031294D299741B20015287F /* Countdown.app */;
@@ -772,11 +769,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E02B2E2029BB9D820025FE61 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E02B2E1F29BB9D810025FE61 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
 		E03129A1299757940015287F /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E03129A0299757940015287F /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;

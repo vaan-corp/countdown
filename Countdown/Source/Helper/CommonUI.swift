@@ -94,7 +94,6 @@ public extension View {
               self
           }
           .frame(minHeight: geometry.size.height)
-          .introspectScrollView { $0.bounces = bounces }
       }
   }
   

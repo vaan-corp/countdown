@@ -6,7 +6,6 @@
 //
 
 import EventKit
-import Introspect
 import SwiftDate
 import SwiftUI
 
@@ -212,7 +211,6 @@ struct HomeView: View {
   }
   
   @ViewBuilder var eventList: some View {
-    if #available(iOS 14.0, *) {
       VStack {
         Spacer()
         resultEvents
@@ -221,26 +219,8 @@ struct HomeView: View {
       .embedInScrollView(canShowIndicators: true)
       .background(Color(.systemGroupedBackground))
       .clipped()
-    } else {
-      introspectedList
-    }
   }
-  
-  var introspectedList: some View {
-    resultList
-      .introspectTableView { tableView in
-        if self.preferences.showEventAsCard {
-          tableView.separatorStyle = .none
-          tableView.backgroundColor = .systemGroupedBackground
-        } else {
-          tableView.separatorStyle = .singleLine
-          tableView.backgroundColor = .systemBackground
-        }
-        let footerView = UIView()
-        footerView.backgroundColor = .clear
-        tableView.tableFooterView = footerView
-      }
-  }
+
   var resultList: some View {
     List {
       resultEvents
