@@ -49,8 +49,11 @@ struct SettingsView: View {
       }
       .padding(.top, .small)
       
-      ExpandableView(selectionView: displayUnitStack, expandedView: displayUnitPicker)
-      
+      displayUnitStack
+        .background(Color(.secondarySystemGroupedBackground))
+        .cornerRadius(.small)
+        .padding(EdgeInsets(top: .small, leading: .medium, bottom: .small, trailing: .medium))
+       
       ExpandableView(selectionView: endDateStack, expandedView: endDatePicker)
       
       if !preferences.accessDenied && !preferences.allCalendars.isEmpty {
@@ -95,26 +98,23 @@ struct SettingsView: View {
   }
   
   var displayUnitStack: some View {
-    HStack {
-      Image(systemName: "hourglass")
-        .foregroundColor(.green)
-        .imageScale(.large)
-        .frame(minWidth: .averageTouchSize)
-      Text("Display countdown in ")
+    VStack {
       Spacer()
-      Text(CDDefault.components[preferences.displayComponent].displayString)
-        .foregroundColor(.accentColor)
-        .layoutPriority(1)
-    }
-  }
-  
-  var displayUnitPicker: some View {
-    Picker("", selection: $preferences.displayComponent) {
-      ForEach(0..<CDDefault.components.count) { index in
-        Text(CDDefault.components[index].displayString)
+      HStack {
+        Image(systemName: "hourglass")
+          .foregroundColor(.green)
+          .imageScale(.large)
+          .frame(minWidth: .averageTouchSize)
+        Text("Display countdown in ")
+        Spacer()
+        Picker("", selection: $preferences.displayComponent) {
+          ForEach(0..<CDDefault.components.count) { index in
+            Text(CDDefault.components[index].displayString)
+          }
+        }
       }
+      Spacer()
     }
-    .labelsHidden()
   }
   
   var calendarStack: some View {
@@ -313,6 +313,7 @@ private struct ExpandableView<SelectionView: View, ExpandedView: View>: View {
     })
   }
 }
+
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
