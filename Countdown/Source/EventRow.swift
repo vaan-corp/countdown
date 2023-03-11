@@ -123,3 +123,12 @@ struct EventRow: View {
     return event.occurrenceDate.toString(inFormat: "MMM d, h:mm a")
   }
 }
+
+private extension View {
+  func makeTag(with color: Color) -> some View {
+    self
+      .padding(EdgeInsets(top: .small * 0.5, leading: .small, bottom: .small * 0.5, trailing: .small))
+      .background(color)
+      .cornerRadius(.small * 1.5)
+  }
+}

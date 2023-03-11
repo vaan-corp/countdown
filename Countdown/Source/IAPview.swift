@@ -408,3 +408,13 @@ struct IAPview_Previews: PreviewProvider {
     TermsView()
   }
 }
+
+private extension View {
+  func centerHorizontally() -> some View {
+    HStack {
+      Spacer()
+      self
+      Spacer()
+    }
+  }
+}
