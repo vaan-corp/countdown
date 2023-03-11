@@ -312,6 +312,18 @@ extension Int {
   }
 }
 
+private extension View {
+  func alternateLoader(on isLoading: Binding<Bool>) -> some View {
+    Group {
+      if isLoading.wrappedValue {
+        ProgressView()
+      } else {
+        self
+      }
+    }
+  }
+}
+
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
     HomeView()

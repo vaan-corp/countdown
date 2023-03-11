@@ -59,59 +59,34 @@ public extension View {
   }
   
   func rectangleBackground<T: View>(with color: T) -> some View {
-      self
-           .padding(EdgeInsets(top: .medium, leading: .small, bottom: .medium, trailing: .small))
-          .background(color)
-          .cornerRadius(.small)
-          .padding(EdgeInsets(top: .small, leading: .medium, bottom: .small, trailing: .medium))
+    self
+      .padding(EdgeInsets(top: .medium, leading: .small, bottom: .medium, trailing: .small))
+      .background(color)
+      .cornerRadius(.small)
+      .padding(EdgeInsets(top: .small, leading: .medium, bottom: .small, trailing: .medium))
   }
   
   func secondaryText() -> some View {
-      self
-          .font(.footnote)
-          .foregroundColor(.secondary)
-          .multilineTextAlignment(.leading)
-  }
-  
-  func centerHorizontally() -> some View {
-      HStack {
-          Spacer()
-          self
-          Spacer()
-      }
+    self
+      .font(.footnote)
+      .foregroundColor(.secondary)
+      .multilineTextAlignment(.leading)
   }
   
   func simpleAlert(isPresented: Binding<Bool>, title: String = "Alert", message: String) -> some View {
-      return self.alert(isPresented: isPresented, content: {
-          Alert(title: Text(title), message: Text(message))
-      })
+    return self.alert(isPresented: isPresented, content: {
+      Alert(title: Text(title), message: Text(message))
+    })
   }
   
   func embedInScrollView(canShowIndicators showsIndicators: Bool = false,
                          canBounce bounces: Bool = false) -> some View {
-      GeometryReader { geometry in
-          ScrollView(showsIndicators: showsIndicators) {
-              self
-          }
-          .frame(minHeight: geometry.size.height)
+    GeometryReader { geometry in
+      ScrollView(showsIndicators: showsIndicators) {
+        self
       }
-  }
-  
-  func alternateLoader(on isLoading: Binding<Bool>) -> some View {
-      Group {
-          if isLoading.wrappedValue {
-              ProgressView()
-          } else {
-              self
-          }
-      }
-  }
-  
-  func makeTag(with color: Color) -> some View {
-      self
-      .padding(EdgeInsets(top: .small * 0.5, leading: .small, bottom: .small * 0.5, trailing: .small))
-      .background(color)
-      .cornerRadius(.small * 1.5)
+      .frame(minHeight: geometry.size.height)
+    }
   }
 }
 
