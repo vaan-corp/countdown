@@ -1,0 +1,73 @@
+{
+  "identifier" : "6D1D389F",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "1521958624",
+      "localizations" : [
+        {
+          "description" : "one time purchase",
+          "displayName" : "One time purchase",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "imthath_countdown_lifetime",
+      "referenceName" : "Life Time Subscription",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "1519488760",
+    "_developerTeamID" : "67T577V5Q4",
+    "_lastSynchronizedDate" : 701261754.01983798
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "20661455",
+      "localizations" : [
+
+      ],
+      "name" : "imthath_countdown_subscriptions",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "2.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "1522303582",
+          "introductoryOffer" : {
+            "internalID" : "3469245A",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P2W"
+          },
+          "localizations" : [
+            {
+              "description" : "yearly (first 2 weeks free)",
+              "displayName" : "Yearly subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "imthath_countdown_oneyear",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "One year subsription",
+          "subscriptionGroupID" : "20661455",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}
