@@ -68,6 +68,8 @@ struct CDWidgetEntryView: View {
       } else {
         CDSmallWidgetView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
       }
+    case .systemMedium:
+      CDMediumWidgetView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
     default:
       Text("Widget not supported yet")
     }
@@ -86,7 +88,7 @@ struct FavEventsWidget: Widget {
     }
     .configurationDisplayName("Favorite Events")
     .description("Add favorties in the app to see countdown quickly on your home screen")
-    .supportedFamilies([.systemSmall])
+    .supportedFamilies([.systemSmall, .systemMedium])
   }
 }
 
@@ -102,7 +104,7 @@ struct AllEventsWidget: Widget {
     }
     .configurationDisplayName("Upcoming events")
     .description("See countdown for all events on your calendar")
-    .supportedFamilies([.systemSmall])
+    .supportedFamilies([.systemSmall, .systemMedium])
   }
 }
 

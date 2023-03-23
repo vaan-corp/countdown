@@ -23,14 +23,14 @@ struct CDSmallWidgetView: View {
   }
 }
 
-private struct TimerVStack: View {
+struct TimerVStack: View {
   var firstTwoEvents: [EKEvent]
   
   var body: some View {
     VStack(spacing: 10) {
       ForEach(firstTwoEvents, id: \.eventIdentifier) { event in
         TimerDetailStack(event: event)
-          .frame(width: 134, height: 42)
+          .frame(width: 134, height: 46)
           .foregroundColor(event.color)
       }
     }
@@ -59,27 +59,31 @@ struct TimerDetailStack: View {
   
   var timerStack: some View {
     HStack(alignment: .lastTextBaseline, spacing: 6) {
-      HStack(alignment: .top, spacing: 3) {
-        if days < 10 {
-          HStack(spacing: 0) {
-            Text("0").font(.callout)
-            Text(String(days)).font(.callout)
-          }
-        } else {
-          Text(String(days)).font(.callout)
-        }
-        if days < 2 {
-          Text("day").font(.system(size: 6))
-        } else {
-          Text("days").font(.system(size: 6))
-        }
-      }
+      daysVStack
       Text(date, style: .timer).font(Font.monospacedDigit(.callout)())
+    }
+  }
+  
+  var daysVStack: some View {
+    HStack(alignment: .top, spacing: 3) {
+      if days < 10 {
+        HStack(spacing: 0) {
+          Text("0").font(.footnote)
+          Text(String(days)).font(.footnote)
+        }
+      } else {
+        Text(String(days)).font(.footnote)
+      }
+      if days < 2 {
+        Text("day").font(.system(size: 6))
+      } else {
+        Text("days").font(.system(size: 6))
+      }
     }
   }
 }
 
-private struct MoreEventsStack: View {
+ struct MoreEventsStack: View {
   var firstSevenEvents: [EKEvent]
   var eventsCount: Int
   var nextEvents: [EKEvent] { Array(firstSevenEvents.dropFirst(2))}

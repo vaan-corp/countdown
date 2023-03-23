@@ -26,6 +26,7 @@
 		E03129A52997579A0015287F /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A42997579A0015287F /* SwiftDate */; };
 		E03129A8299757DE0015287F /* MIDataStore in Frameworks */ = {isa = PBXBuildFile; productRef = E03129A7299757DE0015287F /* MIDataStore */; };
 		E03129AA299758C10015287F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03129A9299758C10015287F /* HomeView.swift */; };
+		E04356C229BF17B000E9D4BB /* CDMediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04356C129BF17B000E9D4BB /* CDMediumWidgetView.swift */; };
 		E052114D29A4A47600271E16 /* SmallWidgetSingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */; };
 		E0CC9E1029A0D49500F46E58 /* NoEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC9E0F29A0D49500F46E58 /* NoEventsView.swift */; };
 		E0D71A1D299DF50800E79F2F /* NSCustomPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D71A1C299DF50800E79F2F /* NSCustomPersistentContainer.swift */; };
@@ -94,6 +95,7 @@
 		E03129A9299758C10015287F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E03129DF299784E10015287F /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		E03129E0299785320015287F /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E04356C129BF17B000E9D4BB /* CDMediumWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDMediumWidgetView.swift; sourceTree = "<group>"; };
 		E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetSingleEventView.swift; sourceTree = "<group>"; };
 		E0CC9E0F29A0D49500F46E58 /* NoEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoEventsView.swift; sourceTree = "<group>"; };
 		E0D71A1A299DF2F800E79F2F /* Countdown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Countdown.entitlements; sourceTree = "<group>"; };
@@ -243,13 +245,21 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		E04356C029BF178300E9D4BB /* MediumWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E04356C129BF17B000E9D4BB /* CDMediumWidgetView.swift */,
+			);
+			path = MediumWidget;
+			sourceTree = "<group>";
+		};
 		E0D71A20299DFC4300E79F2F /* SmallWidget */ = {
 			isa = PBXGroup;
 			children = (
 				E0D71A24299DFCA100E79F2F /* CDSmallWidgetView.swift */,
+				E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */,
 				E0CC9E0F29A0D49500F46E58 /* NoEventsView.swift */,
 				E0D71A21299DFC5300E79F2F /* Helper */,
-				E052114C29A4A47600271E16 /* SmallWidgetSingleEventView.swift */,
 			);
 			path = SmallWidget;
 			sourceTree = "<group>";
@@ -265,6 +275,7 @@
 		E0ED779F299CF55A00003A2B /* CDWidget */ = {
 			isa = PBXGroup;
 			children = (
+				E04356C029BF178300E9D4BB /* MediumWidget */,
 				E0D71A20299DFC4300E79F2F /* SmallWidget */,
 				E0ED77A0299CF55A00003A2B /* CDWidgetBundle.swift */,
 				E0ED77A2299CF55A00003A2B /* CDWidgetLiveActivity.swift */,
@@ -445,6 +456,7 @@
 				E0ED77A3299CF55A00003A2B /* CDWidgetLiveActivity.swift in Sources */,
 				E0D71A34299E053A00E79F2F /* FavoriteEvent.swift in Sources */,
 				E0D71A2F299E001900E79F2F /* NSCustomPersistentContainer.swift in Sources */,
+				E04356C229BF17B000E9D4BB /* CDMediumWidgetView.swift in Sources */,
 				E0ED77A5299CF55A00003A2B /* CDWidget.swift in Sources */,
 				E0CC9E1029A0D49500F46E58 /* NoEventsView.swift in Sources */,
 				E0D71A27299DFDFB00E79F2F /* Helper.swift in Sources */,
