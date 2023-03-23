@@ -98,8 +98,6 @@ struct SettingsView: View {
   }
   
   var displayUnitStack: some View {
-    VStack {
-      Spacer()
       HStack {
         Image(systemName: "hourglass")
           .foregroundColor(.green)
@@ -113,8 +111,7 @@ struct SettingsView: View {
           }
         }
       }
-      Spacer()
-    }
+      .padding(EdgeInsets(top: .medium, leading: .small, bottom: .medium, trailing: .small))
   }
   
   var calendarStack: some View {
