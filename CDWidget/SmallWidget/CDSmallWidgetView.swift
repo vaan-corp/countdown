@@ -8,7 +8,7 @@
 import EventKit
 import SwiftUI
 
-struct CDSmallWidgetView: View {
+struct SmallWidgetMultipleEventsView: View {
   var firstSevenEvents: [EKEvent]
   var eventsCount: Int
   var firstTwoEvents: [EKEvent] { Array(firstSevenEvents.prefix(2))}
@@ -114,11 +114,5 @@ struct TimerDetailStack: View {
       Image("MoreEvents")
         .font(.caption)
     }
-  }
-}
-
-struct CDSmallWidgetView_Previews: PreviewProvider {
-  static var previews: some View {
-    CDSmallWidgetView(firstSevenEvents: [], eventsCount: 1)
   }
 }

@@ -8,7 +8,7 @@
 import EventKit
 import SwiftUI
 
-struct CDMediumWidgetView: View {
+struct MediumWidgetMultipleEventsView: View {
   var firstSevenEvents: [EKEvent]
   var eventsCount: Int
   var firstTwoEvents: [EKEvent] { Array(firstSevenEvents.prefix(2))}
@@ -66,11 +66,5 @@ struct CDMediumWidgetView: View {
         .padding(.trailing, 20)
     }
     .frame(height: 16)
-  }
-}
-
-struct CDMediumWidgetView_Previews: PreviewProvider {
-  static var previews: some View {
-    CDMediumWidgetView(firstSevenEvents: [], eventsCount: 1, kind: "")
   }
 }
