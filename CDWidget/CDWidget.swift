@@ -66,7 +66,7 @@ struct CDWidgetEntryView: View {
           SmallWidgetSingleEventView(event: event)
         }
       } else {
-        CDSmallWidgetView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
+        SmallWidgetMultipleEventsView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount)
       }
     case .systemMedium:
       if eventsCount == 0 {
@@ -76,7 +76,7 @@ struct CDWidgetEntryView: View {
           MediumWidgetSingleEventView(event: event)
         }
       } else {
-        CDMediumWidgetView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount, kind: kind)
+        MediumWidgetMultipleEventsView(firstSevenEvents: firstSevenEvents, eventsCount: eventsCount, kind: kind)
       }
     default:
       Text("Widget not supported yet")
