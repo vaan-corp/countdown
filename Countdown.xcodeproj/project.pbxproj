@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0150CCA29CC3B1D0046C570 /* MediumWidgetSingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0150CC929CC3B1D0046C570 /* MediumWidgetSingleEventView.swift */; };
 		E0312951299741B20015287F /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0312950299741B20015287F /* CountdownApp.swift */; };
 		E0312955299741B30015287F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312954299741B30015287F /* Assets.xcassets */; };
 		E0312958299741B30015287F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0312957299741B30015287F /* Preview Assets.xcassets */; };
@@ -76,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E0150CC929CC3B1D0046C570 /* MediumWidgetSingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidgetSingleEventView.swift; sourceTree = "<group>"; };
 		E031294D299741B20015287F /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0312950299741B20015287F /* CountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownApp.swift; sourceTree = "<group>"; };
 		E0312954299741B30015287F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				E04356C129BF17B000E9D4BB /* CDMediumWidgetView.swift */,
+				E0150CC929CC3B1D0046C570 /* MediumWidgetSingleEventView.swift */,
 			);
 			path = MediumWidget;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0150CCA29CC3B1D0046C570 /* MediumWidgetSingleEventView.swift in Sources */,
 				E0ED77A1299CF55A00003A2B /* CDWidgetBundle.swift in Sources */,
 				E0ED77AA299CF55A00003A2B /* CDWidget.intentdefinition in Sources */,
 				E0D71A25299DFCA100E79F2F /* CDSmallWidgetView.swift in Sources */,
