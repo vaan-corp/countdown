@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "mi-data-store",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/imthath-m/mi-data-store",
+      "state" : {
+        "revision" : "952b629ce7e9bf43a1e65900325bbd158ddc69fa",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "swiftdate",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/malcommac/SwiftDate.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e"
+      }
+    },
+    {
+      "identity" : "swiftystorekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bizz84/SwiftyStoreKit.git",
+      "state" : {
+        "revision" : "9ce911639680113dac9b554d6243e406a9758ebe",
+        "version" : "0.16.4"
+      }
+    }
+  ],
+  "version" : 2
+}
